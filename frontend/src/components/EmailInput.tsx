@@ -11,7 +11,7 @@ const EmailInput = ({ email, setEmail }: Props) => {
       </label>
       <input
         required
-        className="w-full p-6 my-auto text-base border border-none rounded-lg h-fit"
+        className="w-full p-6 my-auto text-base border rounded-lg border-zinc-300 h-fit"
         placeholder="Email"
         id="email-input"
         type="email"
