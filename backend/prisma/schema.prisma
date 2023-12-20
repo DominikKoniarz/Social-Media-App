@@ -11,8 +11,8 @@ datasource db {
 }
 
 model user {
-  id BigInt @id @default(autoincrement())
-  firstname String @db.VarChar(255)
-  lastname String @db.VarChar(255)
+  id Int @id @default(autoincrement())
+  name String @db.VarChar(255)
   email String @db.VarChar(255) @unique
+  passwordHash String @db.VarChar(255)
 }
