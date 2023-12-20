@@ -3,10 +3,13 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import corsConfig from "./config/corsConfig";
-import enableIfProduction from "./lib/enableIfProduction";
+import useIfProduction from "./lib/useIfProduction";
+import startWebServer from "./initializers/startWebServer";
 
 const app = express();
 
 app.use(cors(corsConfig));
 
-enableIfProduction(app);
+useIfProduction(app);
+
+startWebServer(app);
