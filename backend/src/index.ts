@@ -7,11 +7,13 @@ import useIfProduction from "./lib/useIfProduction";
 import startWebServer from "./initializers/startWebServer";
 import errorHandler from "./middleware/errorHandler";
 import notFoundController from "./controllers/notFoundController";
+import useIfDev from "./lib/useIfDev";
 
 const app = express();
 
 app.use(cors(corsConfig));
 
+useIfDev(app);
 useIfProduction(app);
 
 app.all("*", notFoundController);
