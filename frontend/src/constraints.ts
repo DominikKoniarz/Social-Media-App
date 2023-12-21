@@ -3,3 +3,4 @@ const API_URL = `${APP_URL}/api`;
 
 export const REGISTER_URL = `${API_URL}/register`;
 export const LOGIN_URL = `${API_URL}/login`;
+export const LOGOUT_URL = `${API_URL}/logout`;
