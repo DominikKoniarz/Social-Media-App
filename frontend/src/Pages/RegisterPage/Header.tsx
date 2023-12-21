@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import LogoText from "./LogoText";
+import LogoText from "../../../public/LogoText";
 
 const Header = () => {
   return (
