@@ -55,8 +55,8 @@ const loginController = async (
 			path: "/",
 			domain:
 				process.env.NODE_ENV === "production"
-					? process.env.APP_HOSTNAME
-					: "http://localhost:3000",
+					? process.env.COOKIE_DOMAIN
+					: "localhost",
 			maxAge: 24 * 60 * 60 * 1000,
 		});
 

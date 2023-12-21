@@ -3,7 +3,7 @@ import rootPageController from "../controllers/rootPageController";
 
 const rootRouter = Router();
 
-const paths = ["/"];
+const paths = ["/", "/login", "/register", "/mainpage"];
 
 rootRouter.get(paths, rootPageController);
 

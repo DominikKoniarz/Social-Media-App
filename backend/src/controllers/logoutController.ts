@@ -9,23 +9,24 @@ const logoutController = async (
 	res: Response,
 	next: NextFunction
 ) => {
+	const refreshToken = req.cookies.appRefreshToken;
+	if (!refreshToken || typeof refreshToken !== "string")
+		return res.sendStatus(200);
+
 	try {
 		// Also delete access token on frontend
-
-		const refreshToken = req.cookies.appRefreshToken;
-		if (!refreshToken) return res.sendStatus(204);
 
 		await Promise.all([
 			await prisma.refreshToken.deleteMany({
 				where: {
-					token: req.cookies.appRefreshToken,
+					token: refreshToken,
 				},
 			}),
 			deleteOutdatedRefreshTokens(),
 		]);
 
 		res.clearCookie("appRefreshToken");
-		res.sendStatus(204);
+		res.sendStatus(200);
 	} catch (error) {
 		next(error);
 	}

@@ -8,7 +8,7 @@ const whitelist: string[] =
 				"http://localhost:5173",
 				"http://127.0.0.1:5173",
 		  ]
-		: [process.env.NODE_ENV];
+		: [`${process.env.APP_HOSTNAME}`];
 
 const corsConfig: CorsOptions = {
 	origin: function (origin, callback) {
