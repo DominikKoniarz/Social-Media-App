@@ -1,47 +1,48 @@
 const ProfileBar = () => {
   return (
-    <div className="w-[246px] h-[871px] bg-color2 border border-none rounded-tl-xl flex flex-col rounded-tr-xl">
+    <div className="w-[246px] h-full bg-color2 border border-none rounded-tl-xl flex flex-col rounded-tr-xl">
       <div className="flex items-center justify-center w-full bg-color1 rounded-tr-xl  border border-none rounded-tl-xl h-[75px]">
         <img className="mix-blend-darken" src="imgF.png" alt="" />
       </div>
       <span className="flex justify-center pt-2 text-xl font-medium text-white">
         Placeholder
       </span>
-      <div className="w-[220px] h-[46px] flex flex-start mt-4 mx-auto items-center bg-white rounded-md shadow ">
-        <div className="ml-9">
-          <svg
-            width="28"
-            height="28"
-            viewBox="0 0 28 28"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <g id="3844470_home_house_icon 1">
-              <path
-                id="XMLID_1_"
-                d="M23.6249 25.375H4.37494V14.875H2.83056C1.83481 14.875 1.37019 13.6334 2.12006 12.978L12.3646 3.27687C13.2816 2.40799 14.7174 2.40799 15.6344 3.27687L25.8781 12.978C26.6288 13.6325 26.1642 14.875 25.1676 14.875H23.6249V25.375Z"
-                stroke="#00BD97"
-                stroke-width="1.6"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-              <path
-                id="XMLID_2_"
-                d="M17.5 25.375H10.5V20.125C10.5 18.1921 12.0671 16.625 14 16.625C15.9329 16.625 17.5 18.1921 17.5 20.125V25.375Z"
-                stroke="#00BD97"
-                stroke-width="2"
-                stroke-miterlimit="10"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </g>
-          </svg>
-        </div>
-        <span className="mx-4 text-lg font-normal text-teal-500 ">Home</span>
-      </div>
-      <ul className="flex flex-col mt-10 ml-12 space-y-10 ">
-        <li className="flex gap-4 ">
+      <ul className="flex flex-col mx-4 mt-10 space-y-10 ">
+        <li className="flex gap-6 px-6 py-2 bg-white rounded-md shadow ">
+          <div className="w-7 h-7 pl-[2.33px] pr-[2.34px] pt-[2.25px] pb-[2.36px] justify-center items-center flex">
+            <svg
+              width="28"
+              height="28"
+              viewBox="0 0 28 28"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <g id="3844470_home_house_icon 1">
+                <path
+                  id="XMLID_1_"
+                  d="M23.6249 25.375H4.37494V14.875H2.83056C1.83481 14.875 1.37019 13.6334 2.12006 12.978L12.3646 3.27687C13.2816 2.40799 14.7174 2.40799 15.6344 3.27687L25.8781 12.978C26.6288 13.6325 26.1642 14.875 25.1676 14.875H23.6249V25.375Z"
+                  stroke="#00BD97"
+                  stroke-width="1.6"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+                <path
+                  id="XMLID_2_"
+                  d="M17.5 25.375H10.5V20.125C10.5 18.1921 12.0671 16.625 14 16.625C15.9329 16.625 17.5 18.1921 17.5 20.125V25.375Z"
+                  stroke="#00BD97"
+                  stroke-width="2"
+                  stroke-miterlimit="10"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </g>
+            </svg>
+          </div>
+          <div className="text-lg font-normal text-teal-500 ">Home</div>
+        </li>
+
+        <li className="flex gap-6 px-6 py-2 ">
           <div className="w-7 h-7 pl-[2.33px] pr-[2.34px] pt-[2.25px] pb-[2.36px] justify-center items-center flex">
             <svg
               width="24"
@@ -62,7 +63,7 @@ const ProfileBar = () => {
           <div className="text-lg font-normal text-white">Notifications</div>
         </li>
 
-        <li className="flex gap-4 ">
+        <li className="flex gap-6 px-6 py-2 ">
           <div className="w-7 h-7 pl-[2.33px] pr-[2.34px] pt-[2.25px] pb-[2.36px] justify-center items-center flex">
             <svg
               width="24"
@@ -83,7 +84,7 @@ const ProfileBar = () => {
           <div className="text-lg font-normal text-white">Messages</div>
         </li>
 
-        <li className="flex gap-4 ">
+        <li className="flex gap-6 px-6 py-2 ">
           <div className="w-7 h-7 pl-[2.33px] pr-[2.34px] pt-[2.25px] pb-[2.36px] justify-center items-center flex">
             <svg
               width="22"
@@ -104,7 +105,7 @@ const ProfileBar = () => {
           <div className="text-lg font-normal text-white">Collection</div>
         </li>
 
-        <li className="flex gap-4 ">
+        <li className="flex gap-6 px-6 py-2 ">
           <div className="w-7 h-7 pl-[2.33px] pr-[2.34px] pt-[2.25px] pb-[2.36px] justify-center items-center flex">
             <svg
               width="20"
@@ -125,7 +126,7 @@ const ProfileBar = () => {
           <div className="text-lg font-normal text-white">Profile</div>
         </li>
 
-        <li className="flex gap-4 ">
+        <li className="flex gap-6 px-6 py-2 ">
           <div className="w-7 h-7 pl-[2.33px] pr-[2.34px] pt-[2.25px] pb-[2.36px] justify-center items-center flex">
             <svg
               width="26"
@@ -151,9 +152,9 @@ const ProfileBar = () => {
           <div className="text-lg font-normal text-white">More</div>
         </li>
       </ul>
-      <div className="w-[246px] h-[53px] bg-color1 flex justify-center items-center mt-auto">
+      <button className="w-[246px] h-[50px] bg-color1 flex justify-center items-center mt-auto">
         <span className="text-lg font-semibold text-white">LOGOUT</span>
-      </div>
+      </button>
     </div>
   );
 };

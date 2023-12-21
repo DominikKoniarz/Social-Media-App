@@ -1,6 +1,6 @@
 import Form from "./Form";
 import Header from "./Header";
-
+import socialmedia from "../../assets/socialmedia.png";
 const LoginPage = () => {
   return (
     <main className="flex w-full h-full">
@@ -8,7 +8,7 @@ const LoginPage = () => {
         <Header />
         <Form />
       </section>
-      <img src="socialmedia.png" alt="socialmedia" />
+      <img src={socialmedia} alt="socialmedia" />
     </main>
   );
 };

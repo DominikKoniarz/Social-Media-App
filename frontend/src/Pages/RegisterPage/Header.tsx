@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
-import LogoText from "../../../public/LogoText";
-
+import LogoText from "../../components/LogoText";
+import imgF from "../../assets/imgF.png";
 const Header = () => {
   return (
     <header className="flex">
-      <img className="mix-blend-darken" src="public/imgF.png" alt="Img F" />
+      <img className="mix-blend-darken" src={imgF} alt="Img F" />
       <LogoText />
       <div className="flex text-black text-sm font-light leading-[14.50px] items-center justify-end w-full ">
         Have an account?

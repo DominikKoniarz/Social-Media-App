@@ -20,6 +20,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "public/LogoText.tsx"],
+  "include": ["src", "src/components/LogoText.tsx"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
