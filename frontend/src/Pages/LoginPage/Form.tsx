@@ -19,7 +19,7 @@ const Form = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [fetchStatus, setFetchStatus] = useState<string>("");
 
-  const handleSubmit = async (password: string, email: string) => {
+  const handleSubmit = async (email: string, password: string) => {
     try {
       const data: LoginData = { email, password };
       setFetchStatus("");
