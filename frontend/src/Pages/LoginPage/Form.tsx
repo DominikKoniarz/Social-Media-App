@@ -3,6 +3,7 @@ import EmailInput from "../../components/EmailInput";
 import PasswordInput from "../../components/PasswordInput";
 import LogInButton from "./LogInButton";
 import { LOGIN_URL } from "../../constraints";
+import { useNavigate } from "react-router-dom";
 
 type LoginData = {
   email: string;
@@ -18,6 +19,8 @@ const Form = () => {
   const [password, setPassword] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [fetchStatus, setFetchStatus] = useState<string>("");
+
+  const navigate = useNavigate();
 
   const handleSubmit = async (email: string, password: string) => {
     try {
@@ -36,7 +39,7 @@ const Form = () => {
 
         throw new Error(`${json.message}`);
       }
-      console.log("zalogowano");
+      navigate("/profilebar");
       setFetchStatus("Logged in succesfully!");
     } catch (err: Error | unknown) {
       if (err instanceof Error) {
