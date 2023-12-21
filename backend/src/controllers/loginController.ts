@@ -6,6 +6,7 @@ import {
 	generateAccessToken,
 	generateRefreshToken,
 } from "../lib/jwt";
+import { setRefreshTokenCookie } from "../lib/cookies";
 
 const prisma = getDbInstance();
 
@@ -49,16 +50,7 @@ const loginController = async (
 			deleteOutdatedRefreshTokens(),
 		]);
 
-		res.cookie("appRefreshToken", refreshToken, {
-			httpOnly: true,
-			secure: process.env.NODE_ENV === "production" ? true : false,
-			path: "/",
-			domain:
-				process.env.NODE_ENV === "production"
-					? process.env.COOKIE_DOMAIN
-					: "localhost",
-			maxAge: 24 * 60 * 60 * 1000,
-		});
+		setRefreshTokenCookie(res, refreshToken);
 
 		return res.status(200).json({ accessToken });
 	} catch (error) {
