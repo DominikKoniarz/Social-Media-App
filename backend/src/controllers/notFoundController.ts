@@ -6,6 +6,8 @@ const notFoundController = (
 	next: NextFunction
 ) => {
 	try {
+		res.status(404);
+
 		if (req.accepts("html")) {
 			res.send("Not Found! 404");
 		} else if (req.accepts("application/json")) {
