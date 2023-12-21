@@ -9,11 +9,13 @@ import errorHandler from "./middleware/errorHandler";
 import notFoundController from "./controllers/notFoundController";
 import useIfDev from "./lib/useIfDev";
 import apiRouter from "./routes/api";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 app.use(express.json());
 app.use(cors(corsConfig));
+app.use(cookieParser());
 
 useIfDev(app);
 useIfProduction(app);

@@ -1,4 +1,7 @@
 import jwt from "jsonwebtoken";
+import getDbInstance from "../initializers/db";
+
+const prisma = getDbInstance();
 
 export const generateAccessToken = (id: number): string => {
 	const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || "at_secret";
@@ -13,5 +16,15 @@ export const generateRefreshToken = (id: number): string => {
 
 	return jwt.sign({ id }, REFRESH_TOKEN_SECRET, {
 		expiresIn: "1d",
+	});
+};
+
+export const deleteOutdatedRefreshTokens = async (): Promise<void> => {
+	await prisma.refreshToken.deleteMany({
+		where: {
+			createdAt: {
+				lt: new Date(Date.now() - 24 * 60 * 60 * 1000),
+			},
+		},
 	});
 };

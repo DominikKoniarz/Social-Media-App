@@ -4,6 +4,8 @@ CREATE TABLE `User` (
     `name` VARCHAR(256) NOT NULL,
     `email` VARCHAR(256) NOT NULL,
     `passwordHash` VARCHAR(256) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
 
     UNIQUE INDEX `User_email_key`(`email`),
     PRIMARY KEY (`id`)
@@ -14,6 +16,8 @@ CREATE TABLE `RefreshToken` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `token` VARCHAR(256) NOT NULL,
     `userId` INTEGER NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

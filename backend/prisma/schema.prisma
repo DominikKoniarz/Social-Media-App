@@ -15,6 +15,8 @@ model User {
   name String @db.VarChar(256)
   email String @unique @db.VarChar(256) 
   passwordHash String @db.VarChar(256)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   refreshToken RefreshToken[]
 }
 
@@ -22,5 +24,7 @@ model RefreshToken {
   id Int @id @default(autoincrement())
   token String @db.VarChar(256)
   userId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   user User @relation(fields: [userId], references: [id])
 }

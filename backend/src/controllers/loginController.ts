@@ -1,7 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import getDbInstance from "../initializers/db";
 import bcrypt from "bcrypt";
-import { generateAccessToken, generateRefreshToken } from "../lib/jwt";
+import {
+	deleteOutdatedRefreshTokens,
+	generateAccessToken,
+	generateRefreshToken,
+} from "../lib/jwt";
 
 const prisma = getDbInstance();
 
@@ -37,6 +41,14 @@ const loginController = async (
 		const accessToken = generateAccessToken(foundUser.id);
 		const refreshToken = generateRefreshToken(foundUser.id);
 
+		await Promise.all([
+			prisma.user.update({
+				where: { id: foundUser.id },
+				data: { refreshToken: { create: [{ token: refreshToken }] } },
+			}),
+			deleteOutdatedRefreshTokens(),
+		]);
+
 		res.cookie("appRefreshToken", refreshToken, {
 			httpOnly: true,
 			secure: process.env.NODE_ENV === "production" ? true : false,
@@ -45,11 +57,7 @@ const loginController = async (
 				process.env.NODE_ENV === "production"
 					? process.env.APP_HOSTNAME
 					: "http://localhost:3000",
-		});
-
-		await prisma.user.update({
-			where: { id: foundUser.id },
-			data: { refreshToken: { create: [{ token: refreshToken }] } },
+			maxAge: 24 * 60 * 60 * 1000,
 		});
 
 		return res.status(200).json({ accessToken });
