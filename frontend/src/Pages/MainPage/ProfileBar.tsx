@@ -1,7 +1,7 @@
 const ProfileBar = () => {
   return (
-    <div className="w-[246px] h-[871px] bg-color2 rounded-tl-xl flex flex-col rounded-tr-xl">
-      <div className="flex items-center justify-center w-full bg-color1 h-[75px]">
+    <div className="w-[246px] h-[871px] bg-color2 border border-none rounded-tl-xl flex flex-col rounded-tr-xl">
+      <div className="flex items-center justify-center w-full bg-color1 rounded-tr-xl  border border-none rounded-tl-xl h-[75px]">
         <img className="mix-blend-darken" src="imgF.png" alt="" />
       </div>
       <span className="flex justify-center pt-2 text-xl font-medium text-white">
@@ -157,4 +157,5 @@ const ProfileBar = () => {
     </div>
   );
 };
+
 export default ProfileBar;
