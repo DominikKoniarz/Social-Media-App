@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, Response } from "express";
 import getDbInstance from "../initializers/db";
 import {
 	deleteOutdatedRefreshTokens,
@@ -25,10 +25,10 @@ const refreshController = async (
 
 		if (!decoded) return res.status(401).json({ message: "Token is invalid" });
 
-		const { id } = decoded;
+		const { userId } = decoded;
 
 		const foundUser = await prisma.user.findUnique({
-			where: { id },
+			where: { id: userId },
 			select: { id: true },
 		});
 		if (!foundUser) return res.status(401).json({ message: "User not found" });

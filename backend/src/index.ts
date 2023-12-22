@@ -3,11 +3,11 @@ dotenv.config();
 import express from "express";
 import cors from "cors";
 import corsConfig from "./config/corsConfig";
+import useIfDev from "./lib/useIfDev";
 import useIfProduction from "./lib/useIfProduction";
 import startWebServer from "./initializers/startWebServer";
 import errorHandler from "./middleware/errorHandler";
 import notFoundController from "./controllers/notFoundController";
-import useIfDev from "./lib/useIfDev";
 import apiRouter from "./routes/api";
 import cookieParser from "cookie-parser";
 

@@ -3,11 +3,11 @@ import getDbInstance from "../initializers/db";
 import z from "zod";
 
 const accessTokenData = z.object({
-	id: z.number(),
+	userId: z.string(),
 });
 
 const refreshTokenData = z.object({
-	id: z.number(),
+	userId: z.string(),
 });
 
 type AccessTokenData = z.infer<typeof accessTokenData>;
@@ -18,16 +18,16 @@ const prisma = getDbInstance();
 const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET || "at_secret";
 const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || "rt_secret";
 
-export const generateAccessToken = (id: number): string => {
-	const accessTokenData: AccessTokenData = { id };
+export const generateAccessToken = (userId: string): string => {
+	const accessTokenData: AccessTokenData = { userId };
 	return jwt.sign(accessTokenData, ACCESS_TOKEN_SECRET, {
 		expiresIn: "30s",
 		// algorithm: "ES256",
 	});
 };
 
-export const generateRefreshToken = (id: number): string => {
-	const refreshTokenData: RefreshTokenData = { id };
+export const generateRefreshToken = (userId: string): string => {
+	const refreshTokenData: RefreshTokenData = { userId };
 	return jwt.sign(refreshTokenData, REFRESH_TOKEN_SECRET, {
 		expiresIn: "1d",
 		// algorithm: "ES256",
