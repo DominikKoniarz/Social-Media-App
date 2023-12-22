@@ -3,12 +3,12 @@ import Header from "./Header";
 import socialmedia from "../../assets/socialmedia.png";
 const RegisterPage = () => {
   return (
-    <main className="flex w-full h-full">
-      <section className="flex flex-col w-full h-full p-10 bg-zinc-100">
+    <main className="flex w-full h-full bg-zinc-100">
+      <section className="flex flex-col w-full md:h-full p-10 h-[calc(100%-75px)] ">
         <Header />
         <Form />
       </section>
-      <img src={socialmedia} alt="socialmedia" />
+      <img className="hidden md:inline" src={socialmedia} alt="socialmedia" />
     </main>
   );
 };

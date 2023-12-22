@@ -6,7 +6,7 @@ const SignUpButton = ({ isLoading }: Props) => {
   return (
     <button
       type="submit"
-      className="bg-teal-500 text-white text-xl font-semibold uppercase leading-[14.50px] justify-center flex items-center  border border-none rounded-xl w-[400px] h-[55px] flex-shrink-0"
+      className="bg-teal-500 text-white text-xl font-semibold uppercase leading-[14.50px] justify-center flex items-center  border border-none rounded-xl w-full md:w-[400px] h-[55px] flex-shrink-0"
     >
       {!isLoading ? (
         <p>sign up</p>

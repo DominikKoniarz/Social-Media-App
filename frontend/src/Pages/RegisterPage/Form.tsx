@@ -59,7 +59,7 @@ const Form = () => {
 
   return (
     <form
-      className="space-y-4   w-[400px] mx-auto  my-auto"
+      className="space-y-3 w-full  md:w-[400px] mx-auto  my-auto"
       onSubmit={(e) => {
         e.preventDefault();
         handleSubmit(password, email, name);
