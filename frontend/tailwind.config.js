@@ -8,9 +8,6 @@ export default {
         color2: "#00BD97",
       },
     },
-    screens: {
-      md: { min: "769px" },
-    },
   },
   plugins: [],
 };

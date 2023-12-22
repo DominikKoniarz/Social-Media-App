@@ -8,7 +8,7 @@ const LoginPage = () => {
         <Header />
         <Form />
       </section>
-      <img className="hidden md:inline" src={socialmedia} alt="socialmedia" />
+      <img className="hidden lg:inline" src={socialmedia} alt="socialmedia" />
     </main>
   );
 };
