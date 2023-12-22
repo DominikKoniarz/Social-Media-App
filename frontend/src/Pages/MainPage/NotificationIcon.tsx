@@ -1,6 +1,6 @@
 const NotificationIcon = () => {
   return (
-    <div className="border rounded-full w-[38px] h-[38px] flex justify-center items-center ">
+    <button className="border rounded-full w-[38px] h-[38px] flex justify-center items-center ">
       <svg
         width="20"
         height="21"
@@ -16,7 +16,7 @@ const NotificationIcon = () => {
           />
         </g>
       </svg>
-    </div>
+    </button>
   );
 };
 export default NotificationIcon;
