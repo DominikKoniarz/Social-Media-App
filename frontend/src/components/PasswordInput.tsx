@@ -11,7 +11,7 @@ const PasswordInput = ({ pwd, setPwd }: Props) => {
       </label>
       <input
         required
-        className="w-full p-6 my-auto text-base border rounded-lg border-zinc-300 h-fit"
+        className="w-full p-3 my-auto text-base border rounded-lg md:p-6 border-zinc-300 h-fit"
         placeholder="Password"
         id="pwd-input"
         type="password"
