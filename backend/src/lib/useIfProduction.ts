@@ -8,6 +8,7 @@ const assetsPath = path.join(process.cwd(), "..", "frontend", "dist", "assets");
 
 const useIfProduction = (app: Express) => {
 	if (process.env.NODE_ENV === "production") {
+		app.set("trust proxy", 1);
 		app.use(helmet(helmetConfig));
 
 		app.use("/", rootRouter);
