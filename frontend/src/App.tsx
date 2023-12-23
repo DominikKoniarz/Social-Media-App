@@ -1,21 +1,24 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
 import RegisterPage from "./Pages/RegisterPage/RegisterPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
+import RootPage from "./Pages/RootPage/RootPage";
 
-import MainPage from "./Pages/MainPage/MainPage";
+const queryClient = new QueryClient();
 
 function App() {
 	return (
-		<BrowserRouter>
-			<Routes>
-				<Route path="/" element={<Navigate to="/login" />} />
-				<Route index path="/login" element={<LoginPage />} />
-				<Route path="/register" element={<RegisterPage />} />
-				<Route path="/mainpage" element={<MainPage />} />
+		<QueryClientProvider client={queryClient}>
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<RootPage />} />
+					<Route path="/login" element={<LoginPage />} />
+					<Route path="/register" element={<RegisterPage />} />
 
-				<Route path="*" element={<div>Not Found</div>} />
-			</Routes>
-		</BrowserRouter>
+					<Route path="*" element={<div>Not Found</div>} />
+				</Routes>
+			</BrowserRouter>
+		</QueryClientProvider>
 	);
 }
 

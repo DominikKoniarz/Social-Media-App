@@ -44,6 +44,16 @@ export const verifyRefreshToken = (
 	return decoded as RefreshTokenData;
 };
 
+export const verifyAccessToken = (
+	accessToken: string
+): undefined | AccessTokenData => {
+	const decoded = jwt.verify(accessToken, ACCESS_TOKEN_SECRET);
+
+	if (!accessTokenData.safeParse(decoded).success) return undefined;
+
+	return decoded as AccessTokenData;
+};
+
 export const deleteOutdatedRefreshTokens = async (): Promise<void> => {
 	await prisma.refreshToken.deleteMany({
 		where: {

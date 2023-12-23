@@ -10,8 +10,10 @@ import errorHandler from "./middleware/errorHandler";
 import notFoundController from "./controllers/notFoundController";
 import apiRouter from "./routes/api";
 import cookieParser from "cookie-parser";
+import http from "http";
 
 const app = express();
+const server = http.createServer(app);
 
 app.use(express.json());
 app.use(cors(corsConfig));
@@ -26,4 +28,4 @@ app.use("/api", apiRouter);
 app.all("*", notFoundController);
 app.use(errorHandler);
 
-startWebServer(app);
+startWebServer(server);
