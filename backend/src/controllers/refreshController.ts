@@ -6,7 +6,10 @@ import {
 	generateRefreshToken,
 	verifyRefreshToken,
 } from "../lib/jwt";
-import { setRefreshTokenCookie } from "../lib/cookies";
+import {
+	REFRESH_TOKEN_COOKIE_NAME,
+	setRefreshTokenCookie,
+} from "../lib/cookies";
 
 const prisma = getDbInstance();
 
@@ -15,7 +18,7 @@ const refreshController = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	const { appRefreshToken } = req.cookies;
+	const appRefreshToken = req.cookies[REFRESH_TOKEN_COOKIE_NAME];
 
 	if (!appRefreshToken || typeof appRefreshToken !== "string")
 		return res.status(400).json({ message: "Refresh token cookie required!" });

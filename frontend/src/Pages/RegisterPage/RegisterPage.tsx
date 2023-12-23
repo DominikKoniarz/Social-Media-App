@@ -1,6 +1,7 @@
 import Form from "./Form";
 import Header from "./Header";
 import socialmedia from "@assets/socialmedia.png";
+import { AxiosError } from "axios";
 import useAccessToken from "hooks/useAccessToken";
 import useVerifyRefreshToken from "hooks/useVerifyRefreshToken";
 import { Navigate } from "react-router-dom";
@@ -23,7 +24,7 @@ const RegisterPage = () => {
 		}
 	}
 
-	console.log("error:", error);
+	if (error instanceof AxiosError) console.log(error.message);
 
 	return (
 		<main className="flex w-screen h-screen bg-zinc-100">

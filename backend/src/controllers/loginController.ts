@@ -29,7 +29,7 @@ const loginController = async (
 		});
 
 		if (!foundUser)
-			return res.status(403).json({ message: "Invalid email or password!" });
+			return res.status(401).json({ message: "Invalid email or password!" });
 
 		const isPasswordValid = await bcrypt.compare(
 			password,
@@ -37,7 +37,7 @@ const loginController = async (
 		);
 
 		if (!isPasswordValid)
-			return res.status(403).json({ message: "Invalid email or password!" });
+			return res.status(401).json({ message: "Invalid email or password!" });
 
 		const accessToken = generateAccessToken(foundUser.id);
 		const refreshToken = generateRefreshToken(foundUser.id);

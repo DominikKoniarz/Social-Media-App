@@ -11,8 +11,8 @@ const useVerifyRefreshToken = () => {
 				url: REFRESH_TOKEN_URL,
 				withCredentials: true,
 			}),
-		staleTime: Infinity,
-		retry: 1,
+		cacheTime: 0,
+		retry: 0,
 		refetchOnWindowFocus: false,
 	});
 

@@ -32,8 +32,12 @@ const setAccessToken = (accessToken: string): void => {
 	localStorage.setItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY, JSON.stringify(data));
 };
 
+const deleteAccessToken = () => {
+	localStorage.removeItem(LOCAL_STORAGE_ACCESS_TOKEN_KEY);
+};
+
 const useAccessToken = () => {
-	return { getAccessToken, setAccessToken };
+	return { getAccessToken, setAccessToken, deleteAccessToken };
 };
 
 export default useAccessToken;

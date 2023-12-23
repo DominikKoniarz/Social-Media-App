@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import getDbInstance from "../initializers/db";
 import { deleteOutdatedRefreshTokens } from "../lib/jwt";
+import { REFRESH_TOKEN_COOKIE_NAME } from "../lib/cookies";
 
 const prisma = getDbInstance();
 
@@ -9,7 +10,8 @@ const logoutController = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	const refreshToken = req.cookies.appRefreshToken;
+	const refreshToken = req.cookies[REFRESH_TOKEN_COOKIE_NAME];
+
 	if (!refreshToken || typeof refreshToken !== "string")
 		return res.sendStatus(200);
 
@@ -25,7 +27,7 @@ const logoutController = async (
 			deleteOutdatedRefreshTokens(),
 		]);
 
-		res.clearCookie("appRefreshToken");
+		res.clearCookie(REFRESH_TOKEN_COOKIE_NAME);
 		res.sendStatus(200);
 	} catch (error) {
 		next(error);

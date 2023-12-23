@@ -1,6 +1,6 @@
 import { type Response } from "express";
 
-const REFRESH_TOKEN_COOKIE_NAME =
+export const REFRESH_TOKEN_COOKIE_NAME =
 	process.env.REFRESH_TOKEN_COOKIE_NAME || "appRefreshToken";
 
 export const setRefreshTokenCookie = (res: Response, token: string) => {

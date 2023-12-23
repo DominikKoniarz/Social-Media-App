@@ -4,6 +4,7 @@ import Header from "./Header";
 import socialmedia from "@assets/socialmedia.png";
 import { Navigate } from "react-router-dom";
 import useAccessToken from "hooks/useAccessToken";
+import { AxiosError } from "axios";
 
 const LoginPage = () => {
 	const { setAccessToken } = useAccessToken();
@@ -14,7 +15,7 @@ const LoginPage = () => {
 			<div className="grid w-full h-full place-items-center">Loading...</div>
 		);
 
-	if (!isLoading && data) {
+	if (!isLoading && !error && data) {
 		const { accessToken } = data.data;
 
 		if (accessToken && typeof accessToken === "string") {
@@ -23,7 +24,7 @@ const LoginPage = () => {
 		}
 	}
 
-	console.log("error:", error);
+	if (error instanceof AxiosError) console.log(error.message);
 
 	return (
 		<main className="flex w-full h-full bg-zinc-100">
