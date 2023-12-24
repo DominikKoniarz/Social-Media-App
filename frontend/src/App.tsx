@@ -4,7 +4,7 @@ import RegisterPage from "./Pages/RegisterPage/RegisterPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import RootPage from "./Pages/RootPage/RootPage";
 import ProfilePage from "Pages/ProfilePage/ProfilePage";
-import ProtectedRoutes from "@components/ProtectedRoutes";
+import ProtectedRoutesLayout from "@components/ProtectedRoutesLayout";
 import { AuthContextProvider } from "context/AuthContext";
 import RootLayout from "@components/RootLayout";
 
@@ -20,7 +20,7 @@ function App() {
 							<Route index path="/login" element={<LoginPage />} />
 							<Route path="/register" element={<RegisterPage />} />
 
-							<Route path="/" element={<ProtectedRoutes />}>
+							<Route path="/" element={<ProtectedRoutesLayout />}>
 								<Route path="/" element={<RootPage />} />
 								<Route path="/profile" element={<ProfilePage />} />
 							</Route>
