@@ -8,6 +8,7 @@ const accessTokenData = z.object({
 
 const refreshTokenData = z.object({
 	userId: z.string(),
+	createdAt: z.number(),
 });
 
 type AccessTokenData = z.infer<typeof accessTokenData>;
@@ -27,7 +28,7 @@ export const generateAccessToken = (userId: string): string => {
 };
 
 export const generateRefreshToken = (userId: string): string => {
-	const refreshTokenData: RefreshTokenData = { userId };
+	const refreshTokenData: RefreshTokenData = { userId, createdAt: Date.now() };
 	return jwt.sign(refreshTokenData, REFRESH_TOKEN_SECRET, {
 		expiresIn: "1d",
 		// algorithm: "ES256",

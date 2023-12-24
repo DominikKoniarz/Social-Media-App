@@ -18,31 +18,41 @@ const refreshController = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	const appRefreshToken = req.cookies[REFRESH_TOKEN_COOKIE_NAME];
+	const refreshToken = req.cookies[REFRESH_TOKEN_COOKIE_NAME];
 
-	if (!appRefreshToken || typeof appRefreshToken !== "string")
+	if (!refreshToken || typeof refreshToken !== "string")
 		return res.status(400).json({ message: "Refresh token cookie required!" });
 
 	try {
-		const decoded = verifyRefreshToken(appRefreshToken);
+		const decoded = verifyRefreshToken(refreshToken);
 
-		if (!decoded) return res.status(401).json({ message: "Token is invalid" });
+		if (!decoded) return res.status(401).json({ message: "Token is invalid!" });
 
 		const { userId } = decoded;
 
-		const foundUser = await prisma.user.findUnique({
+		const foundUser = await prisma.user.findFirst({
 			where: { id: userId },
-			select: { id: true },
+			include: {
+				refreshToken: {
+					where: { token: refreshToken },
+					select: { token: true },
+				},
+			},
 		});
-		if (!foundUser) return res.status(401).json({ message: "User not found" });
+		if (!foundUser || foundUser.refreshToken.length === 0)
+			return res.status(401).json({ message: "Token not found!" });
 
 		const newAccessToken = generateAccessToken(foundUser.id);
 		const newRefreshToken = generateRefreshToken(foundUser.id);
 
 		await Promise.all([
-			prisma.refreshToken.deleteMany({
-				where: { token: appRefreshToken },
-			}),
+			async () => {
+				if (process.env.NODE_ENV === "production") {
+					await prisma.refreshToken.delete({
+						where: { token: refreshToken },
+					});
+				}
+			},
 			prisma.refreshToken.create({
 				data: {
 					token: newRefreshToken,

@@ -22,7 +22,7 @@ model User {
 
 model RefreshToken {
   id String @id @default(uuid()) 
-  token String @db.VarChar(256)
+  token String @db.VarChar(256) @unique
   userId String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

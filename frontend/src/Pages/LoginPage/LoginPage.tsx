@@ -24,7 +24,8 @@ const LoginPage = () => {
 		}
 	}
 
-	if (error instanceof AxiosError) console.log(error.message);
+	if (error instanceof AxiosError && error.response)
+		console.log(error.response.data.message);
 
 	return (
 		<main className="flex w-full h-full bg-zinc-100">
