@@ -44,6 +44,9 @@ const Form = () => {
 				throw new Error(`${json.message}`);
 			}
 
+			setEmail("");
+			setPassword("");
+			setName("");
 			setFetchStatus("Signed in succesfully!");
 		} catch (err: Error | unknown) {
 			if (err instanceof Error) {

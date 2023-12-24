@@ -1,30 +1,13 @@
 import Form from "./Form";
 import Header from "./Header";
 import socialmedia from "@assets/socialmedia.png";
-import { AxiosError } from "axios";
-import useAccessToken from "hooks/useAccessToken";
-import useVerifyRefreshToken from "hooks/useVerifyRefreshToken";
+import useAuthContext from "hooks/useAuthContext";
 import { Navigate } from "react-router-dom";
 
 const RegisterPage = () => {
-	const { setAccessToken } = useAccessToken();
-	const { data, error, isLoading } = useVerifyRefreshToken();
+	const { accessToken } = useAuthContext();
 
-	if (isLoading)
-		return (
-			<div className="grid w-full h-full place-items-center">Loading...</div>
-		);
-
-	if (!isLoading && data) {
-		const { accessToken } = data.data;
-
-		if (accessToken && typeof accessToken === "string") {
-			setAccessToken(accessToken);
-			return <Navigate to="/" replace />;
-		}
-	}
-
-	if (error instanceof AxiosError) console.log(error.message);
+	if (accessToken) return <Navigate to="/" replace />;
 
 	return (
 		<main className="flex w-screen h-screen bg-zinc-100">

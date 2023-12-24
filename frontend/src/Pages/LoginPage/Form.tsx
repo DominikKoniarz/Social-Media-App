@@ -4,7 +4,7 @@ import PasswordInput from "../../components/PasswordInput";
 import LogInButton from "./LogInButton";
 import { LOGIN_URL } from "../../constraints";
 import { useNavigate } from "react-router-dom";
-import useAccessToken from "hooks/useAccessToken";
+import useAuthContext from "hooks/useAuthContext";
 
 type LoginData = {
 	email: string;
@@ -16,7 +16,7 @@ type ErrorResponse = {
 };
 
 const Form = () => {
-	const { setAccessToken } = useAccessToken();
+	const { setAccessToken } = useAuthContext();
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -60,6 +60,7 @@ const Form = () => {
 			} else {
 				console.log(err);
 			}
+			setPassword("");
 		} finally {
 			setIsLoading(false);
 		}

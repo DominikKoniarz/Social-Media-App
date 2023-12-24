@@ -1,10 +1,10 @@
 import axios from "axios";
 import { LOGOUT_URL } from "constraints";
-import useAccessToken from "hooks/useAccessToken";
+import useAuthContext from "hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 
 export default function LogoutButton() {
-	const { deleteAccessToken } = useAccessToken();
+	const { setAccessToken } = useAuthContext();
 	const navigate = useNavigate();
 
 	const handleLogout = async () => {
@@ -13,7 +13,7 @@ export default function LogoutButton() {
 		} catch (err) {
 			console.log(err);
 		} finally {
-			deleteAccessToken();
+			setAccessToken(null);
 			navigate("/login");
 		}
 	};

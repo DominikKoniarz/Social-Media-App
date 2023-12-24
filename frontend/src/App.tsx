@@ -4,25 +4,34 @@ import RegisterPage from "./Pages/RegisterPage/RegisterPage";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 import RootPage from "./Pages/RootPage/RootPage";
 import ProfilePage from "Pages/ProfilePage/ProfilePage";
+import ProtectedRoutes from "@components/ProtectedRoutes";
+import { AuthContextProvider } from "context/AuthContext";
+import RootLayout from "@components/RootLayout";
 
 const queryClient = new QueryClient();
 
 function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<RootPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          {/* Zabiezpieczyć to tak samo jak mainpage przed bezpośrednim wejściem */}
-          <Route path="/profile" element={<ProfilePage />} />
+	return (
+		<QueryClientProvider client={queryClient}>
+			<AuthContextProvider>
+				<BrowserRouter>
+					<Routes>
+						<Route path="/" element={<RootLayout />}>
+							<Route index path="/login" element={<LoginPage />} />
+							<Route path="/register" element={<RegisterPage />} />
 
-          <Route path="*" element={<div>Not Found</div>} />
-        </Routes>
-      </BrowserRouter>
-    </QueryClientProvider>
-  );
+							<Route path="/" element={<ProtectedRoutes />}>
+								<Route path="/" element={<RootPage />} />
+								<Route path="/profile" element={<ProfilePage />} />
+							</Route>
+
+							<Route path="*" element={<div>Not Found</div>} />
+						</Route>
+					</Routes>
+				</BrowserRouter>
+			</AuthContextProvider>
+		</QueryClientProvider>
+	);
 }
 
 export default App;

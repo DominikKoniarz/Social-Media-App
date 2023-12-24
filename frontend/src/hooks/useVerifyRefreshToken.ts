@@ -1,8 +1,16 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { REFRESH_TOKEN_URL } from "constraints";
+import { useEffect, useState } from "react";
 import { useQuery } from "react-query";
+import { z } from "zod";
+
+const Data = z.object({
+	accessToken: z.string(),
+});
 
 const useVerifyRefreshToken = () => {
+	const [accessToken, setAccessToken] = useState<string | null>(null);
+
 	const { data, isLoading, error } = useQuery({
 		queryKey: "refreshToken",
 		queryFn: async () =>
@@ -16,7 +24,24 @@ const useVerifyRefreshToken = () => {
 		refetchOnWindowFocus: false,
 	});
 
-	return { data, isLoading, error };
+	useEffect(() => {
+		if (!isLoading && !error && data) {
+			const result = Data.safeParse(data.data);
+			if (result.success) {
+				setAccessToken(result.data.accessToken);
+			}
+		}
+
+		if (!isLoading && error) {
+			console.log(
+				error instanceof AxiosError && error.response
+					? error.response.data.message
+					: error
+			);
+		}
+	}, [isLoading, error, data]);
+
+	return { accessToken, setAccessToken, isLoading };
 };
 
 export default useVerifyRefreshToken;
