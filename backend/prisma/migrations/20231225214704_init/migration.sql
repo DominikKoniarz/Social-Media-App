@@ -1,12 +1,18 @@
 -- CreateTable
 CREATE TABLE `User` (
     `id` VARCHAR(191) NOT NULL,
-    `name` VARCHAR(256) NOT NULL,
+    `username` VARCHAR(256) NOT NULL,
+    `firstname` VARCHAR(256) NULL,
+    `lastname` VARCHAR(256) NULL,
+    `location` VARCHAR(256) NULL,
+    `bio` TEXT NULL,
+    `websiteURL` VARCHAR(256) NULL,
     `email` VARCHAR(256) NOT NULL,
     `passwordHash` VARCHAR(256) NOT NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
+    UNIQUE INDEX `User_username_key`(`username`),
     UNIQUE INDEX `User_email_key`(`email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

@@ -2,13 +2,13 @@ import { useState } from "react";
 import SignUpButton from "./SignUpButton";
 import InfoText from "./InfoText";
 import { REGISTER_URL } from "../../constraints";
-import NameInput from "@components/NameInput";
+import UsernameInput from "@components/UsernameInput";
 import EmailInput from "@components/EmailInput";
 import PasswordInput from "@components/PasswordInput";
 
 type NewUser = {
 	email: string;
-	name: string;
+	username: string;
 	password: string;
 };
 
@@ -18,19 +18,21 @@ type ErrorResponse = {
 
 const Form = () => {
 	const [email, setEmail] = useState<string>("");
-	const [name, setName] = useState<string>("");
+	const [username, setUsername] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [fetchStatus, setFetchStatus] = useState<string>("");
 	const handleSubmit = async (
 		password: string,
 		email: string,
-		name: string
+		username: string
 	) => {
 		try {
-			const data: NewUser = { password, email, name };
+			const data: NewUser = { password, email, username };
+
 			setFetchStatus("");
 			setIsLoading(true);
+
 			const response = await fetch(REGISTER_URL, {
 				method: "POST",
 				headers: {
@@ -38,6 +40,7 @@ const Form = () => {
 				},
 				body: JSON.stringify(data),
 			});
+
 			if (!response.ok) {
 				const json = (await response.json()) as ErrorResponse;
 
@@ -46,7 +49,7 @@ const Form = () => {
 
 			setEmail("");
 			setPassword("");
-			setName("");
+			setUsername("");
 			setFetchStatus("Signed in succesfully!");
 		} catch (err: Error | unknown) {
 			if (err instanceof Error) {
@@ -65,7 +68,7 @@ const Form = () => {
 			className="space-y-3 w-full  md:w-[400px] mx-auto  my-auto"
 			onSubmit={(e) => {
 				e.preventDefault();
-				handleSubmit(password, email, name);
+				handleSubmit(password, email, username);
 			}}
 		>
 			<h1 className="text-black text-4xl  font-semibold text-center leading-[44px]">
@@ -74,7 +77,7 @@ const Form = () => {
 			<h2 className="text-black block pb-1 text-lg font-normal text-center  leading-[29.16px]">
 				Keep up with your friends!
 			</h2>
-			<NameInput name={name} setName={setName} />
+			<UsernameInput username={username} setUsername={setUsername} />
 			<EmailInput email={email} setEmail={setEmail} />
 			<PasswordInput pwd={password} setPwd={setPassword} />
 			<InfoText />

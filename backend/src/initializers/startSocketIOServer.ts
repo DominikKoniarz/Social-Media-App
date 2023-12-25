@@ -12,8 +12,13 @@ const registerMiddlewares = (io: Server) => {
 		if (!accessToken || typeof accessToken !== "string")
 			return next(new Error("Not authorized! Token reduired!"));
 
-		const decoded = verifyAccessToken(accessToken);
-		if (!decoded) return next(new Error("Not authorized! Invalid token!"));
+		try {
+			const decoded = verifyAccessToken(accessToken);
+			if (!decoded) return next(new Error("Not authorized! Invalid token!"));
+		} catch (error) {
+			console.log(error);
+			return next(new Error("Error!"));
+		}
 
 		next();
 	});

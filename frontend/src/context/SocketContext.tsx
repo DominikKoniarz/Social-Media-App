@@ -23,7 +23,6 @@ export const SocketContextProvider = ({
 
 	useEffect(() => {
 		const newSocket = io(APP_URL, {
-			// withCredentials: true,
 			auth: {
 				accessToken: accessToken,
 			},
@@ -35,6 +34,10 @@ export const SocketContextProvider = ({
 
 		newSocket.on("disconnect", () => {
 			console.log(newSocket.disconnected);
+		});
+
+		newSocket.on("connect_error", () => {
+			console.log("connect error");
 		});
 
 		setSocket(newSocket);

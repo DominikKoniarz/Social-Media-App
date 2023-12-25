@@ -10,14 +10,14 @@ const registerController = async (
 	res: Response,
 	next: NextFunction
 ) => {
-	const { name, email, password } = req.body;
+	const { username, email, password } = req.body;
 
-	if (!name || typeof name !== "string")
-		return res.status(400).json({ message: "Name is required!" });
+	if (!username || typeof username !== "string")
+		return res.status(400).json({ message: "Username is required!" });
 
-	if (name.length < 3)
+	if (username.length < 3)
 		return res.status(400).json({
-			message: "Name is to short! At least 3 characters are required!",
+			message: "Username is to short! At least 3 characters are required!",
 		});
 
 	if (!email || typeof email !== "string")
@@ -37,17 +37,19 @@ const registerController = async (
 
 	try {
 		const foundUser = await prisma.user.findFirst({
-			where: { email },
+			where: { OR: [{ email }, { username }] },
 			select: { id: true },
 		});
 
 		if (foundUser)
-			return res.status(403).json({ message: "This email is already used!" });
+			return res
+				.status(403)
+				.json({ message: "This email or username are already used!" });
 
 		const hashedPassword = await bcrypt.hash(password, 10);
 
 		await prisma.user.create({
-			data: { email, name, passwordHash: hashedPassword },
+			data: { email, username, passwordHash: hashedPassword },
 		});
 
 		// res.status(201).json(result);
