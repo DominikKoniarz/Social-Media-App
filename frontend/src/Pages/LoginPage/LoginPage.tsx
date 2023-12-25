@@ -1,6 +1,6 @@
 import Form from "./Form";
 import Header from "./Header";
-import socialmedia from "@assets/socialmedia.png";
+import socialmedia from "@assets/images/socialmedia.png";
 import { Navigate } from "react-router-dom";
 import useAuthContext from "hooks/useAuthContext";
 

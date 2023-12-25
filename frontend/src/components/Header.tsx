@@ -1,7 +1,7 @@
 import LogoText from "./LogoText";
 import Form from "./Form";
 import NotificationIcon from "./NotificationIcon";
-import imgF from "@assets/imgF.png";
+import imgF from "@assets/images/imgF.png";
 
 const Header = () => {
 	return (

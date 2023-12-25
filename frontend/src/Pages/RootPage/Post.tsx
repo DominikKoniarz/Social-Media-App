@@ -1,5 +1,5 @@
-import imgF from "../../assets/imgF.png";
-import PlaceholderImage from "../../assets/PlaceholderImage.png";
+import imgF from "@assets/images/imgF.png";
+import PlaceholderImage from "@assets/images/PlaceholderImage.png";
 import {
 	FaEllipsis,
 	FaRegHeart,

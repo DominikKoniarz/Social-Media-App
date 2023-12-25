@@ -1,4 +1,4 @@
-import imgF from "@assets/imgF.png";
+import imgF from "@assets/images/imgF.png";
 import LinksList from "./LinksList";
 import LogoutButton from "./LogoutButton";
 

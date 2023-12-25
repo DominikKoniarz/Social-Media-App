@@ -2,7 +2,7 @@
 
 @font-face {
 	font-family: "SF Compact Display";
-	src: url(assets/SFCompactDisplay.ttf);
+	src: url(assets/fonts/SFCompactDisplay.ttf);
 }
 
 @tailwind base;
