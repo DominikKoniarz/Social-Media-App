@@ -9,7 +9,7 @@ import {
 
 const Post = () => {
   return (
-    <li className="flex flex-col w-full px-4 pt-4 bg-white h-fit">
+    <li className="flex flex-col w-full px-4 py-4 bg-white h-fit">
       <div className="flex items-center gap-1">
         <div className="grid w-12 h-12 p-1 border border-black rounded-full place-items-center">
           <img className="mix-blend-darken" src={imgF} alt="ProfilePicture" />

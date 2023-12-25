@@ -7,9 +7,9 @@ const ProfileHeader = () => {
     <div className="relative flex flex-col w-full h-fit">
       <img src={ProfileBackground} alt="ProfileBackground" />
 
-      <div className="absolute mt-56 ml-10">
+      <div className="absolute border-0 border-white rounded-md left-10 top-56">
         <img
-          className="border-0 border-white rounded-md"
+          className="w-fit h-fit"
           src={ProfilePicture}
           alt="ProfilePicture"
         />
