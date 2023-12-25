@@ -1,13 +1,13 @@
 import imgF from "@assets/images/imgF.png";
 import PlaceholderImage from "@assets/images/PlaceholderImage.png";
 import {
-  FaEllipsis,
+  FaRegTrashCan,
   FaRegHeart,
   FaRegMessage,
   FaRegBookmark,
 } from "react-icons/fa6";
 
-const Post = () => {
+const UserPost = () => {
   return (
     <li className="flex flex-col w-full px-4 py-4 bg-white h-fit">
       <div className="flex items-center gap-1">
@@ -21,8 +21,8 @@ const Post = () => {
           @AliasDanegoUżytkownika
         </p>
         <p className="text-base font-light lowercase text-slate-800">- 10min</p>
-        <button className="ml-auto mr-2 text-xl">
-          <FaEllipsis />
+        <button className="ml-auto mr-2 text-2xl">
+          <FaRegTrashCan />
         </button>
       </div>
       <div className="flex flex-col ">
@@ -49,4 +49,4 @@ const Post = () => {
     </li>
   );
 };
-export default Post;
+export default UserPost;

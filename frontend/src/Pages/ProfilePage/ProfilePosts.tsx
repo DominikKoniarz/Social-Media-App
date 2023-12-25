@@ -1,11 +1,11 @@
-import Post from "Pages/RootPage/Post";
+import UserPost from "./UserPost";
 
 const ProfilePosts = () => {
   return (
     <ul className="w-full space-y-4 h-fit">
-      <Post />
-      <Post />
-      <Post />
+      <UserPost />
+      <UserPost />
+      <UserPost />
     </ul>
   );
 };
