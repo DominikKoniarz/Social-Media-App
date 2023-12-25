@@ -4,9 +4,10 @@ import { FaPen, FaShareNodes } from "react-icons/fa6";
 
 const ProfileHeader = () => {
   return (
-    <div className="flex flex-col w-full h-fit">
+    <div className="relative flex flex-col w-full h-fit">
       <img src={ProfileBackground} alt="ProfileBackground" />
-      <div className="absolute mt-32 ml-10">
+
+      <div className="absolute mt-56 ml-10">
         <img
           className="border-0 border-white rounded-md"
           src={ProfilePicture}

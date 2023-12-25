@@ -1,6 +1,6 @@
 const ProfileBody = () => {
   return (
-    <section className="w-full px-10 pt-3 pb-8 bg-white h-fit">
+    <section className="w-full px-10 pt-3 pb-4 bg-white h-fit">
       <p className="text-base font-normal text-teal-500 family1">online</p>
       <article className="flex items-center gap-4 ">
         <p className="text-xl font-medium text-zinc-950 family1">
