@@ -5,9 +5,9 @@ import { Navigate } from "react-router-dom";
 import useAuthContext from "hooks/useAuthContext";
 
 const LoginPage = () => {
-	const { accessToken } = useAuthContext();
+	const { accessToken, firstEnteredPathName } = useAuthContext();
 
-	if (accessToken) return <Navigate to="/" replace />;
+	if (accessToken) return <Navigate to={firstEnteredPathName || "/"} replace />;
 
 	return (
 		<main className="flex w-full h-full bg-zinc-100">

@@ -1,16 +1,18 @@
 import useVerifyRefreshToken from "hooks/useVerifyRefreshToken";
-import { ReactElement, createContext } from "react";
+import { ReactElement, createContext, useState } from "react";
 
 type AuthContextType = {
 	isTokenBeingVerified: boolean;
 	accessToken: string | null;
 	setAccessToken: React.Dispatch<React.SetStateAction<string | null>>;
+	firstEnteredPathName: string;
 };
 
 const initContextState: AuthContextType = {
 	isTokenBeingVerified: false,
 	accessToken: null,
 	setAccessToken: () => {},
+	firstEnteredPathName: "",
 };
 
 const AuthContext = createContext<AuthContextType>(initContextState);
@@ -20,6 +22,8 @@ export const AuthContextProvider = ({
 }: {
 	children: ReactElement;
 }): ReactElement => {
+	const [firstEnteredPathName] = useState<string>(window.location.pathname);
+
 	const {
 		accessToken,
 		setAccessToken,
@@ -32,6 +36,7 @@ export const AuthContextProvider = ({
 				isTokenBeingVerified,
 				accessToken,
 				setAccessToken,
+				firstEnteredPathName,
 			}}
 		>
 			{children}
