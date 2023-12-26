@@ -1,33 +1,52 @@
-import ProfileBackground from "@assets/images/ProfileBackground.png";
-import ProfilePicture from "@assets/images/ProfilePicture.png";
-import { FaPen } from "react-icons/fa6";
+import { useState } from "react";
+import UserNameInput from "./UserNameInput";
+import FirstNameInput from "./FirstNameInput";
+import LastNameInput from "./LastNameInput";
+import ProfileEditHeader from "./ProfileEditHeader";
+import WebsiteUrlInput from "./WebsiteUrlInput";
+import LocationInput from "./LocationInput";
+import Bio from "./Bio";
+import SaveButton from "./SaveButton";
+import CancelButton from "./CancelButton";
 
 const ProfileEdit = () => {
-	return (
-		<main className="w-full h-full px-6">
-			<div className="relative flex flex-col w-full h-fit">
-				<img src={ProfileBackground} alt="ProfileBackground" />
-				<button
-					type="button"
-					className="absolute p-3 text-lg font-normal capitalize bg-white right-6 top-6 text-zinc-950 family1"
-				>
-					Change Image
-				</button>
+  const [userName, setUserName] = useState<string>("");
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [websiteUrl, setWebsiteUrl] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
+  const [bio, setBio] = useState<string>("");
 
-				<button className="absolute rounded-md left-10 top-56">
-					<div className="relative w-full h-full">
-						<div className="absolute flex items-center justify-center w-full h-full text-xl text-white transition-all duration-300 rounded-md opacity-0 hover:opacity-50 hover:bg-black">
-							<FaPen />
-						</div>
-						<img
-							className="w-full h-full rounded-md asbolute"
-							src={ProfilePicture}
-							alt="ProfilePicture"
-						/>
-					</div>
-				</button>
-			</div>
-		</main>
-	);
+  return (
+    <div className="w-full h-full px-6">
+      <ProfileEditHeader />
+      <form
+        className="flex flex-col w-full px-10 pt-24 pb-10 space-y-4 bg-white h-fit "
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
+        <div className="flex w-full gap-12">
+          <UserNameInput userName={userName} setUserName={setUserName} />
+          <div className="flex gap-8 w-[60%]">
+            <FirstNameInput firstName={firstName} setFirstName={setFirstName} />
+            <LastNameInput lastName={lastName} setLastName={setLastName} />
+          </div>
+        </div>
+        <div className="flex w-full gap-12">
+          <WebsiteUrlInput
+            websiteUrl={websiteUrl}
+            setWebsiteUrl={setWebsiteUrl}
+          />
+          <LocationInput location={location} setLocation={setLocation} />
+        </div>
+        <Bio bio={bio} setBio={setBio} />
+        <div className="flex gap-8 w-[50%]">
+          <SaveButton />
+          <CancelButton />
+        </div>
+      </form>
+    </div>
+  );
 };
 export default ProfileEdit;

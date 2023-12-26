@@ -1,7 +1,6 @@
 const ProfileBody = () => {
 	return (
 		<section className="w-full px-10 pt-3 pb-4 bg-white h-fit">
-			<p className="text-base font-normal text-teal-500 family1">online</p>
 			<article className="flex items-center gap-4 ">
 				<p className="text-xl font-medium text-zinc-950 family1">
 					Placeholder Name
@@ -10,9 +9,7 @@ const ProfileBody = () => {
 					@PlaceholderAlias
 				</p>
 			</article>
-			<p className="text-base font-normal text-slate-800 family1">
-				Ui/UX Designer
-			</p>
+			<p className="text-base font-normal text-teal-500 family1">online</p>
 			<section className="flex flex-col py-4">
 				<p className="text-zinc-950 pb-2 text-[19px] font-medium family1">
 					About Me
