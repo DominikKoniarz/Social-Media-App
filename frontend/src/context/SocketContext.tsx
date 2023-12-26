@@ -39,7 +39,6 @@ export const SocketContextProvider = ({
 
 		newSocket.on("connect", () => {
 			newSocket.emit("getUserData", (userData) => {
-				console.log(userData);
 				setUserData(userData);
 			});
 		});
