@@ -3,17 +3,17 @@ import UserNameInput from "./UserNameInput";
 import FirstNameInput from "./FirstNameInput";
 import LastNameInput from "./LastNameInput";
 import ProfileEditHeader from "./ProfileEditHeader";
-import WebsiteUrlInput from "./WebsiteUrlInput";
 import LocationInput from "./LocationInput";
 import Bio from "./Bio";
 import SaveButton from "./SaveButton";
 import CancelButton from "./CancelButton";
+import WebsiteURLInput from "./WebsiteUrlInput";
 
 const ProfileEdit = () => {
   const [userName, setUserName] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
-  const [websiteUrl, setWebsiteUrl] = useState<string>("");
+  const [websiteURL, setWebsiteURL] = useState<string>("");
   const [location, setLocation] = useState<string>("");
   const [bio, setBio] = useState<string>("");
 
@@ -34,9 +34,9 @@ const ProfileEdit = () => {
           </div>
         </div>
         <div className="flex w-full gap-12">
-          <WebsiteUrlInput
-            websiteUrl={websiteUrl}
-            setWebsiteUrl={setWebsiteUrl}
+          <WebsiteURLInput
+            websiteURL={websiteURL}
+            setWebsiteURL={setWebsiteURL}
           />
           <LocationInput location={location} setLocation={setLocation} />
         </div>
