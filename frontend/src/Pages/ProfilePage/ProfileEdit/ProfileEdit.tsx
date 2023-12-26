@@ -5,7 +5,7 @@ import LastNameInput from "./LastNameInput";
 import ProfileEditHeader from "./ProfileEditHeader";
 import WebsiteUrlInput from "./WebsiteUrlInput";
 import LocationInput from "./LocationInput";
-import AboutMe from "./AboutMe";
+import Bio from "./Bio";
 import SaveButton from "./SaveButton";
 import CancelButton from "./CancelButton";
 
@@ -15,7 +15,7 @@ const ProfileEdit = () => {
   const [lastName, setLastName] = useState<string>("");
   const [websiteUrl, setWebsiteUrl] = useState<string>("");
   const [location, setLocation] = useState<string>("");
-  const [aboutMe, setAboutMe] = useState<string>("");
+  const [bio, setBio] = useState<string>("");
 
   return (
     <div className="w-full h-full px-6">
@@ -40,7 +40,7 @@ const ProfileEdit = () => {
           />
           <LocationInput location={location} setLocation={setLocation} />
         </div>
-        <AboutMe aboutMe={aboutMe} setAboutMe={setAboutMe} />
+        <Bio bio={bio} setBio={setBio} />
         <div className="flex gap-8 w-[50%]">
           <SaveButton />
           <CancelButton />
