@@ -1,47 +1,24 @@
 import http from "http";
 import { Server } from "socket.io";
 import { originsWhitelist } from "../config/originsWhitelist";
-import { verifyAccessToken } from "../lib/jwt";
-
-const registerMiddlewares = (io: Server) => {
-	io.use((socket, next) => {
-		const { accessToken } = socket.handshake.auth;
-
-		console.log(accessToken);
-
-		if (!accessToken || typeof accessToken !== "string")
-			return next(new Error("Not authorized! Token reduired!"));
-
-		try {
-			const decoded = verifyAccessToken(accessToken);
-			if (!decoded) return next(new Error("Not authorized! Invalid token!"));
-		} catch (error) {
-			console.log(error);
-			return next(new Error("Error!"));
-		}
-
-		next();
-	});
-};
-
-const registerHandlers = (io: Server) => {
-	io.on("connection", (socket) => {
-		console.log("a user connected");
-
-		socket.on("message", (msg) => {
-			console.log(msg);
-		});
-
-		socket.on("disconnect", () => {
-			console.log("user disconnected", socket.id);
-		});
-	});
-};
+import registerMiddlewares from "../middleware/registerSocketMiddlewares";
+import registerSocketHandlers from "../handlers/registerSocketHandlers";
+import {
+	ClientToServerEvents,
+	InterServerEvents,
+	ServerToClientEvents,
+	SocketData,
+} from "../../../types/socket.io";
 
 const startSocketIOServer = (
 	server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>
 ) => {
-	const io = new Server(server, {
+	const io = new Server<
+		ClientToServerEvents,
+		ServerToClientEvents,
+		InterServerEvents,
+		SocketData
+	>(server, {
 		cors: {
 			origin: originsWhitelist,
 			credentials: true,
@@ -51,7 +28,7 @@ const startSocketIOServer = (
 	console.log("Socket.io server started");
 
 	registerMiddlewares(io);
-	registerHandlers(io);
+	registerSocketHandlers(io);
 };
 
 export default startSocketIOServer;

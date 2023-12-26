@@ -2,13 +2,18 @@ import { APP_URL } from "constraints";
 import useAuthContext from "hooks/useAuthContext";
 import { ReactElement, createContext, useEffect, useState } from "react";
 import { Socket, io } from "socket.io-client";
+import {
+	ClientToServerEvents,
+	ServerToClientEvents,
+	UserData,
+} from "../../../types/socket.io";
 
 type SocketContextType = {
-	socket: Socket | null;
+	userData: UserData | null;
 };
 
 const initContextState: SocketContextType = {
-	socket: null,
+	userData: null,
 };
 
 const SocketContext = createContext<SocketContextType>(initContextState);
@@ -20,16 +25,23 @@ export const SocketContextProvider = ({
 }): ReactElement => {
 	const { accessToken } = useAuthContext();
 	const [socket, setSocket] = useState<Socket | null>(null);
+	const [userData, setUserData] = useState<UserData | null>(null);
 
 	useEffect(() => {
-		const newSocket = io(APP_URL, {
-			auth: {
-				accessToken: accessToken,
-			},
-		});
+		const newSocket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
+			APP_URL,
+			{
+				auth: {
+					accessToken: accessToken,
+				},
+			}
+		);
 
 		newSocket.on("connect", () => {
-			console.log(newSocket.id);
+			newSocket.emit("getUserData", (userData) => {
+				console.log(userData);
+				setUserData(userData);
+			});
 		});
 
 		newSocket.on("disconnect", () => {
@@ -50,7 +62,7 @@ export const SocketContextProvider = ({
 	return (
 		<SocketContext.Provider
 			value={{
-				socket,
+				userData,
 			}}
 		>
 			{children}

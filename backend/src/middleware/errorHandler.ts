@@ -6,7 +6,7 @@ const fsp = fs.promises;
 
 const LOGS_DIR_PATH = path.join(process.cwd(), "logs");
 
-const logError = async (
+export const logError = async (
 	name: string,
 	message: string,
 	filename: string = "serverErrorsLog.txt"
