@@ -6,6 +6,8 @@ import ProfileEditHeader from "./ProfileEditHeader";
 import WebsiteUrlInput from "./WebsiteUrlInput";
 import LocationInput from "./LocationInput";
 import AboutMe from "./AboutMe";
+import SaveButton from "./SaveButton";
+import CancelButton from "./CancelButton";
 
 const ProfileEdit = () => {
   const [userName, setUserName] = useState<string>("");
@@ -18,7 +20,12 @@ const ProfileEdit = () => {
   return (
     <div className="w-full h-full px-6">
       <ProfileEditHeader />
-      <form className="flex flex-col w-full px-10 pt-24 pb-10 space-y-4 bg-white h-fit ">
+      <form
+        className="flex flex-col w-full px-10 pt-24 pb-10 space-y-4 bg-white h-fit "
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <div className="flex w-full gap-12">
           <UserNameInput userName={userName} setUserName={setUserName} />
           <div className="flex gap-8 w-[60%]">
@@ -34,6 +41,10 @@ const ProfileEdit = () => {
           <LocationInput location={location} setLocation={setLocation} />
         </div>
         <AboutMe aboutMe={aboutMe} setAboutMe={setAboutMe} />
+        <div className="flex gap-8 w-[50%]">
+          <SaveButton />
+          <CancelButton />
+        </div>
       </form>
     </div>
   );
