@@ -3,11 +3,17 @@ import UserNameInput from "./UserNameInput";
 import FirstNameInput from "./FirstNameInput";
 import LastNameInput from "./LastNameInput";
 import ProfileEditHeader from "./ProfileEditHeader";
+import WebsiteUrlInput from "./WebsiteUrlInput";
+import LocationInput from "./LocationInput";
+import AboutMe from "./AboutMe";
 
 const ProfileEdit = () => {
   const [userName, setUserName] = useState<string>("");
   const [firstName, setFirstName] = useState<string>("");
   const [lastName, setLastName] = useState<string>("");
+  const [websiteUrl, setWebsiteUrl] = useState<string>("");
+  const [location, setLocation] = useState<string>("");
+  const [aboutMe, setAboutMe] = useState<string>("");
 
   return (
     <div className="w-full h-full px-6">
@@ -20,19 +26,14 @@ const ProfileEdit = () => {
             <LastNameInput lastName={lastName} setLastName={setLastName} />
           </div>
         </div>
-        <div className="">
-          <p className="py-1">About me</p>
-          <label
-            htmlFor="UserName-input"
-            className=" hidden absolute left-[-9999px]"
-          >
-            About me
-          </label>
-          <textarea
-            id="About me"
-            className="w-full p-4 border rounded bg-neutral-100 border-neutral-200"
+        <div className="flex w-full gap-12">
+          <WebsiteUrlInput
+            websiteUrl={websiteUrl}
+            setWebsiteUrl={setWebsiteUrl}
           />
+          <LocationInput location={location} setLocation={setLocation} />
         </div>
+        <AboutMe aboutMe={aboutMe} setAboutMe={setAboutMe} />
       </form>
     </div>
   );
