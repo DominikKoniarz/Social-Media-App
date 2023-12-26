@@ -1,13 +1,20 @@
 import Form from "./Form";
 import Header from "./Header";
 import socialmedia from "@assets/images/socialmedia.png";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import useAuthContext from "hooks/useAuthContext";
 
 const LoginPage = () => {
+	const { pathname } = useLocation();
 	const { accessToken, firstEnteredPathName } = useAuthContext();
 
-	if (accessToken) return <Navigate to={firstEnteredPathName || "/"} replace />;
+	if (accessToken) {
+		if (firstEnteredPathName === pathname) {
+			return <Navigate to="/" replace />;
+		}
+
+		return <Navigate to={firstEnteredPathName || "/"} replace />;
+	}
 
 	return (
 		<main className="flex w-full h-full bg-zinc-100">
