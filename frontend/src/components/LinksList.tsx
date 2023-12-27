@@ -17,7 +17,7 @@ export default function LinksList() {
     },
     {
       text: "Notifications",
-      link: "#",
+      link: "/notifications",
       icon: FaBell,
     },
     {
