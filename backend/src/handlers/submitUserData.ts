@@ -10,7 +10,7 @@ import { logError } from "../middleware/errorHandler";
 
 const prisma = getDbInstance();
 
-const getUserData = (
+const submitUserData = (
 	socket: Socket<
 		ClientToServerEvents,
 		ServerToClientEvents,
@@ -60,4 +60,4 @@ const getUserData = (
 	});
 };
 
-export default getUserData;
+export default submitUserData;

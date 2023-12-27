@@ -6,6 +6,7 @@ import {
 	SocketData,
 } from "../../../types/socket.io";
 import getUserData from "./getUserData";
+import submitUserData from "./submitUserData";
 
 const registerSocketHandlers = (
 	io: Server<
@@ -17,6 +18,7 @@ const registerSocketHandlers = (
 ) => {
 	io.on("connection", (socket) => {
 		getUserData(socket);
+		submitUserData(socket);
 
 		socket.on("disconnect", () => {
 			console.log("user disconnected", socket.id);
