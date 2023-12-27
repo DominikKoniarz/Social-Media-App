@@ -7,6 +7,7 @@ import {
 	UserData,
 } from "../../../types/socket.io";
 import getDbInstance from "../initializers/db";
+import { logError } from "../middleware/errorHandler";
 
 const prisma = getDbInstance();
 
@@ -24,24 +25,37 @@ const getUserData = (
 		// shouldn't happen bc of the middleware which always set the userId
 		if (!userId) return socket.disconnect();
 
-		const foundUser = await prisma.user.findUnique({
-			where: {
-				id: userId,
-			},
-		});
+		try {
+			const foundUser = await prisma.user.findUnique({
+				where: {
+					id: userId,
+				},
+			});
 
-		if (!foundUser) return socket.disconnect();
+			if (!foundUser) return socket.disconnect();
 
-		const userData: UserData = {
-			username: foundUser.username,
-			firstname: foundUser.firstname,
-			lastname: foundUser.lastname,
-			bio: foundUser.bio,
-			websiteURL: foundUser.websiteURL,
-			location: foundUser.location,
-		};
+			const userData: UserData = {
+				username: foundUser.username,
+				firstname: foundUser.firstname,
+				lastname: foundUser.lastname,
+				bio: foundUser.bio,
+				websiteURL: foundUser.websiteURL,
+				location: foundUser.location,
+			};
 
-		sendUserData(userData);
+			sendUserData(userData);
+		} catch (error) {
+			sendUserData(null);
+			socket.emit(
+				"serverError",
+				error instanceof Error ? error.message : "Unknown server error!"
+			);
+			logError(
+				`Get user data error! Socket id: ${socket.id}`,
+				error instanceof Error ? error.message : "unknown error",
+				"socketErrorsLog.txt"
+			);
+		}
 	});
 };
 

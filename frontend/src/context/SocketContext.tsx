@@ -24,8 +24,16 @@ export const SocketContextProvider = ({
 	children: ReactElement;
 }): ReactElement => {
 	const { accessToken } = useAuthContext();
-	const [socket, setSocket] = useState<Socket | null>(null);
+	const [, setSocket] = useState<Socket | null>(null);
 	const [userData, setUserData] = useState<UserData | null>(null);
+
+	const getUserData = (
+		socket: Socket<ServerToClientEvents, ClientToServerEvents>
+	) => {
+		socket.emit("getUserData", (userData) => {
+			setUserData(userData);
+		});
+	};
 
 	useEffect(() => {
 		const newSocket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
@@ -38,17 +46,19 @@ export const SocketContextProvider = ({
 		);
 
 		newSocket.on("connect", () => {
-			newSocket.emit("getUserData", (userData) => {
-				setUserData(userData);
-			});
+			getUserData(newSocket);
 		});
 
 		newSocket.on("disconnect", () => {
-			console.log(newSocket.disconnected);
+			console.log("Server dissconnected");
 		});
 
-		newSocket.on("connect_error", () => {
-			console.log("connect error");
+		newSocket.on("connect_error", (error) => {
+			console.log(`Connecting error: ${error.message}`);
+		});
+
+		newSocket.on("serverError", (msg) => {
+			console.log(msg);
 		});
 
 		setSocket(newSocket);
