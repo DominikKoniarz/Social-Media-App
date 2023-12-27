@@ -15,7 +15,8 @@ body,
 }
 
 .posts::-webkit-scrollbar,
-.profile::-webkit-scrollbar {
+.profile::-webkit-scrollbar,
+.notifications::-webkit-scrollbar {
   display: none;
 }
 
