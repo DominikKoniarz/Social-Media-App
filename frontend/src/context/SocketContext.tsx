@@ -10,10 +10,14 @@ import {
 
 type SocketContextType = {
 	userData: UserData | null;
+	setUserData: React.Dispatch<React.SetStateAction<UserData | null>>;
+	socket: Socket<ServerToClientEvents, ClientToServerEvents> | null;
 };
 
 const initContextState: SocketContextType = {
 	userData: null,
+	setUserData: () => {},
+	socket: null,
 };
 
 const SocketContext = createContext<SocketContextType>(initContextState);
@@ -24,7 +28,7 @@ export const SocketContextProvider = ({
 	children: ReactElement;
 }): ReactElement => {
 	const { accessToken } = useAuthContext();
-	const [, setSocket] = useState<Socket | null>(null);
+	const [socket, setSocket] = useState<Socket | null>(null);
 	const [userData, setUserData] = useState<UserData | null>(null);
 
 	const getUserData = (
@@ -72,6 +76,8 @@ export const SocketContextProvider = ({
 		<SocketContext.Provider
 			value={{
 				userData,
+				socket,
+				setUserData,
 			}}
 		>
 			{children}
