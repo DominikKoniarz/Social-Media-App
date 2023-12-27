@@ -25,6 +25,7 @@ body,
 .loader {
   overflow: hidden;
   display: flex;
+
   flex-direction: row;
   align-items: center;
   align-content: center;
@@ -91,6 +92,5 @@ body,
 @keyframes preloader {
   100% {
     transform: scale(3);
-    box-shadow: 10px 10px 22px -2px rgba(0, 0, 0, 0.25);
   }
 }
