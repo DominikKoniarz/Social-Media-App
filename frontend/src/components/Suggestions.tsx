@@ -10,7 +10,7 @@ const Suggestions = () => {
 
   return (
     <div className="p-4 bg-white w-fit h-fit">
-      <p className="pb-2 text-lg font-normal uppercase text-neutral-900 family1">
+      <p className="pb-2 text-lg font-normal uppercase text-neutral-900 font-family1">
         suggestions
       </p>
       <ul className="flex flex-col space-y-4">

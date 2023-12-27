@@ -19,7 +19,7 @@ const ProfilePage = () => {
       <section className="flex w-full h-full gap-4 pt-4 ">
         <ProfilePosts />
         <section className="w-full px-4 py-4 bg-white h-fit">
-          <p className="flex justify-center p-1 text-lg font-medium text-zinc-950 family1">
+          <p className="flex justify-center p-1 text-lg font-medium text-zinc-950 font-family1">
             My media
           </p>
           <article className="flex flex-wrap justify-center w-full gap-4">

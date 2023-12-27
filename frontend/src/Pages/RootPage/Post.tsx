@@ -17,7 +17,7 @@ const Post = () => {
         <p className="ml-2 text-lg font-medium text-zinc-950">
           Placeholder Name
         </p>
-        <p className="ml-1 text-base font-light lowercase text-slate-800 font-family1">
+        <p className="ml-1 text-base font-light lowercase text-slate-800 font-">
           @AliasDanegoUżytkownika
         </p>
         <p className="text-base font-light lowercase text-slate-800">- 10min</p>
