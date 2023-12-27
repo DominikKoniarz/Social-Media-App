@@ -28,14 +28,15 @@ const registerMiddlewares = async (
 
 			socket.data.userId = decoded.userId;
 		} catch (error) {
-			if (process.env.NODE_ENV !== "production") console.log(error);
+			if (process.env.NODE_ENV !== "production")
+				console.log(error instanceof Error ? error.message : error);
 
 			logError(
-				"Socket auth unknown error!",
+				`Socket auth unknown error! Socket id: ${socket.id}`,
 				error instanceof Error ? error.message : "unknown error",
 				"socketErrorsLog.txt"
 			);
-			return next(new Error("Server Error!"));
+			return next(new Error("Auth Error!"));
 		}
 
 		next();

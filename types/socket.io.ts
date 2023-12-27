@@ -1,7 +1,9 @@
-export interface ServerToClientEvents {}
+export interface ServerToClientEvents {
+	serverError: (error: string) => void;
+}
 
 export interface ClientToServerEvents {
-	getUserData: (callback: (userData: UserData) => void) => void;
+	getUserData: (callback: (userData: UserData | null) => void) => void;
 }
 
 export interface InterServerEvents {
