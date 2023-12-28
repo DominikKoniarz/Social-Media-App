@@ -55,6 +55,7 @@ export const SocketContextProvider = ({
 
 		newSocket.on("disconnect", () => {
 			console.log("Server dissconnected");
+			// setAccessToken(null);
 		});
 
 		newSocket.on("connect_error", (error) => {

@@ -1,4 +1,5 @@
 import { type Response } from "express";
+import { REFRESH_TOKEN_MAX_AGE } from "../config/jwtConfig";
 
 export const REFRESH_TOKEN_COOKIE_NAME =
 	process.env.REFRESH_TOKEN_COOKIE_NAME || "appRefreshToken";
@@ -12,6 +13,6 @@ export const setRefreshTokenCookie = (res: Response, token: string) => {
 			process.env.NODE_ENV === "production"
 				? process.env.COOKIE_DOMAIN
 				: "localhost",
-		maxAge: 24 * 60 * 60 * 1000,
+		maxAge: REFRESH_TOKEN_MAX_AGE,
 	});
 };
