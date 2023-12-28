@@ -1,9 +1,10 @@
 type Props = {
+  disabled: boolean;
   bio: string;
   setBio: React.Dispatch<React.SetStateAction<string>>;
 };
 
-const Bio = ({ bio, setBio }: Props) => {
+const Bio = ({ disabled, bio, setBio }: Props) => {
   return (
     <div className="flex flex-col">
       <p className="py-1">Bio</p>
@@ -11,9 +12,10 @@ const Bio = ({ bio, setBio }: Props) => {
         Bio
       </label>
       <textarea
+        disabled={disabled}
         placeholder="Write something about yourself!"
         id="bio-textarea"
-        className="w-full p-4 border rounded bg-neutral-100 border-neutral-200"
+        className="w-full p-4 border rounded disabled:opacity-50 bg-neutral-100 border-neutral-200"
         value={bio}
         onChange={(e) => setBio(e.target.value)}
       />
