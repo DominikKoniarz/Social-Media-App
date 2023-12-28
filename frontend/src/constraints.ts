@@ -6,4 +6,6 @@ export const LOGIN_URL = `${API_URL}/login`;
 export const LOGOUT_URL = `${API_URL}/logout`;
 export const REFRESH_TOKEN_URL = `${API_URL}/refresh`;
 
+// export const USER_DATA_URL = `${API_URL}/user`;
+
 export const LOCAL_STORAGE_ACCESS_TOKEN_KEY = "socialMediaAppAccessToken";

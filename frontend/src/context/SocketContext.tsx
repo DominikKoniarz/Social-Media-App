@@ -50,6 +50,7 @@ export const SocketContextProvider = ({
 		);
 
 		newSocket.on("connect", () => {
+			console.log("connected");
 			getUserData(newSocket);
 		});
 
