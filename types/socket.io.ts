@@ -6,7 +6,7 @@ export interface ClientToServerEvents {
 	getUserData: (callback: (userData: UserData | null) => void) => void;
 	submitUserData: (
 		userData: Omit<UserData, "username">,
-		callback: (error: Error | null) => void
+		callback: (error: string | null) => void
 	) => void;
 }
 

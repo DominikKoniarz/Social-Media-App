@@ -4,11 +4,36 @@ import {
 	InterServerEvents,
 	ServerToClientEvents,
 	SocketData,
+	UserData,
 } from "../../../types/socket.io";
 import getDbInstance from "../initializers/db";
 import { logError } from "../middleware/errorHandler";
 
 const prisma = getDbInstance();
+
+const validateUserData = (
+	userData: Omit<UserData, "username">
+): Error | null => {
+	if (typeof userData.firstname === "string" && userData.firstname.length > 256)
+		return new Error("Firstname is too long! Max 256 characters!");
+
+	if (typeof userData.lastname === "string" && userData.lastname.length > 256)
+		return new Error("Lastname is too long! Max 256 characters!");
+
+	if (typeof userData.bio === "string" && userData.bio.length > 16384)
+		return new Error("Bio is too long! Max 16384 characters!");
+
+	if (
+		typeof userData.websiteURL === "string" &&
+		userData.websiteURL.length > 256
+	)
+		return new Error("Website URL is too long! Max 256 characters!");
+
+	if (typeof userData.location === "string" && userData.location.length > 256)
+		return new Error("Location is too long! Max 256 characters!");
+
+	return null;
+};
 
 const submitUserData = (
 	socket: Socket<
@@ -33,6 +58,9 @@ const submitUserData = (
 
 			if (!foundUser) return socket.disconnect();
 
+			const validationResult = validateUserData(userData);
+			if (validationResult) return callback(validationResult.message);
+
 			await prisma.user.update({
 				data: {
 					firstname: userData.firstname,
@@ -48,12 +76,12 @@ const submitUserData = (
 
 			callback(null);
 		} catch (error) {
-			callback(
-				error instanceof Error ? error : new Error("Unknown server error!")
-			);
+			const errorMessage =
+				error instanceof Error ? error.message : "Unknown server error!";
+			callback(errorMessage);
 			logError(
 				`Submit user data error! Socket id: ${socket.id}`,
-				error instanceof Error ? error.message : "unknown error",
+				errorMessage,
 				"socketErrorsLog.txt"
 			);
 		}
