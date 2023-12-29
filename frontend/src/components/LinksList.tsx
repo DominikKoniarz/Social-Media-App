@@ -22,7 +22,7 @@ export default function LinksList() {
     },
     {
       text: "Messages",
-      link: "#",
+      link: "/messages",
       icon: FaEnvelope,
     },
     {
