@@ -6,7 +6,7 @@ type Props = {
 
 const SearchInput = ({ search, setSearch }: Props) => {
   return (
-    <>
+    <div className="px-6">
       <label htmlFor="search-input" className=" hidden absolute left-[-9999px]">
         Search
       </label>
@@ -17,14 +17,14 @@ const SearchInput = ({ search, setSearch }: Props) => {
         <input
           required
           className="bg-white focus:border-none focus:outline-none w-fit text-gray-500 text-base font-normal font-['Satoshi']"
-          placeholder="Search"
+          placeholder="Search for chats..."
           id="search-input"
           type="text"
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-    </>
+    </div>
   );
 };
 export default SearchInput;
