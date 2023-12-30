@@ -1,6 +1,6 @@
 const LogoText = () => {
   return (
-    <div className="flex items-center justify-center ml-0 text-xl font-bold md:justify-normal md:ml-2 text-orange-950">
+    <div className="items-center justify-center hidden ml-0 text-xl font-bold md:flex md:justify-normal md:ml-2 text-orange-950">
       LogoImpsum
     </div>
   );
