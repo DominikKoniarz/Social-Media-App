@@ -7,7 +7,7 @@ const UserListItem = () => {
       <li>
         <Link
           to="#"
-          className="flex px-6 py-4 hover:border-l-2 hover:bg-emerald-50 hover:border-teal-500 hover:rounded-md "
+          className="flex px-6 py-4 hover:bg-emerald-50 hover:shadow-chat-item "
         >
           <Avatar img="" rounded size="md" />
           <div className="flex w-full pl-4 ">
@@ -32,7 +32,7 @@ const UserListItem = () => {
           </div>
         </Link>
       </li>
-      <div className="w-4/5 mx-auto border bg-zinc-200 "></div>
+      <div className="w-4/5 mx-auto border bg-zinc-200 last-of-type:hidden "></div>
     </>
   );
 };
