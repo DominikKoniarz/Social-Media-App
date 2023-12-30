@@ -3,7 +3,7 @@ import MessagesNavBar from "./MessagesNavBar";
 
 const MessagesPage = () => {
   return (
-    <div className="flex w-full h-full px-6">
+    <div className="flex w-full h-full gap-1 px-6">
       <MessagesNavBar />
       <Chat />
     </div>

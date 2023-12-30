@@ -11,13 +11,15 @@ const ProtectedRoutesLayout = () => {
 
   return (
     <SocketContextProvider>
-      <main className="w-full h-full bg-zinc-100 max-w-[1920px] mx-auto">
-        <Header />
-        <div className="relative flex justify-start h-[calc(100%-74px)] px-20 py-4">
-          <NavBar />
-          <Outlet />
-        </div>
-      </main>
+      <div className="w-full h-full bg-zinc-100">
+        <main className="w-full h-full  max-w-[1920px] mx-auto">
+          <Header />
+          <div className="relative flex justify-start h-[calc(100%-74px)] px-20 py-4">
+            <NavBar />
+            <Outlet />
+          </div>
+        </main>
+      </div>
     </SocketContextProvider>
   );
 };

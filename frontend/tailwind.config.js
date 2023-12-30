@@ -8,6 +8,9 @@ export default {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        "chat-item": "inset 25px 1px 0px -20px #38b2ac",
+      },
       colors: {
         color1: "#00D2A8",
         color2: "#00BD97",
