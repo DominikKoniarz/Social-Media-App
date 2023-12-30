@@ -6,7 +6,7 @@ import Send from "./Send";
 const ChatFooter = () => {
   const [message, setMessage] = useState<string>("");
   return (
-    <div className="absolute bottom-0 flex flex-col w-full gap-1 h-fit">
+    <div className="absolute bottom-0 flex flex-col w-full gap-1 bg-zinc-100 h-fit">
       <div className="w-full px-4 py-4 bg-white rounded-t-xl h-fit">
         <MessageInput message={message} setMessage={setMessage} />
       </div>

@@ -15,7 +15,7 @@ body,
   width: 100vw;
   font-family: "Poppins", sans-serif;
 }
-
+.chat::-webkit-scrollbar,
 .posts::-webkit-scrollbar,
 .profile::-webkit-scrollbar,
 .notifications::-webkit-scrollbar {

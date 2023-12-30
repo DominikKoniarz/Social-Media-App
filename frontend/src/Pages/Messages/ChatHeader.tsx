@@ -2,7 +2,7 @@ import { Avatar } from "flowbite-react";
 import { FaEllipsis } from "react-icons/fa6";
 const ChatHeader = () => {
   return (
-    <div className="relative flex items-center w-full gap-2 px-6 py-4 bg-white">
+    <div className="relative flex items-center w-full gap-2 px-6 py-4 mb-4 bg-white">
       <Avatar img="" rounded size="md" />
       <div className="flex flex-col">
         <p className="text-xl font-bold text-zinc-900 font-family2">
