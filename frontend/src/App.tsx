@@ -10,6 +10,7 @@ import RootLayout from "@components/RootLayout";
 import ProfileEdit from "Pages/ProfilePage/ProfileEdit/ProfileEdit";
 import NotificationPage from "Pages/NotificationPage/NotificationPage";
 import MessagesPage from "Pages/Messages/MessagesPage";
+import NotFound from "Pages/404/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -31,7 +32,7 @@ function App() {
                 <Route path="/messages" element={<MessagesPage />} />
               </Route>
 
-              <Route path="*" element={<div>Not Found</div>} />
+              <Route path="*" element={<NotFound />} />
             </Route>
           </Routes>
         </BrowserRouter>
