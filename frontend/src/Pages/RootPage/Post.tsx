@@ -2,6 +2,7 @@ import imgF from "@assets/images/imgF.png";
 import PlaceholderImage from "@assets/images/PlaceholderImage.png";
 import {
   FaEllipsis,
+  FaEllipsisVertical,
   FaRegHeart,
   FaRegMessage,
   FaRegBookmark,
@@ -14,15 +15,20 @@ const Post = () => {
         <div className="grid w-12 h-12 p-1 border border-black rounded-full place-items-center">
           <img className="mix-blend-darken" src={imgF} alt="ProfilePicture" />
         </div>
-        <p className="ml-2 text-lg font-medium text-zinc-950">
+        <p className="ml-2 text-sm font-medium md:text-lg text-zinc-950">
           Placeholder Name
         </p>
-        <p className="ml-1 text-base font-light lowercase text-slate-800 font-">
+        <p className="ml-1 text-xs font-light lowercase md:text-base text-slate-800 font-">
           @AliasDanegoUżytkownika
         </p>
-        <p className="text-base font-light lowercase text-slate-800">- 10min</p>
-        <button className="ml-auto mr-2 text-xl">
+        <p className="text-xs font-light lowercase md:text-base text-slate-800">
+          - 10min
+        </p>
+        <button className="hidden ml-auto mr-2 text-lg md:text-xl md:block">
           <FaEllipsis />
+        </button>
+        <button className="block ml-auto mr-2 text-lg md:hidden md:text-xl">
+          <FaEllipsisVertical />
         </button>
       </div>
       <div className="flex flex-col ">

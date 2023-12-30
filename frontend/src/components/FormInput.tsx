@@ -11,7 +11,7 @@ const FormInput = ({ search, setSearch }: Props) => {
       </label>
       <input
         required
-        className="w-[687px] p-2 pr-[50px] h-[46px] bg-white rounded-[100px] border border-black border-opacity-20"
+        className="md:w-[687px]  p-2 pr-[50px] h-[46px] bg-white rounded-[100px] border border-black border-opacity-20"
         placeholder="Search"
         id="search-input"
         type="text"

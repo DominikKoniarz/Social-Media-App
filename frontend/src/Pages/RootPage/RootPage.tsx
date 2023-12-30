@@ -3,7 +3,7 @@ import Post from "./Post";
 
 const RootPage = () => {
   return (
-    <div className="flex h-full gap-16 px-32 w-fit">
+    <div className="flex h-full gap-4 px-1 md:gap-16 md:px-32 w-fit">
       <ul className="h-full mx-auto space-y-4 overflow-y-auto posts w-fit">
         <Post />
         <Post />
