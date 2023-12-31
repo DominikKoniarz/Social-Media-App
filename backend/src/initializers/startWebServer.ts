@@ -1,10 +1,14 @@
 import connectDb from "./connectDb";
 import http from "http";
 import startSocketIOServer from "./startSocketIOServer";
+import createRequiredDirs from "../utils/createRequiredDirs";
 
 const startWebServer = async (
 	server: http.Server<typeof http.IncomingMessage, typeof http.ServerResponse>
 ) => {
+	// First create required dirs
+	await createRequiredDirs();
+
 	// Connect db before starting server
 	await connectDb();
 

@@ -41,6 +41,8 @@ const getUserData = (
 				bio: foundUser.bio,
 				websiteURL: foundUser.websiteURL,
 				location: foundUser.location,
+				avatarImage: foundUser.avatarImage,
+				backgroundImage: foundUser.backgroundImage,
 			};
 
 			sendUserData(userData);

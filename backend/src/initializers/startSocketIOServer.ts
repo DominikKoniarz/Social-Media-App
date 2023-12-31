@@ -23,6 +23,7 @@ const startSocketIOServer = (
 			origin: originsWhitelist,
 			credentials: true,
 		},
+		maxHttpBufferSize: 7000000,
 	});
 
 	console.log("Socket.io server started");

@@ -9,6 +9,8 @@ CREATE TABLE `User` (
     `websiteURL` VARCHAR(256) NULL,
     `email` VARCHAR(256) NOT NULL,
     `passwordHash` VARCHAR(256) NOT NULL,
+    `avatarImage` VARCHAR(256) NULL,
+    `backgroundImage` VARCHAR(256) NULL,
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 

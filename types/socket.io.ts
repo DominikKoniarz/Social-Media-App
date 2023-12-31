@@ -1,3 +1,12 @@
+export type CropData = {
+	width: number;
+	height: number;
+	x: number;
+	y: number;
+	scaleX: number;
+	scaleY: number;
+};
+
 export interface ServerToClientEvents {
 	serverError: (error: string) => void;
 }
@@ -7,6 +16,12 @@ export interface ClientToServerEvents {
 	submitUserData: (
 		userData: Omit<UserData, "username">,
 		callback: (error: string | null) => void
+	) => void;
+	saveAvatarImage: (
+		imageBuffer: ArrayBuffer,
+		imageName: string,
+		cropData: CropData,
+		callback: (error: string | null, newImageSrc: string | null) => void
 	) => void;
 }
 
@@ -25,4 +40,6 @@ export type UserData = {
 	bio: string | null;
 	websiteURL: string | null;
 	location: string | null;
+	avatarImage: string | null;
+	backgroundImage: string | null;
 };

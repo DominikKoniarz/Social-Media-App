@@ -15,6 +15,6 @@ apiRouter.route("/logout").get(logoutController);
 
 apiRouter.route("/refresh").get(refreshController);
 
-apiRouter.route("/user").get(getUserData);
+// apiRouter.route("/user").get(getUserData);
 
 export default apiRouter;
