@@ -11,6 +11,7 @@ import notFoundController from "./controllers/notFoundController";
 import apiRouter from "./routes/api";
 import cookieParser from "cookie-parser";
 import http from "http";
+import path from "path";
 
 const app = express();
 const server = http.createServer(app);
@@ -21,6 +22,8 @@ app.use(cookieParser());
 
 useIfDev(app);
 useIfProduction(app);
+
+app.use("/media", express.static(path.join(process.cwd(), "media")));
 
 // routes
 app.use("/api", apiRouter);
