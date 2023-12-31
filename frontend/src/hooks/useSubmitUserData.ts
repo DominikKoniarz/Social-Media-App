@@ -21,7 +21,11 @@ export default function useSubmitUserData() {
 				return;
 			}
 
-			setUserData(userData);
+			setUserData((prev) => {
+				if (!prev) return null;
+
+				return { ...prev, ...userData };
+			});
 		});
 	};
 

@@ -40,7 +40,10 @@ export default function ProfileEditForm({ userData }: Props) {
 	}, [userData]);
 
 	const handleSubmit = () => {
+		if (!userData) return;
+
 		const newUserData: UserData = {
+			id: userData.id,
 			username: userName,
 			firstname: firstName,
 			lastname: lastName,

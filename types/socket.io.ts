@@ -21,7 +21,7 @@ export interface ClientToServerEvents {
 		imageBuffer: ArrayBuffer,
 		imageName: string,
 		cropData: CropData,
-		callback: (error: string | null, newImageSrc: string | null) => void
+		callback: (error: string | null, newImageName: string | null) => void
 	) => void;
 }
 
@@ -34,6 +34,7 @@ export interface SocketData {
 }
 
 export type UserData = {
+	id: string;
 	username: string;
 	firstname: string | null;
 	lastname: string | null;

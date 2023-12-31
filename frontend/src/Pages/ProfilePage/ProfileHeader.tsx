@@ -1,23 +1,35 @@
 import ProfileBackground from "@assets/images/ProfileBackground.png";
 import ProfilePicture from "@assets/images/ProfilePicture.png";
-import { FaPen, FaShareNodes } from "react-icons/fa6";
+import { APP_URL } from "constraints";
+import useSocketContext from "hooks/useSocketContext";
+import { FaPen, FaRegUser, FaShareNodes } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
 const ProfileHeader = () => {
+	const { userData } = useSocketContext();
 	const navigate = useNavigate();
+
 	const handleEditClick = () => {
 		navigate("/profileEdit");
 	};
 
+	const imageSrc = userData
+		? `${APP_URL}/media/${userData.id}/avatar/${userData.avatarImage}`
+		: ProfilePicture;
+
 	return (
 		<div className="relative flex flex-col w-full h-fit">
 			<img src={ProfileBackground} alt="ProfileBackground" />
-			<div className="absolute block border-0 bottom-[7px] rounded-md left-10">
-				<img
-					className="w-full h-full rounded-md"
-					src={ProfilePicture}
-					alt="ProfilePicture"
-				/>
+			<div className="absolute grid place-items-center border-2 bottom-[7px] border-slate-200 rounded-md overflow-hidden left-10 h-[118px] w-[128px] bg-slate-50">
+				{userData && userData.avatarImage ? (
+					<img
+						className="object-cover h-[114px] w-full rounded-md"
+						src={imageSrc}
+						alt="ProfilePicture"
+					/>
+				) : (
+					<FaRegUser className="text-3xl" />
+				)}
 			</div>
 			<div className="flex items-center justify-end gap-4 px-4 pt-6 ">
 				<button

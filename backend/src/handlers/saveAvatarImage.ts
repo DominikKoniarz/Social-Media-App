@@ -102,9 +102,7 @@ const saveAvatarImage = (
 					},
 				});
 
-				const imagePublicPath = `/media/${userId}/avatar/${newImageName}`;
-
-				sendImageSrc(null, imagePublicPath);
+				sendImageSrc(null, newImageName);
 			} catch (error) {
 				const errorMessage =
 					error instanceof Error ? error.message : "Unknown server error!";

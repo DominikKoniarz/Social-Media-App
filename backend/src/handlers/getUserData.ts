@@ -35,6 +35,7 @@ const getUserData = (
 			if (!foundUser) return socket.disconnect();
 
 			const userData: UserData = {
+				id: foundUser.id,
 				username: foundUser.username,
 				firstname: foundUser.firstname,
 				lastname: foundUser.lastname,
