@@ -23,7 +23,7 @@ const ProfileHeader = () => {
 			<div className="absolute grid place-items-center border-2 bottom-[7px] border-slate-200 rounded-md overflow-hidden left-10 h-[118px] w-[128px] bg-slate-50">
 				{userData && userData.avatarImage ? (
 					<img
-						className="object-cover h-[114px] w-full rounded-md"
+						className="object-cover h-[114px] w-full"
 						src={imageSrc}
 						alt="ProfilePicture"
 					/>
