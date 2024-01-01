@@ -63,8 +63,6 @@ const saveAvatarImage = (
 
 			sendError(errorMessage);
 
-			socket.emit("serverError", errorMessage);
-
 			logError(
 				`Deleting user avatar error! Socket id: ${socket.id}`,
 				errorMessage,

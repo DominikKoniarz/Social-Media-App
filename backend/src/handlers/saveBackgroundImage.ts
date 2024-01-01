@@ -1,7 +1,6 @@
 import { Socket } from "socket.io";
 import {
 	ClientToServerEvents,
-	CropData,
 	InterServerEvents,
 	ServerToClientEvents,
 	SocketData,
@@ -13,7 +12,6 @@ import path from "path";
 import createDirIfNotExists from "../lib/createDirIfNotExists";
 import sharp from "sharp";
 import fsp from "fs/promises";
-import validateCropData from "../lib/validateCropData";
 
 const prisma = getDbInstance();
 
@@ -29,7 +27,7 @@ const createRequiredDirs = async (userId: string) => {
 	await createDirIfNotExists(avatarDir);
 };
 
-const saveAvatarImage = (
+const saveBackgroundImage = (
 	socket: Socket<
 		ClientToServerEvents,
 		ServerToClientEvents,
@@ -38,7 +36,7 @@ const saveAvatarImage = (
 	>
 ) => {
 	socket.on(
-		"saveAvatarImage",
+		"saveBackgroundImage",
 		async (imageBuffer, imageName, cropData, sendImageSrc) => {
 			const userId = socket.data.userId;
 			// shouldn't happen bc of the middleware which always set the userId
@@ -53,46 +51,9 @@ const saveAvatarImage = (
 
 				if (!foundUser) return socket.disconnect();
 
-				const areCropDataValid = validateCropData(cropData);
-				if (!areCropDataValid) throw new Error("Invalid crop data!");
+				// await createRequiredDirs(userId);
 
-				if (foundUser.avatarImage)
-					await fsp.rm(
-						path.join(getUserAvatarDir(userId), foundUser.avatarImage),
-						{ force: true }
-					);
-
-				await createRequiredDirs(userId);
-
-				const extractData: sharp.Region = {
-					height: parseInt(cropData.height.toString()),
-					width: parseInt(cropData.width.toString()),
-					left: parseInt(cropData.x.toString()),
-					top: parseInt(cropData.y.toString()),
-				};
-
-				const croppedImageBuffer = await sharp(imageBuffer)
-					.extract(extractData)
-					.resize({ height: 128, width: 128 })
-					.webp()
-					.toBuffer();
-
-				const imageNameWithoutExtension = path.parse(imageName).name;
-				const newImageName = `${imageNameWithoutExtension}.webp`;
-
-				await fsp.writeFile(
-					path.join(getUserAvatarDir(userId), newImageName),
-					croppedImageBuffer
-				);
-
-				await prisma.user.update({
-					data: {
-						avatarImage: newImageName,
-					},
-					where: {
-						id: userId,
-					},
-				});
+				const newImageName = "";
 
 				sendImageSrc(null, newImageName);
 			} catch (error) {
@@ -101,8 +62,10 @@ const saveAvatarImage = (
 
 				sendImageSrc(errorMessage, null);
 
+				socket.emit("serverError", errorMessage);
+
 				logError(
-					`Save user avatar image error! Socket id: ${socket.id}`,
+					`Save user background image error! Socket id: ${socket.id}`,
 					errorMessage,
 					"socketErrorsLog.txt"
 				);
@@ -111,4 +74,4 @@ const saveAvatarImage = (
 	);
 };
 
-export default saveAvatarImage;
+export default saveBackgroundImage;

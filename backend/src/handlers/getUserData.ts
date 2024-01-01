@@ -49,10 +49,6 @@ const getUserData = (
 			sendUserData(userData);
 		} catch (error) {
 			sendUserData(null);
-			socket.emit(
-				"serverError",
-				error instanceof Error ? error.message : "Unknown server error!"
-			);
 			logError(
 				`Get user data error! Socket id: ${socket.id}`,
 				error instanceof Error ? error.message : "unknown error",
