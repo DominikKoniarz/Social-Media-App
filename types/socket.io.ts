@@ -14,7 +14,10 @@ export interface ServerToClientEvents {
 export interface ClientToServerEvents {
 	getUserData: (callback: (userData: UserData | null) => void) => void;
 	submitUserData: (
-		userData: Omit<UserData, "username">,
+		userData: Pick<
+			UserData,
+			"bio" | "firstname" | "lastname" | "location" | "websiteURL"
+		>,
 		callback: (error: string | null) => void
 	) => void;
 	saveAvatarImage: (
@@ -30,6 +33,7 @@ export interface ClientToServerEvents {
 		cropData: CropData,
 		callback: (error: string | null, newImageName: string | null) => void
 	) => void;
+	deleteBackgroundImage: (callback: (error: string | null) => void) => void;
 }
 
 export interface InterServerEvents {
