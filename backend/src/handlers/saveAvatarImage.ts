@@ -54,7 +54,8 @@ const saveAvatarImage = (
 				if (!foundUser) return socket.disconnect();
 
 				const areCropDataValid = validateCropData(cropData);
-				if (!areCropDataValid) throw new Error("Invalid crop data!");
+				if (!areCropDataValid)
+					throw new Error("Invalid crop data! Try to crop again!");
 
 				if (foundUser.avatarImage)
 					await fsp.rm(
