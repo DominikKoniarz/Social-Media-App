@@ -1,17 +1,16 @@
+import Cropper from "@components/Cropper";
 import { Modal } from "flowbite-react";
 import useSocketContext from "hooks/useSocketContext";
 import { useCallback, useState } from "react";
 import { FileRejection, useDropzone } from "react-dropzone";
-import Cropper from "../../../components/Cropper";
 
 type Props = {
-  profileImageModal: boolean;
-  setProfileImageModal: React.Dispatch<React.SetStateAction<boolean>>;
+  backgroundImageModalOpen: boolean;
+  setBackgroundImageModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
-
-const ProfileImageEditModal = ({
-  profileImageModal,
-  setProfileImageModal,
+const BackgroundImageModal = ({
+  backgroundImageModalOpen,
+  setBackgroundImageModalOpen,
 }: Props) => {
   const { socket, setUserData } = useSocketContext();
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -43,7 +42,7 @@ const ProfileImageEditModal = ({
     []
   );
 
-  const handleSaveAvatarImage = async (callback: () => void) => {
+  const handleSaveBackgroundImage = async (callback: () => void) => {
     if (!socket || !imageFile || !cropData || !imageName) return;
 
     setError(null);
@@ -51,7 +50,7 @@ const ProfileImageEditModal = ({
     const imageBuffer = await imageFile.arrayBuffer();
 
     socket.emit(
-      "saveAvatarImage",
+      "saveBackgroundImage",
       imageBuffer,
       imageName,
       cropData,
@@ -61,7 +60,7 @@ const ProfileImageEditModal = ({
         setUserData((prev) => {
           if (!prev) return null;
 
-          return { ...prev, avatarImage: newImageSrc };
+          return { ...prev, backgroundImage: newImageSrc };
         });
 
         callback();
@@ -79,48 +78,56 @@ const ProfileImageEditModal = ({
   });
 
   return (
-    <Modal show={profileImageModal} onClose={() => setProfileImageModal(false)}>
-      <h1 className="p-6 text-lg font-bold text-black bg-white border-b border-b-black">
-        Add or change profile image
-      </h1>
-      <div className="flex flex-col h-full bg-white">
-        {imageBase64 && (
-          <Cropper
-            aspectRatio={1 / 1}
-            src={imageBase64}
-            setCropData={setCropData}
-          />
-        )}
-        <div
-          className="p-6 focus:outline-none focus:border-none hover:cursor-pointer"
-          {...getRootProps()}
-        >
-          <input {...getInputProps()} />
-          {imageBase64 ? (
-            <>
-              <button
-                type="button"
-                onClick={(e) => {
-                  e.stopPropagation();
-                  open();
-                }}
-                className="px-4 py-2 text-sm text-white capitalize bg-teal-500 rounded-md"
-              >
-                Change image
-              </button>
-            </>
-          ) : (
-            <p className="py-5">Click here or drag an image!</p>
+    <Modal
+      show={backgroundImageModalOpen}
+      size={"5xl"}
+      onClose={() => setBackgroundImageModalOpen(false)}
+    >
+      <Modal.Header className="flex items-center bg-white rounded-none">
+        <h1 className="text-lg font-bold text-black bg-white ">
+          Add or change background image
+        </h1>
+      </Modal.Header>
+      <Modal.Body className="bg-white ">
+        <div className="flex flex-col h-full bg-white">
+          {imageBase64 && (
+            <Cropper
+              aspectRatio={1292 / 257}
+              src={imageBase64}
+              setCropData={setCropData}
+            />
           )}
+          <div
+            className="p-6 focus:outline-none focus:border-none hover:cursor-pointer"
+            {...getRootProps()}
+          >
+            <input {...getInputProps()} />
+            {imageBase64 ? (
+              <>
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    open();
+                  }}
+                  className="px-4 py-2 text-sm text-white capitalize bg-teal-500 rounded-md"
+                >
+                  Change image
+                </button>
+              </>
+            ) : (
+              <p className="py-5">Click here or drag an image!</p>
+            )}
+          </div>
         </div>
-      </div>
-      <div className="p-6 pb-5 bg-white border-t border-t-black">
+      </Modal.Body>
+      <Modal.Footer className="flex flex-col items-start space-x-0 bg-white rounded-none">
         <div className="flex flex-row gap-6">
           <button
             disabled={!imageFile || !cropData || !imageName}
             onClick={() => {
-              handleSaveAvatarImage(() => {
-                setProfileImageModal(false);
+              handleSaveBackgroundImage(() => {
+                setBackgroundImageModalOpen(false);
                 setImageFile(null);
                 setImageBase64(null);
                 setImageName(null);
@@ -133,7 +140,7 @@ const ProfileImageEditModal = ({
           <button
             color="gray"
             onClick={() => {
-              setProfileImageModal(false);
+              setBackgroundImageModalOpen(false);
               setImageFile(null);
               setImageBase64(null);
               setImageName(null);
@@ -143,10 +150,11 @@ const ProfileImageEditModal = ({
             Cancel
           </button>
         </div>
-        <p className="mt-3 font-semibold text-red-600">{error}</p>
-      </div>
+        {error && (
+          <p className="mt-3 font-semibold text-left text-red-600">{error}</p>
+        )}
+      </Modal.Footer>
     </Modal>
   );
 };
-
-export default ProfileImageEditModal;
+export default BackgroundImageModal;
