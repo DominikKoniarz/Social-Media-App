@@ -98,7 +98,7 @@ const BackgroundImageModal = ({
             />
           )}
           <div
-            className="p-6 focus:outline-none focus:border-none hover:cursor-pointer"
+            className="py-6 focus:outline-none focus:border-none hover:cursor-pointer"
             {...getRootProps()}
           >
             <input {...getInputProps()} />
@@ -116,7 +116,7 @@ const BackgroundImageModal = ({
                 </button>
               </>
             ) : (
-              <p className="py-5">Click here or drag an image!</p>
+              <p className="px-0">Click here or drag an image!</p>
             )}
           </div>
         </div>
