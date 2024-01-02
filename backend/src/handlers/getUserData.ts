@@ -30,6 +30,17 @@ const getUserData = (
 				where: {
 					id: userId,
 				},
+				select: {
+					id: true,
+					username: true,
+					firstname: true,
+					lastname: true,
+					bio: true,
+					websiteURL: true,
+					location: true,
+					avatarImage: true,
+					backgroundImage: true,
+				},
 			});
 
 			if (!foundUser) return socket.disconnect();

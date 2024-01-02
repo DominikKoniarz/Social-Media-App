@@ -12,7 +12,10 @@ import { logError } from "../middleware/errorHandler";
 const prisma = getDbInstance();
 
 const validateUserData = (
-	userData: Omit<UserData, "username">
+	userData: Pick<
+		UserData,
+		"bio" | "firstname" | "lastname" | "location" | "websiteURL"
+	>
 ): Error | null => {
 	if (typeof userData.firstname === "string" && userData.firstname.length > 256)
 		return new Error("Firstname is too long! Max 256 characters!");
