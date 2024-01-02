@@ -7,7 +7,12 @@ export default function useSubmitUserData() {
 	const [isLoading, setIsLoading] = useState<boolean>(false);
 	const [submitError, setSubmitError] = useState<string | null>("");
 
-	const submitUserData = (userData: UserData) => {
+	const submitUserData = (
+		userData: Pick<
+			UserData,
+			"bio" | "firstname" | "location" | "websiteURL" | "lastname"
+		>
+	) => {
 		if (!socket) return;
 
 		setIsLoading(true);
