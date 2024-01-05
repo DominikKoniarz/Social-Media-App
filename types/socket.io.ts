@@ -34,6 +34,12 @@ export interface ClientToServerEvents {
 		callback: (error: string | null, newImageName: string | null) => void
 	) => void;
 	deleteBackgroundImage: (callback: (error: string | null) => void) => void;
+	addPost: (
+		textContent: string,
+		imageBuffer: ArrayBuffer,
+		imageName: string,
+		callback: (error: string | null) => void
+	) => void;
 }
 
 export interface InterServerEvents {
