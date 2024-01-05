@@ -32,7 +32,7 @@ const useVerifyRefreshToken = () => {
 			}
 		}
 
-		if (!isLoading && error) {
+		if (!isLoading && error && import.meta.env.DEV) {
 			console.log(
 				error instanceof AxiosError && error.response
 					? error.response.data.message
