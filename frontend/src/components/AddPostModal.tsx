@@ -1,6 +1,7 @@
 import { Modal } from "flowbite-react";
 import useSocketContext from "hooks/useSocketContext";
-
+import { FaImage, FaRegCalendarDays } from "react-icons/fa6";
+import PlaceholderImage from "@assets/images/PlaceholderImage.png";
 type Props = {
   addPostModalOpen: boolean;
   setAddPostModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -22,12 +23,29 @@ const AddPostModal = ({ addPostModalOpen, setAddPostModalOpen }: Props) => {
       </Modal.Header>
       <Modal.Body className="bg-white ">
         <div className="flex flex-col justify-center w-full gap-2 ">
-          <p className="text-lg">What are you thinking about?</p>
+          <p className="px-1 text-lg">What are you thinking about?</p>
+          <hr className="" />
           <textarea
             placeholder="Write what you want here!"
-            className="w-full h-24 p-2 text-base leading-relaxed text-black border rounded-md border-slate-700 max-h-48 "
+            className="w-full h-24 p-2 text-base leading-relaxed text-black resize-none focus:outline-none"
           ></textarea>
-          <p className="text-base leading-relaxed text-white dark:text-gray-400"></p>
+          <hr className="" />
+          <div className="flex items-center px-2">
+            <img
+              className="mix-blend-darken"
+              src={PlaceholderImage}
+              alt="Post"
+            />
+          </div>
+          <hr className="" />
+          <div className="flex items-center gap-4 px-1 text-black/50">
+            <button className="text-2xl h-fit w-fit ">
+              <FaImage />
+            </button>
+            <button className="text-2xl h-fit w-fit ">
+              <FaRegCalendarDays />
+            </button>
+          </div>
         </div>
       </Modal.Body>
       <Modal.Footer className="bg-white rounded-none">
