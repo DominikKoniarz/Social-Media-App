@@ -11,6 +11,7 @@ import saveAvatarImage from "./saveAvatarImage";
 import deleteAvatarImage from "./deleteAvatarImage";
 import saveBackgroundImage from "./saveBackgroundImage";
 import deleteBackgroundImage from "./deleteBackgroundImage";
+import addPost from "./addPost";
 
 const registerSocketHandlers = (
 	io: Server<
@@ -27,6 +28,7 @@ const registerSocketHandlers = (
 		deleteAvatarImage(socket);
 		saveBackgroundImage(socket);
 		deleteBackgroundImage(socket);
+		addPost(socket);
 
 		socket.on("disconnect", () => {
 			console.log("user disconnected", socket.id);

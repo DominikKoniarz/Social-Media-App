@@ -36,8 +36,9 @@ export interface ClientToServerEvents {
 	deleteBackgroundImage: (callback: (error: string | null) => void) => void;
 	addPost: (
 		textContent: string,
-		imageBuffer: ArrayBuffer,
-		imageName: string,
+		imageBuffer: ArrayBuffer | null,
+		imageName: string | null,
+		releaseDate: Date | null,
 		callback: (error: string | null) => void
 	) => void;
 }

@@ -36,7 +36,7 @@ const Post = () => {
 					Lorem Ipsum is simply dummy text of the printing and typesetting
 				</p>
 				<img
-					className="mix-blend-darken h-[300px] object-cover"
+					className="mix-blend-darken h-[300px] object-cover w-full max-w-[630px]"
 					src={PlaceholderImage}
 					alt="ProfilePicture"
 				/>
