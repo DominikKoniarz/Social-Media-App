@@ -49,7 +49,7 @@ const getCurrentUserPosts = (
 						publishedAt: true,
 						image: true,
 					},
-					skip: offset,
+					skip: offset * 7,
 					take: 7,
 				}),
 				prisma.post.count({
