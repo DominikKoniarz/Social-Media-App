@@ -8,6 +8,7 @@ import {
   FaRegBookmark,
 } from "react-icons/fa6";
 import Loader from "./ProfileEdit/Loader";
+import { APP_URL } from "constraints";
 
 const UserPost = () => {
   const { userData } = useSocketContext();
@@ -16,12 +17,20 @@ const UserPost = () => {
       {userData ? (
         <>
           <div className="flex items-center gap-1">
-            <div className="grid w-12 h-12 p-1 border border-black rounded-full place-items-center">
-              <img
-                className="mix-blend-darken"
-                src={imgF}
-                alt="ProfilePicture"
-              />
+            <div className="grid w-12 h-12 border-2 border-black rounded-full place-items-center">
+              {userData && userData.avatarImage ? (
+                <img
+                  className="w-full h-full rounded-full "
+                  src={`${APP_URL}/media/${userData.id}/avatar/${userData.avatarImage}`}
+                  alt="ProfilePicture"
+                />
+              ) : (
+                <img
+                  className="mix-blend-darken"
+                  src={imgF}
+                  alt="ProfilePicture"
+                />
+              )}
             </div>
             {userData.firstname && userData.lastname && (
               <p className="ml-2 text-lg font-medium text-zinc-950">
