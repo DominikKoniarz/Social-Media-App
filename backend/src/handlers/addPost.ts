@@ -4,7 +4,6 @@ import {
 	InterServerEvents,
 	ServerToClientEvents,
 	SocketData,
-	UserData,
 } from "../../../types/socket.io";
 import getDbInstance from "../initializers/db";
 import { logError } from "../middleware/errorHandler";
