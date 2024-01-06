@@ -16,7 +16,7 @@ const SearchInput = ({ search, setSearch }: Props) => {
         </div>
         <input
           required
-          className="bg-white focus:border-none focus:outline-none w-fit text-gray-500 text-base font-normal font-['Satoshi']"
+          className="text-base font-normal text-gray-500 bg-white focus:border-none focus:outline-none w-fit font-family2"
           placeholder="Search for chats..."
           id="search-input"
           type="text"
