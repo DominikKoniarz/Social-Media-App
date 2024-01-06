@@ -38,26 +38,33 @@ const getCurrentUserPosts = (
 
 			if (offset < 0) throw new Error("Offset must be greater or equal 0!");
 
-			const posts = await prisma.post.findMany({
-				where: {
-					userId: userId,
-				},
-				select: {
-					id: true,
-					textContent: true,
-					publishedAt: true,
-					image: true,
-				},
-				skip: offset,
-				take: 7,
-			});
+			const [posts, allPostsCount] = await Promise.all([
+				prisma.post.findMany({
+					where: {
+						userId: userId,
+					},
+					select: {
+						id: true,
+						textContent: true,
+						publishedAt: true,
+						image: true,
+					},
+					skip: offset,
+					take: 7,
+				}),
+				prisma.post.count({
+					where: {
+						userId: userId,
+					},
+				}),
+			]);
 
-			sendPosts(null, posts);
+			sendPosts(null, posts, allPostsCount);
 		} catch (error) {
 			const errorMessage =
 				error instanceof Error ? error.message : "Unknown server error!";
 
-			sendPosts(errorMessage, null);
+			sendPosts(errorMessage, null, null);
 
 			logError(
 				`Get user data error! Socket id: ${socket.id}`,
