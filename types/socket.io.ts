@@ -41,6 +41,14 @@ export interface ClientToServerEvents {
 		releaseDate: Date | null,
 		callback: (error: string | null) => void
 	) => void;
+	getCurrentUserPosts: (
+		offset: number,
+		callback: (
+			error: string | null,
+			posts: Post[] | null,
+			allPostsCount: number | null
+		) => void
+	) => void;
 }
 
 export interface InterServerEvents {
@@ -50,6 +58,13 @@ export interface InterServerEvents {
 export interface SocketData {
 	userId?: string;
 }
+
+export type Post = {
+	id: string;
+	textContent: string;
+	image: string | null;
+	publishedAt: Date;
+};
 
 export type UserData = {
 	id: string;
