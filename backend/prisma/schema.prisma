@@ -25,6 +25,7 @@ model User {
     createdAt       DateTime       @default(now())
     updatedAt       DateTime       @updatedAt
     refreshToken    RefreshToken[]
+    Post            Post[]
 }
 
 model RefreshToken {
@@ -34,4 +35,13 @@ model RefreshToken {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
     user      User     @relation(fields: [userId], references: [id])
+}
+
+model Post {
+    id          String   @id @default(uuid())
+    textContent String   @db.VarChar(2048)
+    image       String?  @db.VarChar(256)
+    publishedAt DateTime @default(now())
+    userId      String
+    user        User     @relation(fields: [userId], references: [id])
 }
