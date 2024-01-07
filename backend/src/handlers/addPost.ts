@@ -97,6 +97,7 @@ const addPost = (
 							height: 300,
 							width: 630,
 							fit: "contain",
+							background: { r: 255, g: 255, b: 255, alpha: 0 },
 						})
 						.webp()
 						.toBuffer();
