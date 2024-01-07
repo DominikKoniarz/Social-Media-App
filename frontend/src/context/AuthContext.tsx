@@ -6,6 +6,7 @@ type AuthContextType = {
 	accessToken: string | null;
 	setAccessToken: React.Dispatch<React.SetStateAction<string | null>>;
 	firstEnteredPathName: string;
+	refetchVerifyRefreshToken: () => void;
 };
 
 const initContextState: AuthContextType = {
@@ -13,6 +14,7 @@ const initContextState: AuthContextType = {
 	accessToken: null,
 	setAccessToken: () => {},
 	firstEnteredPathName: "",
+	refetchVerifyRefreshToken: () => {},
 };
 
 const AuthContext = createContext<AuthContextType>(initContextState);
@@ -24,11 +26,14 @@ export const AuthContextProvider = ({
 }): ReactElement => {
 	const [firstEnteredPathName] = useState<string>(window.location.pathname);
 
-	const {
-		accessToken,
-		setAccessToken,
-		isLoading: isTokenBeingVerified,
-	} = useVerifyRefreshToken();
+	const { accessToken, setAccessToken, isLoading, isRefetching, refetch } =
+		useVerifyRefreshToken();
+
+	const isTokenBeingVerified = isLoading || isRefetching;
+
+	const refetchVerifyRefreshToken = () => {
+		refetch();
+	};
 
 	return (
 		<AuthContext.Provider
@@ -37,6 +42,7 @@ export const AuthContextProvider = ({
 				accessToken,
 				setAccessToken,
 				firstEnteredPathName,
+				refetchVerifyRefreshToken,
 			}}
 		>
 			{children}

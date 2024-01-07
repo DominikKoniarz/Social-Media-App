@@ -26,7 +26,8 @@ const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || "rt_secret";
 export const generateAccessToken = (userId: string): string => {
 	const accessTokenData: AccessTokenData = { userId };
 	return jwt.sign(accessTokenData, ACCESS_TOKEN_SECRET, {
-		expiresIn: ACCESS_TOKEN_MAX_AGE,
+		expiresIn: "15s",
+		// expiresIn: ACCESS_TOKEN_MAX_AGE,
 		// algorithm: "ES256",
 	});
 };

@@ -11,7 +11,7 @@ const Data = z.object({
 const useVerifyRefreshToken = () => {
 	const [accessToken, setAccessToken] = useState<string | null>(null);
 
-	const { data, isLoading, error } = useQuery({
+	const { data, isLoading, error, refetch, isRefetching } = useQuery({
 		queryKey: "refreshToken",
 		queryFn: async () =>
 			await axios({
@@ -41,7 +41,7 @@ const useVerifyRefreshToken = () => {
 		}
 	}, [isLoading, error, data]);
 
-	return { accessToken, setAccessToken, isLoading };
+	return { accessToken, setAccessToken, isLoading, refetch, isRefetching };
 };
 
 export default useVerifyRefreshToken;

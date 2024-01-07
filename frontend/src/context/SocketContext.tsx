@@ -27,7 +27,7 @@ export const SocketContextProvider = ({
 }: {
 	children: ReactElement;
 }): ReactElement => {
-	const { accessToken } = useAuthContext();
+	const { accessToken, refetchVerifyRefreshToken } = useAuthContext();
 	const [socket, setSocket] = useState<Socket | null>(null);
 	const [userData, setUserData] = useState<UserData | null>(null);
 
@@ -56,11 +56,12 @@ export const SocketContextProvider = ({
 
 		newSocket.on("disconnect", () => {
 			console.log("Server dissconnected");
-			// setAccessToken(null);
+			refetchVerifyRefreshToken();
 		});
 
 		newSocket.on("connect_error", (error) => {
 			console.log(`Connecting error: ${error.message}`);
+			refetchVerifyRefreshToken();
 		});
 
 		newSocket.on("serverError", (msg) => {
@@ -72,7 +73,7 @@ export const SocketContextProvider = ({
 		return () => {
 			newSocket.close();
 		};
-	}, [accessToken]);
+	}, [accessToken, refetchVerifyRefreshToken]);
 
 	return (
 		<SocketContext.Provider
