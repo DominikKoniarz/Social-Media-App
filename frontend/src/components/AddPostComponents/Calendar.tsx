@@ -24,7 +24,14 @@ const Calendar = ({ releaseDate, setReleaseDate }: Props) => {
 				<FaRegCalendarDays />
 			</button>
 			{isDatePickerOpen && (
-				<DatePicker selected={releaseDate} onChange={handleDateChange} />
+				<DatePicker
+					className="text-xl w-52 text-black/50"
+					dateFormat="dd/MM/yyyy h:mm aa"
+					timeInputLabel="Time:"
+					showTimeInput
+					selected={releaseDate}
+					onChange={handleDateChange}
+				/>
 			)}
 		</>
 	);
