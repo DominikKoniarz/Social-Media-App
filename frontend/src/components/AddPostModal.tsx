@@ -82,12 +82,16 @@ const AddPostModal = ({ addPostModalOpen, setAddPostModalOpen }: Props) => {
 			<Modal.Body className="bg-white ">
 				<div className="flex flex-col justify-center w-full gap-2 ">
 					<TextArea textContent={textContent} setTextContent={setTextContent} />
-					{imageBase64 ? (
-						<PostImage imageBase64={imageBase64} />
-					) : (
-						<p className="px-0">Add your favourite pictures!</p>
+					{imageBase64 && (
+						<PostImage
+							imageBase64={imageBase64}
+							clearImage={() => {
+								setImageBase64(null);
+								setImageFile(null);
+								setImageName(null);
+							}}
+						/>
 					)}
-					<hr />
 					<div className="flex items-center h-8 gap-2 text-2xl text-black/50">
 						<ImageIcon onDrop={onDrop} />
 						<Calendar
