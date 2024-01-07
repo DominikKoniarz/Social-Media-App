@@ -32,6 +32,8 @@ const useVerifyRefreshToken = () => {
 			}
 		}
 
+		if (!isLoading && error) setAccessToken(null);
+
 		if (!isLoading && error && import.meta.env.DEV) {
 			console.log(
 				error instanceof AxiosError && error.response
