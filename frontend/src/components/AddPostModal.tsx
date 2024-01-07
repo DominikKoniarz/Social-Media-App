@@ -104,6 +104,7 @@ const AddPostModal = ({ addPostModalOpen, setAddPostModalOpen }: Props) => {
 			<Modal.Footer className="flex flex-col items-start space-x-0 bg-white rounded-none">
 				<div className="flex items-center gap-4">
 					<PublishItButton
+						disabled={!textContent || !socket}
 						handleAddPost={() =>
 							handleAddPost(() => {
 								setImageFile(null);
