@@ -1,6 +1,6 @@
 import { Modal } from "flowbite-react";
 import useSocketContext from "hooks/useSocketContext";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { FileRejection } from "react-dropzone";
 import "react-datepicker/dist/react-datepicker.css";
 import Header from "./AddPostComponents/Header";
@@ -24,6 +24,10 @@ const AddPostModal = ({ addPostModalOpen, setAddPostModalOpen }: Props) => {
 	const [releaseDate, setReleaseDate] = useState<Date | null>(new Date());
 	const [textContent, setTextContent] = useState<string | null>(null);
 	const [error, setError] = useState<string | null>(null);
+
+	useEffect(() => {
+		setReleaseDate(new Date());
+	}, [addPostModalOpen]);
 
 	const onDrop = useCallback(
 		(acceptedFiles: File[], fileRejections: FileRejection[]) => {
@@ -54,14 +58,13 @@ const AddPostModal = ({ addPostModalOpen, setAddPostModalOpen }: Props) => {
 		setError(null);
 
 		const imageBuffer = imageFile ? await imageFile.arrayBuffer() : null;
-		const publishDate = releaseDate ? new Date() : null;
 
 		socket.emit(
 			"addPost",
 			textContent,
 			imageBuffer,
 			imageName,
-			publishDate,
+			releaseDate,
 			(error) => {
 				if (error) return setError(error);
 
