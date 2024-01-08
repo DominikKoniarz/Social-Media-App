@@ -20,6 +20,9 @@ const ProfilePosts = () => {
 			{!isLoading && error && (
 				<div className="w-full p-4 text-center">Wystąpił błąd!</div>
 			)}
+			{!isLoading && !error && posts && posts.length === 0 && (
+				<div className="w-full p-4 text-center">Brak wpisów!</div>
+			)}
 			{!isLoading && !error && posts && (
 				<ul className="w-full space-y-4 h-fit">
 					{posts.map((post) => (
