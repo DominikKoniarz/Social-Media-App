@@ -2,8 +2,8 @@ import jwt from "jsonwebtoken";
 import getDbInstance from "../initializers/db";
 import z from "zod";
 import {
-	ACCESS_TOKEN_MAX_AGE,
-	REFRESH_TOKEN_MAX_AGE,
+	ACCESS_TOKEN_MAX_AGE_MS,
+	REFRESH_TOKEN_MAX_AGE_MS,
 } from "../config/jwtConfig";
 
 const accessTokenData = z.object({
@@ -26,8 +26,7 @@ const REFRESH_TOKEN_SECRET = process.env.REFRESH_TOKEN_SECRET || "rt_secret";
 export const generateAccessToken = (userId: string): string => {
 	const accessTokenData: AccessTokenData = { userId };
 	return jwt.sign(accessTokenData, ACCESS_TOKEN_SECRET, {
-		expiresIn: "15s",
-		// expiresIn: ACCESS_TOKEN_MAX_AGE,
+		expiresIn: ACCESS_TOKEN_MAX_AGE_MS / 1000,
 		// algorithm: "ES256",
 	});
 };
@@ -35,7 +34,7 @@ export const generateAccessToken = (userId: string): string => {
 export const generateRefreshToken = (userId: string): string => {
 	const refreshTokenData: RefreshTokenData = { userId, createdAt: Date.now() };
 	return jwt.sign(refreshTokenData, REFRESH_TOKEN_SECRET, {
-		expiresIn: REFRESH_TOKEN_MAX_AGE,
+		expiresIn: REFRESH_TOKEN_MAX_AGE_MS / 1000,
 		// algorithm: "ES256",
 	});
 };
