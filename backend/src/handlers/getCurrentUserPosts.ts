@@ -18,7 +18,7 @@ const getCurrentUserPosts = (
 		SocketData
 	>
 ) => {
-	socket.on("getCurrentUserPosts", async (offset, sendPosts) => {
+	socket.on("getCurrentUserPosts", async (sendPosts) => {
 		const userId = socket.data.userId;
 
 		// shouldn't happen bc of the middleware which always set the userId
@@ -36,35 +36,32 @@ const getCurrentUserPosts = (
 
 			if (!foundUser) return socket.disconnect();
 
-			if (offset < 0) throw new Error("Offset must be greater or equal 0!");
+			const postsRaw = await prisma.post.findMany({
+				where: {
+					userId: userId,
+				},
+				select: {
+					id: true,
+					textContent: true,
+					publishedAt: true,
+					image: true,
+				},
+				orderBy: {
+					publishedAt: "desc",
+				},
+			});
 
-			const [posts, allPostsCount] = await Promise.all([
-				prisma.post.findMany({
-					where: {
-						userId: userId,
-					},
-					select: {
-						id: true,
-						textContent: true,
-						publishedAt: true,
-						image: true,
-					},
-					skip: offset * 7,
-					take: 7,
-				}),
-				prisma.post.count({
-					where: {
-						userId: userId,
-					},
-				}),
-			]);
+			const posts = postsRaw.map((post) => ({
+				...post,
+				publishedAt: post.publishedAt.toISOString(),
+			}));
 
-			sendPosts(null, posts, allPostsCount);
+			sendPosts(null, posts);
 		} catch (error) {
 			const errorMessage =
 				error instanceof Error ? error.message : "Unknown server error!";
 
-			sendPosts(errorMessage, null, null);
+			sendPosts(errorMessage, null);
 
 			logError(
 				`Get user data error! Socket id: ${socket.id}`,

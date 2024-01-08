@@ -1,25 +1,20 @@
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import useSocketContext from "./useSocketContext";
 import { Post } from "../../../types/socket.io";
-
-const POSTS_PER_PAGE = 7;
 
 export default function useGetCurrentUserPosts() {
 	const { socket } = useSocketContext();
 	const [isLoading, setIsLoading] = useState<boolean>(false);
-	const [page, setPage] = useState<number>(0);
 	const [error, setError] = useState<string | null>("");
-	const [areAllPostsFetched, setAreAllPostsFetched] = useState<boolean>(false);
 	const [posts, setPosts] = useState<Post[]>([]);
 
-	const getCurrentUserPosts = () => {
+	const getCurrentUserPosts = useCallback(() => {
 		if (!socket) return;
-		if (!areAllPostsFetched) return;
 
 		setIsLoading(true);
 		setError(null);
 
-		socket.emit("getCurrentUserPosts", page, (error, posts, allPostsCount) => {
+		socket.emit("getCurrentUserPosts", (error, posts) => {
 			setIsLoading(false);
 
 			if (error) {
@@ -27,17 +22,15 @@ export default function useGetCurrentUserPosts() {
 				return;
 			}
 
-			if (posts && allPostsCount) {
-				setPosts((prev) => [...prev, ...posts]);
-
-				setPage((prev) => prev + 1);
-
-				if (page * POSTS_PER_PAGE >= allPostsCount) {
-					setAreAllPostsFetched(true);
-				}
+			if (posts) {
+				setPosts(posts);
 			}
 		});
-	};
+	}, [socket]);
 
-	return { getCurrentUserPosts, isLoading, error, posts };
+	useEffect(() => {
+		getCurrentUserPosts();
+	}, [getCurrentUserPosts]);
+
+	return { isLoading, error, posts };
 }

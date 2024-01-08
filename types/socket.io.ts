@@ -42,12 +42,7 @@ export interface ClientToServerEvents {
 		callback: (error: string | null) => void
 	) => void;
 	getCurrentUserPosts: (
-		offset: number,
-		callback: (
-			error: string | null,
-			posts: Post[] | null,
-			allPostsCount: number | null
-		) => void
+		callback: (error: string | null, posts: Post[] | null) => void
 	) => void;
 }
 
@@ -63,7 +58,7 @@ export type Post = {
 	id: string;
 	textContent: string;
 	image: string | null;
-	publishedAt: Date;
+	publishedAt: string;
 };
 
 export type UserData = {
