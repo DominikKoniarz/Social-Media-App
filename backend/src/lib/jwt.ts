@@ -63,7 +63,7 @@ export const deleteOutdatedRefreshTokens = async (): Promise<void> => {
 	await prisma.refreshToken.deleteMany({
 		where: {
 			createdAt: {
-				lt: new Date(Date.now() - 24 * 60 * 60 * 1000),
+				lt: new Date(Date.now() - REFRESH_TOKEN_MAX_AGE_MS),
 			},
 		},
 	});
