@@ -44,6 +44,18 @@ export interface ClientToServerEvents {
 	getCurrentUserPosts: (
 		callback: (error: string | null, posts: Post[] | null) => void
 	) => void;
+	searchUsers: (
+		searchText: string,
+		callback: (
+			error: string | null,
+			users:
+				| Pick<
+						UserData,
+						"id" | "username" | "firstname" | "lastname" | "avatarImage"
+				  >[]
+				| null
+		) => void
+	) => void;
 }
 
 export interface InterServerEvents {

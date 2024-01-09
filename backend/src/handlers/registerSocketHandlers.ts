@@ -13,6 +13,7 @@ import saveBackgroundImage from "./saveBackgroundImage";
 import deleteBackgroundImage from "./deleteBackgroundImage";
 import addPost from "./addPost";
 import getCurrentUserPosts from "./getCurrentUserPosts";
+import searchUsers from "./searchUsers";
 
 const registerSocketHandlers = (
 	io: Server<
@@ -31,6 +32,7 @@ const registerSocketHandlers = (
 		deleteBackgroundImage(socket);
 		addPost(socket);
 		getCurrentUserPosts(socket);
+		searchUsers(socket);
 
 		socket.on("disconnect", () => {
 			console.log("user disconnected", socket.id);
