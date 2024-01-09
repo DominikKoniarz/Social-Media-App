@@ -7,91 +7,99 @@
 html,
 body,
 #root {
-	height: 100dvh;
-	width: 100vw;
-	font-family: "Poppins", sans-serif;
+  height: 100dvh;
+  width: 100vw;
+  font-family: "Poppins", sans-serif;
 }
 .chat::-webkit-scrollbar,
 .posts::-webkit-scrollbar,
 .profile::-webkit-scrollbar,
 .notifications::-webkit-scrollbar {
-	display: none;
+  display: none;
 }
 
 .loader {
-	overflow: hidden;
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	align-content: center;
-	justify-content: center;
-	z-index: 100;
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.inactive {
+  left: -550px;
+}
+
+.transistion-from-left {
+  transition: left 0.5s cubic-bezier(0.82, 0.085, 0.395, 0.895);
 }
 
 .custom-outline {
-	-webkit-text-stroke: 0.5px black;
+  -webkit-text-stroke: 0.5px black;
 }
 
 .dot {
-	border-radius: 50%;
-	height: 15px;
-	width: 15px;
-	background-color: black;
-	margin: calc(15px * 2);
+  border-radius: 50%;
+  height: 15px;
+  width: 15px;
+  background-color: black;
+  margin: calc(15px * 2);
 }
 
 .dot-small {
-	border-radius: 50%;
-	height: 10px;
-	width: 10px;
-	background-color: black;
-	margin: calc(10px * 2);
+  border-radius: 50%;
+  height: 10px;
+  width: 10px;
+  background-color: black;
+  margin: calc(10px * 2);
 }
 
 .dot:nth-child(1) {
-	animation: preloader 0.7s ease-in-out alternate infinite;
+  animation: preloader 0.7s ease-in-out alternate infinite;
 }
 
 .dot:nth-child(2) {
-	animation: preloader 0.7s ease-in-out alternate 0.3s infinite;
+  animation: preloader 0.7s ease-in-out alternate 0.3s infinite;
 }
 
 .dot:nth-child(3) {
-	animation: preloader 0.7s ease-in-out alternate 0.5s infinite;
+  animation: preloader 0.7s ease-in-out alternate 0.5s infinite;
 }
 
 .dot:nth-child(4) {
-	animation: preloader 0.7s ease-in-out alternate 0.8s infinite;
+  animation: preloader 0.7s ease-in-out alternate 0.8s infinite;
 }
 
 .dot:nth-child(5) {
-	animation: preloader 0.7s ease-in-out alternate 1.2s infinite;
+  animation: preloader 0.7s ease-in-out alternate 1.2s infinite;
 }
 
 .dot-small:nth-child(1) {
-	animation: preloader 0.7s ease-in-out alternate infinite;
+  animation: preloader 0.7s ease-in-out alternate infinite;
 }
 
 .dot-small:nth-child(2) {
-	animation: preloader 0.7s ease-in-out alternate 0.3s infinite;
+  animation: preloader 0.7s ease-in-out alternate 0.3s infinite;
 }
 
 .dot-small:nth-child(3) {
-	animation: preloader 0.7s ease-in-out alternate 0.5s infinite;
+  animation: preloader 0.7s ease-in-out alternate 0.5s infinite;
 }
 
 .dot-small:nth-child(4) {
-	animation: preloader 0.7s ease-in-out alternate 0.8s infinite;
+  animation: preloader 0.7s ease-in-out alternate 0.8s infinite;
 }
 
 .dot-small:nth-child(5) {
-	animation: preloader 0.7s ease-in-out alternate 1.2s infinite;
+  animation: preloader 0.7s ease-in-out alternate 1.2s infinite;
 }
 
 @keyframes preloader {
-	100% {
-		transform: scale(3);
-	}
+  100% {
+    transform: scale(3);
+  }
 }
 
 /*
@@ -106,99 +114,99 @@ body,
 */
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("assets/fonts/satoshi/Satoshi-Variable.woff2") format("woff2");
-	font-weight: 300 900;
-	font-display: swap;
-	font-style: normal;
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-Variable.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("assets/fonts/satoshi/Satoshi-VariableItalic.woff2") format("woff2");
-	font-weight: 300 900;
-	font-display: swap;
-	font-style: italic;
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-VariableItalic.woff2") format("woff2");
+  font-weight: 300 900;
+  font-display: swap;
+  font-style: italic;
 }
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("assets/fonts/satoshi/Satoshi-Light.woff2") format("woff2");
-	font-weight: 300;
-	font-display: swap;
-	font-style: normal;
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-Light.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("assets/fonts/satoshi/Satoshi-LightItalic.woff2") format("woff2");
-	font-weight: 300;
-	font-display: swap;
-	font-style: italic;
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-LightItalic.woff2") format("woff2");
+  font-weight: 300;
+  font-display: swap;
+  font-style: italic;
 }
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("assets/fonts/satoshi/Satoshi-Regular.woff2") format("woff2");
-	font-weight: 400;
-	font-display: swap;
-	font-style: normal;
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("assets/fonts/satoshi/Satoshi-Italic.woff2") format("woff2");
-	font-weight: 400;
-	font-display: swap;
-	font-style: italic;
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-Italic.woff2") format("woff2");
+  font-weight: 400;
+  font-display: swap;
+  font-style: italic;
 }
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("assets/fonts/satoshi/Satoshi-Medium.woff2") format("woff2");
-	font-weight: 500;
-	font-display: swap;
-	font-style: normal;
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("assets/fonts/satoshi/Satoshi-MediumItalic.woff2") format("woff2");
-	font-weight: 500;
-	font-display: swap;
-	font-style: italic;
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-MediumItalic.woff2") format("woff2");
+  font-weight: 500;
+  font-display: swap;
+  font-style: italic;
 }
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("assets/fonts/satoshi/Satoshi-Bold.woff2") format("woff2");
-	font-weight: 700;
-	font-display: swap;
-	font-style: normal;
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("assets/fonts/satoshi/Satoshi-BoldItalic.woff2") format("woff2");
-	font-weight: 700;
-	font-display: swap;
-	font-style: italic;
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-BoldItalic.woff2") format("woff2");
+  font-weight: 700;
+  font-display: swap;
+  font-style: italic;
 }
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("assets/fonts/satoshi/Satoshi-Black.woff2") format("woff2");
-	font-weight: 900;
-	font-display: swap;
-	font-style: normal;
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-Black.woff2") format("woff2");
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "Satoshi";
-	src: url("assets/fonts/satoshi/Satoshi-BlackItalic.woff2") format("woff2");
-	font-weight: 900;
-	font-display: swap;
-	font-style: italic;
+  font-family: "Satoshi";
+  src: url("assets/fonts/satoshi/Satoshi-BlackItalic.woff2") format("woff2");
+  font-weight: 900;
+  font-display: swap;
+  font-style: italic;
 }
 
 /*
@@ -208,82 +216,82 @@ body,
 */
 
 @font-face {
-	font-family: "SF Compact Display";
-	src: url("assets/fonts/sf-compact-display/sf-compact-display-black.otf")
-		format("opentype");
-	font-weight: 900;
-	font-display: swap;
-	font-style: normal;
+  font-family: "SF Compact Display";
+  src: url("assets/fonts/sf-compact-display/sf-compact-display-black.otf")
+    format("opentype");
+  font-weight: 900;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "SF Compact Display";
-	src: url("assets/fonts/sf-compact-display/sf-compact-display-heavy.otf")
-		format("opentype");
-	font-weight: 800;
-	font-display: swap;
-	font-style: normal;
+  font-family: "SF Compact Display";
+  src: url("assets/fonts/sf-compact-display/sf-compact-display-heavy.otf")
+    format("opentype");
+  font-weight: 800;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "SF Compact Display";
-	src: url("assets/fonts/sf-compact-display/sf-compact-display-bold.otf")
-		format("opentype");
-	font-weight: 700;
-	font-display: swap;
-	font-style: normal;
+  font-family: "SF Compact Display";
+  src: url("assets/fonts/sf-compact-display/sf-compact-display-bold.otf")
+    format("opentype");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "SF Compact Display";
-	src: url("assets/fonts/sf-compact-display/sf-compact-display-semibold.otf")
-		format("opentype");
-	font-weight: 600;
-	font-display: swap;
-	font-style: normal;
+  font-family: "SF Compact Display";
+  src: url("assets/fonts/sf-compact-display/sf-compact-display-semibold.otf")
+    format("opentype");
+  font-weight: 600;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "SF Compact Display";
-	src: url("assets/fonts/sf-compact-display/sf-compact-display-medium.otf")
-		format("opentype");
-	font-weight: 500;
-	font-display: swap;
-	font-style: normal;
+  font-family: "SF Compact Display";
+  src: url("assets/fonts/sf-compact-display/sf-compact-display-medium.otf")
+    format("opentype");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "SF Compact Display";
-	src: url("assets/fonts/sf-compact-display/sf-compact-display-regular.otf")
-		format("opentype");
-	font-weight: 400;
-	font-display: swap;
-	font-style: normal;
+  font-family: "SF Compact Display";
+  src: url("assets/fonts/sf-compact-display/sf-compact-display-regular.otf")
+    format("opentype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "SF Compact Display";
-	src: url("assets/fonts/sf-compact-display/sf-compact-display-light.otf")
-		format("opentype");
-	font-weight: 300;
-	font-display: swap;
-	font-style: normal;
+  font-family: "SF Compact Display";
+  src: url("assets/fonts/sf-compact-display/sf-compact-display-light.otf")
+    format("opentype");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "SF Compact Display";
-	src: url("assets/fonts/sf-compact-display/sf-compact-display-thin.otf")
-		format("opentype");
-	font-weight: 200;
-	font-display: swap;
-	font-style: normal;
+  font-family: "SF Compact Display";
+  src: url("assets/fonts/sf-compact-display/sf-compact-display-thin.otf")
+    format("opentype");
+  font-weight: 200;
+  font-display: swap;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: "SF Compact Display";
-	src: url("assets/fonts/sf-compact-display/sf-compact-display-ultralight.otf")
-		format("opentype");
-	font-weight: 100;
-	font-display: swap;
-	font-style: normal;
+  font-family: "SF Compact Display";
+  src: url("assets/fonts/sf-compact-display/sf-compact-display-ultralight.otf")
+    format("opentype");
+  font-weight: 100;
+  font-display: swap;
+  font-style: normal;
 }
