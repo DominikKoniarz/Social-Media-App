@@ -40,12 +40,21 @@ const searchUsers = (
 
 			const splitedSearchText = searchText.split(" ");
 
+			const likeSplittedText = splitedSearchText.map((text) => {
+				return [
+					{ username: { contains: text } },
+					{ firstname: { contains: text } },
+					{ lastname: { contains: text } },
+				];
+			});
+
 			const foundUsers = await prisma.user.findMany({
 				where: {
 					OR: [
 						{ username: { in: splitedSearchText } },
 						{ firstname: { in: splitedSearchText } },
 						{ lastname: { in: splitedSearchText } },
+						...likeSplittedText.flat(),
 					],
 					AND: [{ id: { not: userId } }],
 				},
@@ -56,6 +65,7 @@ const searchUsers = (
 					lastname: true,
 					avatarImage: true,
 				},
+				take: 10,
 			});
 
 			sendData(null, foundUsers);
