@@ -8,7 +8,7 @@ type Props = {
 
 export default function FoundProfilePosts({ posts, foundUserData }: Props) {
 	return (
-		<ul className="w-full space-y-4 h-fit">
+		<ul className="w-full mt-4 space-y-4 h-fit">
 			{posts.map((post) => (
 				<UserPost
 					userData={foundUserData}

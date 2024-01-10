@@ -57,9 +57,9 @@ const FoundProfilePage = () => {
 					<FoundProfileHeader foundUserData={foundUserData} />
 					<FoundProfileBody foundUserData={foundUserData} />
 				</section>
-				<section className="flex w-full h-full gap-4 pt-4">
+				{posts.length > 0 && (
 					<FoundProfilePosts posts={posts} foundUserData={foundUserData} />
-				</section>
+				)}
 			</main>
 		);
 };

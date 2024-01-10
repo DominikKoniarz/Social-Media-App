@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { UserData } from "../../../types/socket.io";
-import { APP_URL } from "constraints";
 import { FaRegUser } from "react-icons/fa6";
+import useGenerateImageSrc from "hooks/useGenerateImagesSrc";
 
 type Props = {
 	user: Pick<
@@ -11,6 +11,8 @@ type Props = {
 };
 
 export default function SearchListItem({ user }: Props) {
+	const { generateAvatarImageSrc } = useGenerateImageSrc();
+
 	return (
 		<li
 			className="w-full transition-colors duration-300 h-fit hover:bg-slate-100"
@@ -24,7 +26,7 @@ export default function SearchListItem({ user }: Props) {
 					{user.avatarImage ? (
 						<img
 							className="object-cover w-full h-full"
-							src={`${APP_URL}/media/${user.id}/avatar/${user.avatarImage}`}
+							src={generateAvatarImageSrc(user.id, user.avatarImage)}
 						/>
 					) : (
 						<FaRegUser className="text-lg" />

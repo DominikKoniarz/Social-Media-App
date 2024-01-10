@@ -1,8 +1,8 @@
 import { FaPen, FaTrashCan, FaRegUser } from "react-icons/fa6";
 import useSocketContext from "hooks/useSocketContext";
-import { APP_URL } from "constraints";
 import { useState } from "react";
 import AvatarDeleteModal from "./AvatarDeleteModal";
+import useGenerateImageSrc from "hooks/useGenerateImagesSrc";
 
 type Props = {
 	setProfileImageModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -12,13 +12,14 @@ const AvatarImage = ({ setProfileImageModal }: Props) => {
 	const [deleteImageModalOpen, setDeleteImageModalOpen] =
 		useState<boolean>(false);
 	const { userData } = useSocketContext();
+	const { generateAvatarImageSrc } = useGenerateImageSrc();
 
 	return (
 		<div className="absolute grid place-items-center bottom-0 translate-y-1/2 left-10 w-[128px] h-[118px] rounded-md bg-slate-50 border-slate-200 border-2 overflow-hidden group">
 			{userData && userData.avatarImage ? (
 				<img
 					className="absolute z-10 object-cover w-full h-full"
-					src={`${APP_URL}/media/${userData.id}/avatar/${userData.avatarImage}`}
+					src={generateAvatarImageSrc(userData.id, userData.avatarImage)}
 					alt="ProfilePicture"
 				/>
 			) : (

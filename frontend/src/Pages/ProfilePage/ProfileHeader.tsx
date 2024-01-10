@@ -1,4 +1,4 @@
-import { APP_URL } from "constraints";
+import useGenerateImageSrc from "hooks/useGenerateImagesSrc";
 import useSocketContext from "hooks/useSocketContext";
 import { FaPanorama, FaPen, FaRegUser, FaShareNodes } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 const ProfileHeader = () => {
 	const { userData } = useSocketContext();
 	const navigate = useNavigate();
+	const { generateBackgroundImageSrc, generateAvatarImageSrc } =
+		useGenerateImageSrc();
 
 	const handleEditClick = () => {
 		navigate("/profileEdit");
@@ -17,7 +19,10 @@ const ProfileHeader = () => {
 				<div className="w-full h-[257px] flex justify-center items-center  ">
 					<img
 						className="object-cover w-full h-full"
-						src={`${APP_URL}/media/${userData.id}/background/${userData.backgroundImage}`}
+						src={generateBackgroundImageSrc(
+							userData.id,
+							userData.backgroundImage
+						)}
 						alt="ProfileBackground"
 					/>
 				</div>
@@ -30,7 +35,7 @@ const ProfileHeader = () => {
 				{userData && userData.avatarImage ? (
 					<img
 						className="absolute object-cover w-full h-full"
-						src={`${APP_URL}/media/${userData.id}/avatar/${userData.avatarImage}`}
+						src={generateAvatarImageSrc(userData.id, userData.avatarImage)}
 						alt="ProfilePicture"
 					/>
 				) : (

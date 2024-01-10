@@ -5,9 +5,9 @@ import {
 	FaRegBookmark,
 	FaRegUser,
 } from "react-icons/fa6";
-import { APP_URL } from "constraints";
 import useCalculateElapsedTime from "hooks/useCalculateElapsedTime";
 import { UserData } from "../../../types/socket.io";
+import useGenerateImageSrc from "hooks/useGenerateImagesSrc";
 
 type Props = {
 	id: string;
@@ -19,6 +19,8 @@ type Props = {
 
 const UserPost = ({ id, textContent, image, publishedAt, userData }: Props) => {
 	const elapsedTimeString = useCalculateElapsedTime(publishedAt);
+	const { generatePostImageSrc, generateAvatarImageSrc } =
+		useGenerateImageSrc();
 
 	return (
 		<li className="flex flex-col w-full px-4 py-4 bg-white h-fit">
@@ -27,7 +29,7 @@ const UserPost = ({ id, textContent, image, publishedAt, userData }: Props) => {
 					{userData && userData.avatarImage ? (
 						<img
 							className="object-cover w-full h-full rounded-full"
-							src={`${APP_URL}/media/${userData.id}/avatar/${userData.avatarImage}`}
+							src={generateAvatarImageSrc(userData.id, userData.avatarImage)}
 							alt="ProfilePicture"
 						/>
 					) : (
@@ -51,12 +53,12 @@ const UserPost = ({ id, textContent, image, publishedAt, userData }: Props) => {
 					<FaRegTrashCan />
 				</button>
 			</div>
-			<div className="flex flex-col ">
+			<div className="flex flex-col">
 				<p className={`${!image ? "pt-4 pb-0" : "pt-2 pb-2"}`}>{textContent}</p>
 				{image && (
 					<img
-						className="mix-blend-darken"
-						src={`${APP_URL}/media/${userData.id}/posts/${id}/${image}`}
+						className="mix-blend-darken max-h-[300px] object-contain w-full h-full"
+						src={generatePostImageSrc(userData.id, id, image)}
 						alt="Post image"
 					/>
 				)}

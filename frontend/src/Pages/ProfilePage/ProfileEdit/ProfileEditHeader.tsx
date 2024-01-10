@@ -3,11 +3,12 @@ import useSocketContext from "hooks/useSocketContext";
 import ProfileImageEditModal from "./ProfileImageEditModal";
 import AvatarImage from "./AvatarImage";
 import BackgroundImageModal from "./BackgroundImageModal";
-import { APP_URL } from "constraints";
 import { FaPanorama } from "react-icons/fa6";
 import BackgroundDeleteModal from "./BackgroundDeleteModal";
+import useGenerateImageSrc from "hooks/useGenerateImagesSrc";
 
 const ProfileEditHeader = () => {
+	const { generateBackgroundImageSrc } = useGenerateImageSrc();
 	const { userData } = useSocketContext();
 	const [profileImageModal, setProfileImageModal] = useState<boolean>(false);
 	const [backgroundImageModalOpen, setBackgroundImageModalOpen] =
@@ -21,7 +22,10 @@ const ProfileEditHeader = () => {
 				<div className="w-full h-[257px] flex justify-center items-center  ">
 					<img
 						className="object-cover w-full h-full"
-						src={`${APP_URL}/media/${userData.id}/background/${userData.backgroundImage}`}
+						src={generateBackgroundImageSrc(
+							userData.id,
+							userData.backgroundImage
+						)}
 						alt="ProfileBackground"
 					/>
 				</div>

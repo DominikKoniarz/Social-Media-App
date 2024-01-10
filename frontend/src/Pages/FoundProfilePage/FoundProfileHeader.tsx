@@ -1,19 +1,25 @@
-import { APP_URL } from "constraints";
 import { FaPanorama, FaRegUser, FaShareNodes } from "react-icons/fa6";
 import { UserData } from "../../../../types/socket.io";
+import useGenerateImageSrc from "hooks/useGenerateImagesSrc";
 
 type Props = {
 	foundUserData: UserData;
 };
 
 const FoundProfileHeader = ({ foundUserData }: Props) => {
+	const { generateBackgroundImageSrc, generateAvatarImageSrc } =
+		useGenerateImageSrc();
+
 	return (
 		<div className="relative flex flex-col w-full h-fit">
 			{foundUserData.backgroundImage ? (
 				<div className="w-full h-[257px] flex justify-center items-center  ">
 					<img
 						className="object-cover w-full h-full"
-						src={`${APP_URL}/media/${foundUserData.id}/background/${foundUserData.backgroundImage}`}
+						src={generateBackgroundImageSrc(
+							foundUserData.id,
+							foundUserData.backgroundImage
+						)}
 						alt="ProfileBackground"
 					/>
 				</div>
@@ -26,7 +32,10 @@ const FoundProfileHeader = ({ foundUserData }: Props) => {
 				{foundUserData.avatarImage ? (
 					<img
 						className="absolute object-cover w-full h-full"
-						src={`${APP_URL}/media/${foundUserData.id}/avatar/${foundUserData.avatarImage}`}
+						src={generateAvatarImageSrc(
+							foundUserData.id,
+							foundUserData.avatarImage
+						)}
 						alt="ProfilePicture"
 					/>
 				) : (
