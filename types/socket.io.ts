@@ -56,6 +56,14 @@ export interface ClientToServerEvents {
 				| null
 		) => void
 	) => void;
+	getFoundUserData: (
+		id: string,
+		callback: (
+			error: string | null,
+			userData: UserData | null,
+			posts: Post[] | null
+		) => void
+	) => void;
 }
 
 export interface InterServerEvents {

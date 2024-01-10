@@ -1,10 +1,12 @@
 import useGetCurrentUserPosts from "hooks/useGetCurrentUserPosts";
-import UserPost from "./UserPost";
 import SpinnerLoader from "@components/SpinnerLoader";
 import { useEffect } from "react";
+import UserPost from "@components/UserPost";
+import useSocketContext from "hooks/useSocketContext";
 
 const ProfilePosts = () => {
 	const { isLoading, error, posts } = useGetCurrentUserPosts();
+	const { userData } = useSocketContext();
 
 	useEffect(() => {
 		if (error && import.meta.env.DEV) console.log(error);
@@ -23,10 +25,11 @@ const ProfilePosts = () => {
 			{!isLoading && !error && posts && posts.length === 0 && (
 				<div className="w-full p-4 text-center">Brak wpisów!</div>
 			)}
-			{!isLoading && !error && posts && (
+			{!isLoading && !error && posts && userData && (
 				<ul className="w-full space-y-4 h-fit">
 					{posts.map((post) => (
 						<UserPost
+							userData={userData}
 							key={post.id}
 							id={post.id}
 							textContent={post.textContent}

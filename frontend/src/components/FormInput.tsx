@@ -1,9 +1,10 @@
 type Props = {
 	search: string;
 	setSearch: React.Dispatch<React.SetStateAction<string>>;
+	setIsInputFocused: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const FormInput = ({ search, setSearch }: Props) => {
+const FormInput = ({ search, setSearch, setIsInputFocused }: Props) => {
 	return (
 		<>
 			<label htmlFor="search-input" className=" hidden absolute left-[-9999px]">
@@ -18,7 +19,8 @@ const FormInput = ({ search, setSearch }: Props) => {
 				value={search}
 				onChange={(e) => setSearch(e.target.value)}
 				autoComplete="off"
-				onBlur={() => setSearch("")}
+				onFocus={() => setIsInputFocused(true)}
+				onBlur={() => setTimeout(() => setIsInputFocused(false), 100)}
 			/>
 		</>
 	);

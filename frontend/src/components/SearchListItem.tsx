@@ -12,9 +12,12 @@ type Props = {
 
 export default function SearchListItem({ user }: Props) {
 	return (
-		<li className="w-full transition-colors duration-300 h-fit hover:bg-slate-100">
+		<li
+			className="w-full transition-colors duration-300 h-fit hover:bg-slate-100"
+			onClick={(e) => e.stopPropagation()}
+		>
 			<Link
-				to={"/xd"}
+				to={`/profile/${user.id}`}
 				className="flex flex-row items-center w-full p-4 gap-x-2"
 			>
 				<div className="grid w-10 h-10 border border-slate-500 place-items-center">

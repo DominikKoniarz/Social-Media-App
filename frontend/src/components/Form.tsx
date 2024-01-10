@@ -5,6 +5,7 @@ import SearchResultsList from "./SearchResultsList";
 
 const Form = () => {
 	const [search, setSearch] = useState<string>("");
+	const [isInputFocused, setIsInputFocused] = useState<boolean>(false);
 
 	return (
 		<form
@@ -13,9 +14,13 @@ const Form = () => {
 				e.preventDefault();
 			}}
 		>
-			<FormInput search={search} setSearch={setSearch} />
+			<FormInput
+				search={search}
+				setSearch={setSearch}
+				setIsInputFocused={setIsInputFocused}
+			/>
 			<FormButtonSearch />
-			{search && <SearchResultsList search={search} />}
+			{search && isInputFocused && <SearchResultsList search={search} />}
 		</form>
 	);
 };
