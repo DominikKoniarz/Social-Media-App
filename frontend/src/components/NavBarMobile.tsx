@@ -3,7 +3,6 @@ import LinksList from "./LinksList";
 import LogoutButton from "./LogoutButton";
 import useSocketContext from "hooks/useSocketContext";
 import { APP_URL } from "constraints";
-// import { useEffect } from "react";
 
 type Props = {
   toggle: boolean;
@@ -12,11 +11,6 @@ type Props = {
 const NavBarMobile = ({ toggle }: Props) => {
   const { userData } = useSocketContext();
 
-  //   let windowWidth
-  //   useEffect(() => {
-  //    let windowWidth = window.innerWidth;
-  //   }[windowWidth]);
-  // ${windowWidth > 768 ? setToggle(false) : ""}
   return (
     <>
       <div
@@ -29,7 +23,7 @@ const NavBarMobile = ({ toggle }: Props) => {
       <nav
         className={`md:w-[246px] ${
           toggle ? "left-0" : "-left-[9999px]"
-        }   absolute left-0  z-50 w-[80px] shrink-0 h-full bg-color2 border border-none rounded-r-xl md:rounded-xl overflow-hidden flex flex-col`}
+        }   absolute md:hidden  z-50 w-[80px] shrink-0 h-full bg-color2 border border-none rounded-r-xl md:rounded-xl overflow-hidden flex flex-col`}
       >
         <div className="flex items-center justify-center w-full bg-color1 rounded-tr-xl border border-none rounded-tl-xl h-[75px]">
           <div className="border-2 border-white rounded-full max-w-16 max-h-16 ">
