@@ -12,7 +12,7 @@ const FormInput = ({ search, setSearch, setIsInputFocused }: Props) => {
       </label>
       <input
         required
-        className="lg:w-[687px] md:max-w-[400px] hidden md:block focus:outline-none py-2 px-4 border-none h-[46px] bg-white "
+        className="lg:w-[687px] md:max-w-[400px] hidden md:block overflow-hidden rounded-l-[100px] focus:outline-none py-2 px-4 border-none h-[46px] bg-white "
         placeholder="Search new friends"
         id="search-input"
         type="text"
