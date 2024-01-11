@@ -51,6 +51,8 @@ const UserPost = ({ id, textContent, image, publishedAt, userData }: Props) => {
 				</div>
 				<button className="ml-auto mr-2 text-2xl">
 					<FaRegTrashCan />
+					{/* Tutaj nie może być trash gdy wyswietlany jest
+					post innego usera | Do zamiany na post component */}
 				</button>
 			</div>
 			<div className="flex flex-col">
