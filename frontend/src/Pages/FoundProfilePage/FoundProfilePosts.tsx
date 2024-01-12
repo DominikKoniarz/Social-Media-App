@@ -1,8 +1,8 @@
-import UserPost from "@components/UserPost";
-import { Post, UserData } from "../../../../types/socket.io";
+import { Post as PostType, UserData } from "../../../../types/socket.io";
+import Post from "@components/Post";
 
 type Props = {
-	posts: Post[];
+	posts: PostType[];
 	foundUserData: UserData;
 };
 
@@ -10,7 +10,7 @@ export default function FoundProfilePosts({ posts, foundUserData }: Props) {
 	return (
 		<ul className="w-full mt-4 space-y-4 h-fit">
 			{posts.map((post) => (
-				<UserPost
+				<Post
 					userData={foundUserData}
 					key={post.id}
 					id={post.id}
