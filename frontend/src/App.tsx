@@ -13,38 +13,42 @@ import MessagesPage from "Pages/Messages/MessagesPage";
 import NotFound from "Pages/404/NotFound";
 import FoundProfilePage from "Pages/FoundProfilePage/FoundProfilePage";
 import { Toaster } from "react-hot-toast";
+import Chat from "Pages/Messages/Chat";
 
 const queryClient = new QueryClient();
 
 function App() {
-  return (
-    <QueryClientProvider client={queryClient}>
-      <AuthContextProvider>
-        <>
-          <Toaster position="bottom-right" reverseOrder={false} />
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<RootLayout />}>
-                <Route index path="/login" element={<LoginPage />} />
-                <Route path="/register" element={<RegisterPage />} />
+	return (
+		<QueryClientProvider client={queryClient}>
+			<AuthContextProvider>
+				<>
+					<Toaster position="bottom-right" reverseOrder={false} />
+					<BrowserRouter>
+						<Routes>
+							<Route path="/" element={<RootLayout />}>
+								<Route index path="/login" element={<LoginPage />} />
+								<Route path="/register" element={<RegisterPage />} />
 
-                <Route path="/" element={<ProtectedRoutesLayout />}>
-                  <Route path="/" element={<RootPage />} />
-                  <Route path="/profile" element={<ProfilePage />} />
-                  <Route path="/profile/:id" element={<FoundProfilePage />} />
-                  <Route path="/profileEdit" element={<ProfileEdit />} />
-                  <Route path="/notifications" element={<NotificationPage />} />
-                  <Route path="/messages" element={<MessagesPage />} />
-                </Route>
+								<Route path="/" element={<ProtectedRoutesLayout />}>
+									<Route path="/" element={<RootPage />} />
+									<Route path="/profile" element={<ProfilePage />} />
+									<Route path="/profile/:id" element={<FoundProfilePage />} />
+									<Route path="/profileEdit" element={<ProfileEdit />} />
+									<Route path="/notifications" element={<NotificationPage />} />
+									<Route path="/messages" element={<MessagesPage />}>
+										<Route index element={<div>pickChat</div>} />
+										<Route path=":id" element={<Chat />} />
+									</Route>
+								</Route>
 
-                <Route path="*" element={<NotFound />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </>
-      </AuthContextProvider>
-    </QueryClientProvider>
-  );
+								<Route path="*" element={<NotFound />} />
+							</Route>
+						</Routes>
+					</BrowserRouter>
+				</>
+			</AuthContextProvider>
+		</QueryClientProvider>
+	);
 }
 
 export default App;

@@ -11,21 +11,25 @@ datasource db {
 }
 
 model User {
-    id              String         @id @default(uuid())
-    username        String         @unique @db.VarChar(256)
-    firstname       String?        @db.VarChar(256)
-    lastname        String?        @db.VarChar(256)
-    location        String?        @db.VarChar(256)
-    bio             String?        @db.Text
-    websiteURL      String?        @db.VarChar(256)
-    email           String         @unique @db.VarChar(256)
-    passwordHash    String         @db.VarChar(256)
-    avatarImage     String?        @db.VarChar(256)
-    backgroundImage String?        @db.VarChar(256)
-    createdAt       DateTime       @default(now())
-    updatedAt       DateTime       @updatedAt
-    refreshToken    RefreshToken[]
-    Post            Post[]
+    id               String         @id @default(uuid())
+    username         String         @unique @db.VarChar(256)
+    firstname        String?        @db.VarChar(256)
+    lastname         String?        @db.VarChar(256)
+    location         String?        @db.VarChar(256)
+    bio              String?        @db.Text
+    websiteURL       String?        @db.VarChar(256)
+    email            String         @unique @db.VarChar(256)
+    passwordHash     String         @db.VarChar(256)
+    avatarImage      String?        @db.VarChar(256)
+    backgroundImage  String?        @db.VarChar(256)
+    createdAt        DateTime       @default(now())
+    updatedAt        DateTime       @updatedAt
+    refreshToken     RefreshToken[]
+    post             Post[]
+    sentMessages     Message[]      @relation("SentMessages")
+    receivedMessages Message[]      @relation("ReceivedMessages")
+    conversation1    Conversation[] @relation("User1")
+    conversation2    Conversation[] @relation("User2")
 }
 
 model RefreshToken {
@@ -46,4 +50,28 @@ model Post {
     updatedAt   DateTime @updatedAt
     userId      String
     user        User     @relation(fields: [userId], references: [id])
+}
+
+model Conversation {
+    id        String    @id @default(uuid())
+    createdAt DateTime  @default(now())
+    updatedAt DateTime  @updatedAt
+    user1Id   String
+    user2Id   String
+    user1     User      @relation("User1", fields: [user1Id], references: [id])
+    user2     User      @relation("User2", fields: [user2Id], references: [id])
+    messages  Message[]
+}
+
+model Message {
+    id             String       @id @default(uuid())
+    textContent    String       @db.VarChar(2048)
+    createdAt      DateTime     @default(now())
+    updatedAt      DateTime     @updatedAt
+    senderId       String
+    receiverId     String
+    conversationId String
+    sender         User         @relation("SentMessages", fields: [senderId], references: [id])
+    receiver       User         @relation("ReceivedMessages", fields: [receiverId], references: [id])
+    conversation   Conversation @relation(fields: [conversationId], references: [id])
 }

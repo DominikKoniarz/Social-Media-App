@@ -64,6 +64,12 @@ export interface ClientToServerEvents {
 			posts: Post[] | null
 		) => void
 	) => void;
+	getConversations: (
+		callback: (
+			error: string | null,
+			conversations: Conversation[] | null
+		) => void
+	) => void;
 }
 
 export interface InterServerEvents {
@@ -73,6 +79,24 @@ export interface InterServerEvents {
 export interface SocketData {
 	userId?: string;
 }
+
+export type UserMessage = {
+	id: string;
+	textContent: string;
+	createdAt: string;
+	senderId: string;
+	receiverId: string;
+};
+
+export type Conversation = {
+	id: string;
+	otherUserId: string;
+	otherUserUsername: string;
+	otherUserFirstname: string | null;
+	otherUserLastname: string | null;
+	otherUserAvatarImage: string | null;
+	messages: UserMessage[];
+};
 
 export type Post = {
 	id: string;

@@ -4,6 +4,7 @@ import { ReactElement, createContext, useEffect, useState } from "react";
 import { Socket, io } from "socket.io-client";
 import {
 	ClientToServerEvents,
+	Conversation,
 	ServerToClientEvents,
 	UserData,
 } from "../../../types/socket.io";
@@ -12,12 +13,18 @@ type SocketContextType = {
 	userData: UserData | null;
 	setUserData: React.Dispatch<React.SetStateAction<UserData | null>>;
 	socket: Socket<ServerToClientEvents, ClientToServerEvents> | null;
+	conversations: Conversation[];
+	isLoadingConversations: boolean;
+	conversationsError: string | null;
 };
 
 const initContextState: SocketContextType = {
 	userData: null,
 	setUserData: () => {},
 	socket: null,
+	conversations: [],
+	isLoadingConversations: true,
+	conversationsError: null,
 };
 
 const SocketContext = createContext<SocketContextType>(initContextState);
@@ -28,6 +35,12 @@ export const SocketContextProvider = ({
 	children: ReactElement;
 }): ReactElement => {
 	const { accessToken, refetchVerifyRefreshToken } = useAuthContext();
+	const [conversations, setConversations] = useState<Conversation[]>([]);
+	const [isLoadingConversations, setIsLoadingConversations] =
+		useState<boolean>(true);
+	const [conversationsError, setConversationsError] = useState<string | null>(
+		null
+	);
 	const [socket, setSocket] = useState<Socket | null>(null);
 	const [userData, setUserData] = useState<UserData | null>(null);
 
@@ -36,6 +49,22 @@ export const SocketContextProvider = ({
 	) => {
 		socket.emit("getUserData", (userData) => {
 			setUserData(userData);
+		});
+	};
+
+	const getConversations = (
+		socket: Socket<ServerToClientEvents, ClientToServerEvents>
+	) => {
+		socket.emit("getConversations", (error, conversations) => {
+			setIsLoadingConversations(false);
+
+			if (error) {
+				setConversationsError(error);
+				import.meta.env.DEV && console.log(error);
+				return;
+			}
+
+			if (conversations) setConversations(conversations);
 		});
 	};
 
@@ -52,6 +81,7 @@ export const SocketContextProvider = ({
 		newSocket.on("connect", () => {
 			console.log("connected");
 			getUserData(newSocket);
+			getConversations(newSocket);
 		});
 
 		newSocket.on("disconnect", () => {
@@ -81,6 +111,9 @@ export const SocketContextProvider = ({
 				userData,
 				socket,
 				setUserData,
+				conversations,
+				isLoadingConversations,
+				conversationsError,
 			}}
 		>
 			{children}

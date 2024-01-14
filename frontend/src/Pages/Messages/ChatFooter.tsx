@@ -1,20 +1,21 @@
-import MessageInput from "./MessageInput";
 import { useState } from "react";
-import Microphone from "./Microphone";
+import MessageInput from "./MessageInput";
 import Send from "./Send";
 
 const ChatFooter = () => {
-  const [message, setMessage] = useState<string>("");
-  return (
-    <div className="absolute bottom-0 flex flex-col w-full gap-1 bg-zinc-100 h-fit">
-      <div className="w-full px-4 py-4 bg-white rounded-t-xl h-fit">
-        <MessageInput message={message} setMessage={setMessage} />
-      </div>
-      <div className="relative w-full px-4 py-2 text-gray-500 bg-white rounded-b-xl h-fit">
-        <Microphone />
-        <Send />
-      </div>
-    </div>
-  );
+	const [message, setMessage] = useState<string>("");
+
+	return (
+		<form
+			className="flex flex-col w-full gap-1 mt-auto bg-zinc-100 h-fit"
+			onSubmit={(e) => e.preventDefault()}
+		>
+			<div className="flex items-center w-full h-full px-4 py-4 bg-white">
+				<MessageInput message={message} setMessage={setMessage} />
+				<Send />
+			</div>
+		</form>
+	);
 };
+
 export default ChatFooter;

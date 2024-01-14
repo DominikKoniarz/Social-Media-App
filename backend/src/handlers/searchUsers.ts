@@ -65,7 +65,7 @@ const searchUsers = (
 					lastname: true,
 					avatarImage: true,
 				},
-				take: 10,
+				take: 8,
 			});
 
 			sendData(null, foundUsers);
