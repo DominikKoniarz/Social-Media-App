@@ -1,9 +1,9 @@
 import { Server } from "socket.io";
 import {
-	ClientToServerEvents,
-	InterServerEvents,
-	ServerToClientEvents,
-	SocketData,
+  ClientToServerEvents,
+  InterServerEvents,
+  ServerToClientEvents,
+  SocketData,
 } from "../../../types/socket.io";
 import getUserData from "./getUserData";
 import submitUserData from "./submitUserData";
@@ -15,31 +15,33 @@ import addPost from "./addPost";
 import getCurrentUserPosts from "./getCurrentUserPosts";
 import searchUsers from "./searchUsers";
 import getFoundUserData from "./getFoundUserData";
+import deletePost from "./deletePost";
 
 const registerSocketHandlers = (
-	io: Server<
-		ClientToServerEvents,
-		ServerToClientEvents,
-		InterServerEvents,
-		SocketData
-	>
+  io: Server<
+    ClientToServerEvents,
+    ServerToClientEvents,
+    InterServerEvents,
+    SocketData
+  >
 ) => {
-	io.on("connection", (socket) => {
-		getUserData(socket);
-		submitUserData(socket);
-		saveAvatarImage(socket);
-		deleteAvatarImage(socket);
-		saveBackgroundImage(socket);
-		deleteBackgroundImage(socket);
-		addPost(socket);
-		getCurrentUserPosts(socket);
-		searchUsers(socket);
-		getFoundUserData(socket);
+  io.on("connection", (socket) => {
+    getUserData(socket);
+    submitUserData(socket);
+    saveAvatarImage(socket);
+    deleteAvatarImage(socket);
+    saveBackgroundImage(socket);
+    deleteBackgroundImage(socket);
+    addPost(socket);
+    getCurrentUserPosts(socket);
+    searchUsers(socket);
+    getFoundUserData(socket);
+    deletePost(socket);
 
-		socket.on("disconnect", () => {
-			console.log("user disconnected", socket.id);
-		});
-	});
+    socket.on("disconnect", () => {
+      console.log("user disconnected", socket.id);
+    });
+  });
 };
 
 export default registerSocketHandlers;
