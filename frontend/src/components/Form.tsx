@@ -9,7 +9,7 @@ const Form = () => {
 
   return (
     <form
-      className="relative rounded-[100px]  border border-black  border-opacity-20  pr-1 flex items-center justify-center mx-auto w-fit"
+      className="relative rounded-[100px]  border border-black  border-opacity-20 p-1 md:pr-2 flex items-center justify-center ml-auto md:mx-auto w-fit"
       onSubmit={(e) => {
         e.preventDefault();
       }}

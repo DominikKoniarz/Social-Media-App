@@ -16,7 +16,7 @@ const Header = ({ toggle, setToggle }: Props) => {
 
   return (
     <header className="w-full h-[74px] bg-white">
-      <div className="py-2 px-4 mx-auto gap-16 max-w-[1920px] w-full flex justify-between items-center h-full">
+      <div className="py-2 px-4 mx-auto gap-4 md:gap-16 max-w-[1920px] w-full flex justify-between items-center h-full">
         <div className="flex shrink-0">
           <img className="mix-blend-darken" src={imgF} alt="Img F" />
           <LogoText />

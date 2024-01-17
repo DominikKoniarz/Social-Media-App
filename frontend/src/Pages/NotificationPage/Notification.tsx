@@ -1,6 +1,6 @@
 const Notification = () => {
   return (
-    <li className="flex items-center gap-2 p-1 bg-white border-l-4 border-teal-500 rounded-md md:px-4 2xl:p-8">
+    <li className="flex items-center gap-2 p-1 max-w-[900px] bg-white border-l-4 border-teal-500 rounded-md md:px-4 2xl:p-8">
       <div className="items-center justify-center p-6 border-2 border-black rounded-full"></div>
       <div className="flex flex-col">
         <div className="flex items-center">
