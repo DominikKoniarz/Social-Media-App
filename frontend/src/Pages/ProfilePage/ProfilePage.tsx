@@ -11,7 +11,7 @@ import media6 from "@assets/images/mediaImages/media6.png";
 
 const ProfilePage = () => {
   return (
-    <main className="w-full h-full px-6 pt-2 mx-auto overflow-y-auto profile">
+    <main className="w-full h-full px-6 pt-2 mx-auto overflow-y-auto md:pt-0 profile">
       <section className="bg-white">
         <ProfileHeader />
         <ProfileBody />
