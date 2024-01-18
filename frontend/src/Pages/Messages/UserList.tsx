@@ -26,9 +26,15 @@ const UserList = ({ conversations, search }: Props) => {
 		<ul className="flex flex-col mt-4 overflow-y-auto h-fit users">
 			{conversations.length > 0 ? (
 				filteredConversations.length > 0 ? (
-					filteredConversations.map((conversation) => (
-						<UserListItem key={conversation.id} conversation={conversation} />
-					))
+					filteredConversations
+						.sort(
+							(a, b) =>
+								new Date(b.messages?.[0].createdAt).getTime() -
+								new Date(a.messages?.[0].createdAt).getTime()
+						)
+						.map((conversation) => (
+							<UserListItem key={conversation.id} conversation={conversation} />
+						))
 				) : (
 					<li className="w-full p-5 text-sm text-center">
 						Not found any conversations!

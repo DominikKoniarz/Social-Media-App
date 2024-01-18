@@ -14,6 +14,7 @@ type SocketContextType = {
 	setUserData: React.Dispatch<React.SetStateAction<UserData | null>>;
 	socket: Socket<ServerToClientEvents, ClientToServerEvents> | null;
 	conversations: Conversation[];
+	setConversations: React.Dispatch<React.SetStateAction<Conversation[]>>;
 	isLoadingConversations: boolean;
 	conversationsError: string | null;
 };
@@ -23,6 +24,7 @@ const initContextState: SocketContextType = {
 	setUserData: () => {},
 	socket: null,
 	conversations: [],
+	setConversations: () => {},
 	isLoadingConversations: true,
 	conversationsError: null,
 };
@@ -112,6 +114,7 @@ export const SocketContextProvider = ({
 				socket,
 				setUserData,
 				conversations,
+				setConversations,
 				isLoadingConversations,
 				conversationsError,
 			}}

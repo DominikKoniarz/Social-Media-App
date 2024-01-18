@@ -19,21 +19,24 @@ const ChatHeader = ({
 }: Props) => {
 	const { generateAvatarImageSrc } = useGenerateImageSrc();
 
-	// let i if bo eslint krzyczał
-	let avatarImage: string | (() => JSX.Element) = "";
-	if (avatar) {
-		avatarImage = generateAvatarImageSrc(userId, avatar);
-	} else {
-		avatarImage = () => (
-			<div className="grid w-10 h-10 border rounded-full place-items-center border-slate-300">
-				<FaRegUser />
-			</div>
-		);
-	}
+	const getAvatarImageSrcOrIcon = (
+		avatar: string | null,
+		userId: string
+	): string | (() => JSX.Element) => {
+		if (avatar) {
+			return generateAvatarImageSrc(userId, avatar);
+		} else {
+			return () => (
+				<div className="grid w-10 h-10 border rounded-full place-items-center border-slate-300">
+					<FaRegUser />
+				</div>
+			);
+		}
+	};
 
 	return (
 		<div className="relative flex items-center w-full gap-2 px-6 py-4 mb-4 bg-white">
-			<Avatar img={avatarImage} rounded size="md" />
+			<Avatar img={getAvatarImageSrcOrIcon(avatar, userId)} rounded size="md" />
 			<div className="flex flex-col">
 				<p className="text-xl font-bold text-zinc-900 font-family2">
 					{firstname && lastname ? `${firstname} ${lastname}` : `@${username}`}

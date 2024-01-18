@@ -14,6 +14,7 @@ import NotFound from "Pages/404/NotFound";
 import FoundProfilePage from "Pages/FoundProfilePage/FoundProfilePage";
 import { Toaster } from "react-hot-toast";
 import Chat from "Pages/Messages/Chat";
+import NewChat from "Pages/Messages/NewChat";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +39,7 @@ function App() {
 									<Route path="/messages" element={<MessagesPage />}>
 										<Route index element={<div>pickChat</div>} />
 										<Route path=":id" element={<Chat />} />
+										<Route path="new/:id" element={<NewChat />} />
 									</Route>
 								</Route>
 
