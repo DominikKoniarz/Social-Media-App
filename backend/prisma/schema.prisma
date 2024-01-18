@@ -61,6 +61,8 @@ model Conversation {
     user1     User      @relation("User1", fields: [user1Id], references: [id])
     user2     User      @relation("User2", fields: [user2Id], references: [id])
     messages  Message[]
+
+    @@unique([user1Id, user2Id])
 }
 
 model Message {

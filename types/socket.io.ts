@@ -70,6 +70,11 @@ export interface ClientToServerEvents {
 			conversations: Conversation[] | null
 		) => void
 	) => void;
+	createNewConversation: (
+		otherUserId: string,
+		message: string,
+		callback: (error: string | null, conversation: Conversation | null) => void
+	) => void;
 }
 
 export interface InterServerEvents {

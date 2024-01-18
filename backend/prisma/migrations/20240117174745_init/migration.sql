@@ -52,6 +52,7 @@ CREATE TABLE `Conversation` (
     `user1Id` VARCHAR(191) NOT NULL,
     `user2Id` VARCHAR(191) NOT NULL,
 
+    UNIQUE INDEX `Conversation_user1Id_user2Id_key`(`user1Id`, `user2Id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
