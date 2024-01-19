@@ -23,7 +23,7 @@ const UserList = ({ conversations, search }: Props) => {
 	);
 
 	return (
-		<ul className="flex flex-col mt-4 overflow-y-auto h-fit users">
+		<ul className="flex flex-col w-full mt-4 overflow-y-auto h-fit users">
 			{conversations.length > 0 ? (
 				filteredConversations.length > 0 ? (
 					filteredConversations.map((conversation) => (

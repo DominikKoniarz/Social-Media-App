@@ -31,31 +31,33 @@ const UserListItem = ({ conversation }: Props) => {
 		);
 	}
 
+	const newestMessage = conversation.messages.sort(
+		(a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+	)[0];
+
 	return (
 		<>
 			<li>
 				<Link
 					to={conversationUrl}
-					className="flex px-6 py-4 hover:bg-emerald-50 hover:shadow-chat-item"
+					className="flex px-3 py-2 hover:bg-emerald-50 hover:shadow-chat-item"
 				>
 					<Avatar img={avatarImage} rounded size="md" className="shrink-0" />
-					<div className="flex justify-between w-full pl-3">
-						<div className="flex flex-col justify-center max-w-[196px] max-h-[61px]">
-							<p className="text-base font-bold text-zinc-900 font-family2">
+					<div className="flex justify-between max-w-[300px] w-full pl-3">
+						<div className="flex flex-col justify-center max-w-[196px] pr-4 max-h-[61px]">
+							<p className="text-sm font-bold text-left text-zinc-900 font-family2">
 								{conversation.otherUserFirstname &&
 								conversation.otherUserLastname
 									? `${conversation.otherUserFirstname} ${conversation.otherUserLastname}`
 									: `@${conversation.otherUserUsername}`}
 							</p>
-							<p className="max-h-[37px] w-full overflow-ellipsis overflow-hidden whitespace-nowrap text-neutral-600 text-sm font-normal font-family2 leading-[18px]">
-								{conversation.messages[0].textContent}
+							<p className="max-h-[37px] w-32  overflow-ellipsis overflow-hidden whitespace-nowrap text-neutral-600 text-sm font-normal font-family2 leading-[18px]">
+								{newestMessage.textContent}
 							</p>
 						</div>
-						<div className="flex flex-col items-end gap-2 pl-8">
-							<p className="text-sm font-medium text-gray-500 text-end font-family2 whitespace-nowrap">
-								{calculateElapsedTime(
-									new Date(conversation.messages[0].createdAt)
-								)}
+						<div className="flex flex-col items-end gap-2 ">
+							<p className="text-sm font-medium text-gray-500 text-end font-family2 whitespace-nowrap ">
+								{calculateElapsedTime(new Date(newestMessage.createdAt))}
 							</p>
 							<div className="text-xl">
 								<FaRegCircleCheck />
