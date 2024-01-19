@@ -82,7 +82,11 @@ const getFoundUserData = (
 			const errorMessage =
 				error instanceof Error ? error.message : "Unknown server error!";
 
-			sendData(errorMessage, null, null);
+			sendData(
+				process.env.NODE_ENV === "production" ? "Server error!" : errorMessage,
+				null,
+				null
+			);
 
 			logError(
 				`Get found user data error! Socket id: ${socket.id}`,

@@ -81,7 +81,9 @@ const submitUserData = (
 		} catch (error) {
 			const errorMessage =
 				error instanceof Error ? error.message : "Unknown server error!";
-			callback(errorMessage);
+			callback(
+				process.env.NODE_ENV === "production" ? "Server error!" : errorMessage
+			);
 			logError(
 				`Submit user data error! Socket id: ${socket.id}`,
 				errorMessage,

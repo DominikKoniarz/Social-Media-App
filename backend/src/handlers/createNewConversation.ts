@@ -113,7 +113,10 @@ const createNewConversation = (
 			const errorMessage =
 				error instanceof Error ? error.message : "Unknown server error!";
 
-			callback(errorMessage, null);
+			callback(
+				process.env.NODE_ENV === "production" ? "Server error!" : errorMessage,
+				null
+			);
 
 			logError(
 				`Create new conversation error! Socket id: ${socket.id}`,

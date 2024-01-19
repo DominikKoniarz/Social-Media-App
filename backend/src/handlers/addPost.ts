@@ -122,7 +122,9 @@ const addPost = (
 				const errorMessage =
 					error instanceof Error ? error.message : "Unknown server error!";
 
-				sendError(errorMessage);
+				sendError(
+					process.env.NODE_ENV === "production" ? "Server error!" : errorMessage
+				);
 
 				logError(
 					`Get user data error! Socket id: ${socket.id}`,

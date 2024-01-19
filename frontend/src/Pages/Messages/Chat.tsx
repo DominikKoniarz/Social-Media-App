@@ -1,24 +1,22 @@
-import { Navigate, useLocation, useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import ChatBody from "./ChatBody";
 import ChatFooter from "./ChatFooter";
 import ChatHeader from "./ChatHeader";
 import useSocketContext from "hooks/useSocketContext";
 
 type Params = {
-	id?: string;
+	conversationId?: string;
 };
 
 const Chat = () => {
 	const { conversations } = useSocketContext();
-	const { id } = useParams<Params>();
-	const { state } = useLocation();
+	const { conversationId } = useParams<Params>();
 
 	const foundConversation = conversations.find(
-		(conversation) => conversation.id === id
+		(conversation) => conversation.id === conversationId
 	);
 
-	if (!foundConversation)
-		return <Navigate to={`/messages/new/${id}`} replace={true} state={state} />;
+	if (!foundConversation) return <Navigate to="/messages" replace={true} />;
 
 	return (
 		<div className="relative flex flex-col w-full">

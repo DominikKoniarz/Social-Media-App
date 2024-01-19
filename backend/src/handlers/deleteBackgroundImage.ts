@@ -61,7 +61,9 @@ const deleteBackgroundImage = (
 			const errorMessage =
 				error instanceof Error ? error.message : "Unknown server error!";
 
-			sendError(errorMessage);
+			sendError(
+				process.env.NODE_ENV === "production" ? "Server error!" : errorMessage
+			);
 
 			logError(
 				`Deleting user background image error! Socket id: ${socket.id}`,

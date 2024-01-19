@@ -63,7 +63,7 @@ const FoundProfileHeader = ({ foundUserData }: Props) => {
 			</div>
 			<div className="flex items-center justify-end gap-4 px-4 pt-6 ">
 				<Link
-					to={`/messages/${foundUserData.id}`}
+					to={`/messages/new/${foundUserData.id}`}
 					state={{ userData: { ...foundUserData } }}
 					type="button"
 					className="w-[42px] h-[42px] flex justify-center items-center rounded-full border border-teal-500"

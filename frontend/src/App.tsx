@@ -39,8 +39,8 @@ function App() {
 									<Route path="/notifications" element={<NotificationPage />} />
 									<Route path="/messages" element={<MessagesPage />}>
 										<Route index element={<PickConversation />} />
-										<Route path=":id" element={<Chat />} />
-										<Route path="new/:id" element={<NewChat />} />
+										<Route path=":conversationId" element={<Chat />} />
+										<Route path="new/:userId" element={<NewChat />} />
 									</Route>
 								</Route>
 

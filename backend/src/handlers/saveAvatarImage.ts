@@ -100,7 +100,12 @@ const saveAvatarImage = (
 				const errorMessage =
 					error instanceof Error ? error.message : "Unknown server error!";
 
-				sendImageSrc(errorMessage, null);
+				sendImageSrc(
+					process.env.NODE_ENV === "production"
+						? "Server error!"
+						: errorMessage,
+					null
+				);
 
 				logError(
 					`Save user avatar image error! Socket id: ${socket.id}`,

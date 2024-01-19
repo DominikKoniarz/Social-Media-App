@@ -16,7 +16,7 @@ import getCurrentUserPosts from "./getCurrentUserPosts";
 import searchUsers from "./searchUsers";
 import getFoundUserData from "./getFoundUserData";
 import getConversations from "./getConversations";
-import createNewConversation from "./addNewConversation";
+import createNewConversation from "./createNewConversation";
 
 const registerSocketHandlers = (
 	io: Server<

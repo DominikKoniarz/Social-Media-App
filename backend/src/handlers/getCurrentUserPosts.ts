@@ -61,7 +61,10 @@ const getCurrentUserPosts = (
 			const errorMessage =
 				error instanceof Error ? error.message : "Unknown server error!";
 
-			sendPosts(errorMessage, null);
+			sendPosts(
+				process.env.NODE_ENV === "production" ? "Server error!" : errorMessage,
+				null
+			);
 
 			logError(
 				`Get user data error! Socket id: ${socket.id}`,

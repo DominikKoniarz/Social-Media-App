@@ -121,7 +121,10 @@ const getConversations = (
 			const errorMessage =
 				error instanceof Error ? error.message : "Unknown server error!";
 
-			sendConversations(errorMessage, null);
+			sendConversations(
+				process.env.NODE_ENV === "production" ? "Server error!" : errorMessage,
+				null
+			);
 
 			logError(
 				`Get user conversations error! Socket id: ${socket.id}`,

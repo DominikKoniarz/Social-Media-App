@@ -6,12 +6,12 @@ import NewChatFooter from "./NewChatFooter";
 import { UserData } from "../../../../types/socket.io";
 
 type Params = {
-	id?: string;
+	userId?: string;
 };
 
 const NewChat = () => {
 	const { conversations } = useSocketContext();
-	const { id } = useParams<Params>();
+	const { userId } = useParams<Params>();
 	const { state } = useLocation();
 
 	if (!state) return <Navigate to={`/messages`} replace={true} />;
@@ -19,7 +19,7 @@ const NewChat = () => {
 	const userData = state?.userData as UserData;
 
 	const foundConversation = conversations.find(
-		(conversation) => conversation.otherUserId === id
+		(conversation) => conversation.otherUserId === userId
 	);
 
 	if (foundConversation)

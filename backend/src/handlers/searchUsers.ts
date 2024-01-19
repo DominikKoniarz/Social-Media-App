@@ -73,7 +73,10 @@ const searchUsers = (
 			const errorMessage =
 				error instanceof Error ? error.message : "Unknown server error!";
 
-			sendData(errorMessage, null);
+			sendData(
+				process.env.NODE_ENV === "production" ? "Server error!" : errorMessage,
+				null
+			);
 
 			logError(
 				`Get user data error! Socket id: ${socket.id}`,
