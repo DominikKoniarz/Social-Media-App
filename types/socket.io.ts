@@ -8,7 +8,7 @@ export type CropData = {
 };
 
 export interface ServerToClientEvents {
-	serverError: (error: string) => void;
+	newMessage: (conversationId: string, message: UserMessage) => void;
 }
 
 export interface ClientToServerEvents {
@@ -74,6 +74,11 @@ export interface ClientToServerEvents {
 		otherUserId: string,
 		message: string,
 		callback: (error: string | null, conversation: Conversation | null) => void
+	) => void;
+	sendMessage: (
+		conversationId: string,
+		message: string,
+		callback: (error: string | null, message: UserMessage | null) => void
 	) => void;
 }
 

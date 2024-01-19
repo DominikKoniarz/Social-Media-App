@@ -17,6 +17,7 @@ import searchUsers from "./searchUsers";
 import getFoundUserData from "./getFoundUserData";
 import getConversations from "./getConversations";
 import createNewConversation from "./createNewConversation";
+import sendMessage from "./sendMessage";
 
 const registerSocketHandlers = (
 	io: Server<
@@ -39,6 +40,7 @@ const registerSocketHandlers = (
 		getFoundUserData(socket);
 		getConversations(socket);
 		createNewConversation(socket);
+		sendMessage(socket, io);
 
 		socket.on("disconnect", () => {
 			console.log("user disconnected", socket.id);

@@ -96,8 +96,21 @@ export const SocketContextProvider = ({
 			refetchVerifyRefreshToken();
 		});
 
-		newSocket.on("serverError", (msg) => {
-			console.log(msg);
+		newSocket.on("newMessage", (conversationId, newMessage) => {
+			setConversations((prevConversations) => {
+				if (prevConversations.length === 0) return prevConversations;
+
+				return prevConversations.map((conversation) => {
+					if (conversation.id === conversationId) {
+						return {
+							...conversation,
+							messages: [...conversation.messages, newMessage],
+						};
+					}
+
+					return conversation;
+				});
+			});
 		});
 
 		setSocket(newSocket);
@@ -107,13 +120,31 @@ export const SocketContextProvider = ({
 		};
 	}, [accessToken, refetchVerifyRefreshToken]);
 
+	const conversationsSortedByNewestMessage = conversations.sort((a, b) => {
+		if (a.messages.length === 0 || b.messages.length === 0) return 0;
+
+		const aNewestMessage = a.messages.sort(
+			(a, b) =>
+				new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+		)[0];
+		const bNewestMessage = b.messages.sort(
+			(a, b) =>
+				new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+		)[0];
+
+		return (
+			new Date(bNewestMessage.createdAt).getTime() -
+			new Date(aNewestMessage.createdAt).getTime()
+		);
+	});
+
 	return (
 		<SocketContext.Provider
 			value={{
 				userData,
 				socket,
 				setUserData,
-				conversations,
+				conversations: conversationsSortedByNewestMessage,
 				setConversations,
 				isLoadingConversations,
 				conversationsError,

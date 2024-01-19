@@ -12,9 +12,7 @@ type Props = {
 
 const UserListItem = ({ conversation }: Props) => {
 	const { generateAvatarImageSrc } = useGenerateImageSrc();
-	const elapsedTime = useCalculateElapsedTime(
-		new Date(conversation.messages[0].createdAt)
-	);
+	const calculateElapsedTime = useCalculateElapsedTime();
 
 	const conversationUrl = useGenerateConversationUrl(conversation.id);
 
@@ -55,7 +53,9 @@ const UserListItem = ({ conversation }: Props) => {
 						</div>
 						<div className="flex flex-col items-end gap-2 pl-8">
 							<p className="text-sm font-medium text-gray-500 text-end font-family2 whitespace-nowrap">
-								{elapsedTime}
+								{calculateElapsedTime(
+									new Date(conversation.messages[0].createdAt)
+								)}
 							</p>
 							<div className="text-xl">
 								<FaRegCircleCheck />

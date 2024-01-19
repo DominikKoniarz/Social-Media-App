@@ -9,9 +9,9 @@ const MessagesPage = () => {
 
 	if (isLoadingConversations)
 		return (
-			<p className="flex justify-center w-full h-full p-5">
+			<div className="flex justify-center w-full h-full p-5">
 				<SpinnerLoader />
-			</p>
+			</div>
 		);
 
 	if (!isLoadingConversations && conversationsError)

@@ -18,7 +18,7 @@ type Props = {
 };
 
 const UserPost = ({ id, textContent, image, publishedAt, userData }: Props) => {
-	const elapsedTimeString = useCalculateElapsedTime(publishedAt);
+	const calculateElapsedTime = useCalculateElapsedTime();
 	const { generatePostImageSrc, generateAvatarImageSrc } =
 		useGenerateImageSrc();
 
@@ -46,7 +46,7 @@ const UserPost = ({ id, textContent, image, publishedAt, userData }: Props) => {
 						@{userData.username}
 					</p>
 					<p className="text-base font-light text-right lowercase w-fit text-slate-800">
-						- {elapsedTimeString}
+						- {calculateElapsedTime(publishedAt)}
 					</p>
 				</div>
 				<button className="ml-auto mr-2 text-2xl">

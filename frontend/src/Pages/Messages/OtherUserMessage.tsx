@@ -1,9 +1,11 @@
 import { Avatar } from "flowbite-react";
 import useCalculateElapsedTime from "hooks/useCalculateElapsedTime";
 import useGenerateImageSrc from "hooks/useGenerateImagesSrc";
+import { useEffect, useState } from "react";
 import { FaRegUser } from "react-icons/fa6";
 
 type Props = {
+	newestMessage: boolean;
 	avatar: string | null;
 	textContent: string;
 	createdAt: string;
@@ -15,9 +17,13 @@ const OtherUserMessage = ({
 	textContent,
 	createdAt,
 	userId,
+	newestMessage,
 }: Props) => {
 	const { generateAvatarImageSrc } = useGenerateImageSrc();
-	const elapsedTime = useCalculateElapsedTime(new Date(createdAt));
+	const calculateElapsedTime = useCalculateElapsedTime();
+	const [elapsedTime, setElapsedTime] = useState<string>(
+		calculateElapsedTime(new Date(createdAt))
+	);
 
 	const getAvatarImageSrcOrIcon = (avatar: string | null, userId: string) => {
 		if (avatar) {
@@ -31,8 +37,28 @@ const OtherUserMessage = ({
 		}
 	};
 
+	useEffect(() => {
+		const elapsedTimeMs = Date.now() - new Date(createdAt).getTime();
+		const delay =
+			elapsedTimeMs > 1000 * 60
+				? elapsedTimeMs > 1000 * 60 * 60
+					? 1000 * 60 * 60
+					: 1000 * 60
+				: 1000 * 15;
+
+		const timer = setTimeout(() => {
+			setElapsedTime(calculateElapsedTime(new Date(createdAt)));
+		}, delay);
+
+		return () => clearTimeout(timer);
+	}, [calculateElapsedTime, createdAt]);
+
 	return (
-		<li className="flex flex-col gap-2 left-4">
+		<li
+			className={`flex flex-col gap-2 my-10 left-4 ${
+				newestMessage ? "mt-10 mb-0" : "my-10"
+			}`}
+		>
 			<div className="flex items-end gap-2">
 				<Avatar
 					img={getAvatarImageSrcOrIcon(avatar, userId)}
