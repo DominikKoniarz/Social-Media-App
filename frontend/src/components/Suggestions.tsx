@@ -9,7 +9,7 @@ const Suggestions = () => {
   const imageSources: string[] = [img1, img2, img3, img4, img5];
 
   return (
-    <div className="hidden p-4 bg-white md:block w-fit h-fit">
+    <div className="hidden p-4 bg-white 2xl:block w-fit h-fit">
       <p className="pb-2 text-lg font-normal uppercase text-neutral-900 font-family1">
         suggestions
       </p>

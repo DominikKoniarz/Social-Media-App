@@ -8,6 +8,8 @@ import {
 import useCalculateElapsedTime from "hooks/useCalculateElapsedTime";
 import { UserData } from "../../../types/socket.io";
 import useGenerateImageSrc from "hooks/useGenerateImagesSrc";
+import DeletePostModal from "./DeletePostModal";
+import { useState } from "react";
 
 type Props = {
 	id: string;
@@ -21,6 +23,9 @@ const UserPost = ({ id, textContent, image, publishedAt, userData }: Props) => {
 	const calculateElapsedTime = useCalculateElapsedTime();
 	const { generatePostImageSrc, generateAvatarImageSrc } =
 		useGenerateImageSrc();
+
+	const [postDeleteModalOpen, setPostDeleteModalOpen] =
+		useState<boolean>(false);
 
 	return (
 		<li className="flex flex-col w-full px-4 py-4 bg-white h-fit">
@@ -49,9 +54,18 @@ const UserPost = ({ id, textContent, image, publishedAt, userData }: Props) => {
 						- {calculateElapsedTime(publishedAt)}
 					</p>
 				</div>
-				<button className="ml-auto mr-2 text-2xl">
+				<button
+					onClick={() => setPostDeleteModalOpen(true)}
+					type="button"
+					className="ml-auto mr-2 text-2xl"
+				>
 					<FaRegTrashCan />
 				</button>
+				<DeletePostModal
+					id={id}
+					postDeleteModalOpen={postDeleteModalOpen}
+					setPostDeleteModalOpen={setPostDeleteModalOpen}
+				/>
 			</div>
 			<div className="flex flex-col">
 				<p className={`${!image ? "pt-4 pb-0" : "pt-2 pb-2"}`}>{textContent}</p>

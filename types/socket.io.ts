@@ -80,6 +80,7 @@ export interface ClientToServerEvents {
 		message: string,
 		callback: (error: string | null, message: UserMessage | null) => void
 	) => void;
+	deletePost: (id: string, callback: (error: string | null) => void) => void;
 }
 
 export interface InterServerEvents {

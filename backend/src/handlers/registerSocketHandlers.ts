@@ -18,6 +18,7 @@ import getFoundUserData from "./getFoundUserData";
 import getConversations from "./getConversations";
 import createNewConversation from "./createNewConversation";
 import sendMessage from "./sendMessage";
+import deletePost from "./deletePost";
 
 const registerSocketHandlers = (
 	io: Server<
@@ -38,6 +39,7 @@ const registerSocketHandlers = (
 		getCurrentUserPosts(socket);
 		searchUsers(socket);
 		getFoundUserData(socket);
+		deletePost(socket);
 		getConversations(socket);
 		createNewConversation(socket);
 		sendMessage(socket, io);
