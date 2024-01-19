@@ -16,5 +16,5 @@ export default function PickConversation() {
 		);
 	}
 
-	return <div className="relative flex flex-col w-full">pickChat 123</div>;
+	return <div className="relative flex flex-col w-full"></div>;
 }

@@ -20,7 +20,7 @@ const FormInput = ({ search, setSearch, setIsInputFocused }: Props) => {
 				onChange={(e) => setSearch(e.target.value)}
 				autoComplete="off"
 				onFocus={() => setIsInputFocused(true)}
-				onBlur={() => setTimeout(() => setIsInputFocused(false), 150)}
+				onBlur={() => setTimeout(() => setIsInputFocused(false), 200)}
 			/>
 		</>
 	);

@@ -14,10 +14,7 @@ export default function SearchListItem({ user }: Props) {
 	const { generateAvatarImageSrc } = useGenerateImageSrc();
 
 	return (
-		<li
-			className="w-full transition-colors duration-300 h-fit hover:bg-slate-100"
-			onClick={(e) => e.stopPropagation()}
-		>
+		<li className="w-full transition-colors duration-300 h-fit hover:bg-slate-100">
 			<Link
 				to={`/profile/${user.id}`}
 				className="flex flex-row items-center w-full p-4 gap-x-2"
