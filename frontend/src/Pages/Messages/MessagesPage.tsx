@@ -22,7 +22,7 @@ const MessagesPage = () => {
 		);
 
 	return (
-		<div className="flex w-full h-full gap-1 px-6">
+		<div className="flex w-full h-full gap-1 md:px-6">
 			<MessagesNavBar conversations={conversations} />
 			<Outlet />
 		</div>

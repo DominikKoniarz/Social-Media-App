@@ -11,7 +11,7 @@ const MessagesNavBar = ({ conversations }: Props) => {
 	const [search, setSearch] = useState<string>("");
 
 	return (
-		<div className="flex flex-col bg-white w-92 shrink-0">
+		<div className="flex-col hidden bg-white md:flex w-92 shrink-0">
 			<p className="px-6 pt-6 pb-4 text-2xl font-bold text-zinc-900 font-family2">
 				Messages
 			</p>
