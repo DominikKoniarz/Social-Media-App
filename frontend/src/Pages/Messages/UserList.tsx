@@ -7,6 +7,8 @@ type Props = {
 };
 
 const UserList = ({ conversations, search }: Props) => {
+	console.log(conversations);
+
 	const filteredConversations = conversations.filter(
 		(conversation) =>
 			conversation.otherUserUsername

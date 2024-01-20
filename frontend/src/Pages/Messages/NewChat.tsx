@@ -28,6 +28,7 @@ const NewChat = () => {
 	return (
 		<div className="relative flex flex-col w-full">
 			<ChatHeader
+				conversations={conversations}
 				userId={userData.id}
 				avatar={userData.avatarImage}
 				username={userData.username}

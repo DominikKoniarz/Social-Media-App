@@ -8,7 +8,7 @@ import SaveButton from "./SaveButton";
 import UserNameInput from "./UserNameInput";
 import { UserData } from "../../../../../types/socket.io";
 import useSubmitUserData from "hooks/useSubmitUserData";
-import WebsiteURLInput from "./WebsiteUrlInput";
+import WebsiteURLInput from "./WebsiteURLInput";
 
 type Props = {
 	userData: UserData | null;
