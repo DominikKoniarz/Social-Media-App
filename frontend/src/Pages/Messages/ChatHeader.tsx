@@ -1,5 +1,6 @@
 import { Avatar } from "flowbite-react";
 import useGenerateImageSrc from "hooks/useGenerateImagesSrc";
+import useGetUserActivity from "hooks/useGetUserActivity";
 import { FaEllipsis, FaRegUser } from "react-icons/fa6";
 
 type Props = {
@@ -18,6 +19,7 @@ const ChatHeader = ({
 	userId,
 }: Props) => {
 	const { generateAvatarImageSrc } = useGenerateImageSrc();
+	const { data } = useGetUserActivity(userId);
 
 	const getAvatarImageSrcOrIcon = (
 		avatar: string | null,
@@ -38,13 +40,19 @@ const ChatHeader = ({
 		<div className="relative flex items-center w-full gap-2 px-6 py-4 mb-4 bg-white">
 			<Avatar img={getAvatarImageSrcOrIcon(avatar, userId)} rounded size="md" />
 			<div className="flex flex-col">
-				<p className="text-xl font-bold text-zinc-900 font-family2">
+				<p className="text-xl font-bold text-zinc-900 font-family2 h-fit">
 					{firstname && lastname ? `${firstname} ${lastname}` : `@${username}`}
 				</p>
 				<div className="flex items-center gap-1">
-					<div className="p-[3px] bg-green-600 border border-green-600 rounded-full"></div>
+					<div
+						className={`p-[3px] border rounded-full ${
+							data && data.active
+								? "bg-green-600 border-green-600"
+								: "bg-red-600 border-red-600"
+						}`}
+					></div>
 					<p className="text-neutral-600 text-base font-normal font-family2 leading-[18px]">
-						Active now
+						{data && data.active ? "Active now" : "Offline"}
 					</p>
 				</div>
 			</div>

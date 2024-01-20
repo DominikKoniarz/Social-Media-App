@@ -81,6 +81,10 @@ export interface ClientToServerEvents {
 		callback: (error: string | null, message: UserMessage | null) => void
 	) => void;
 	deletePost: (id: string, callback: (error: string | null) => void) => void;
+	getUserActivity: (
+		id: string,
+		callback: (error: string | null, active: boolean | null) => void
+	) => void;
 }
 
 export interface InterServerEvents {
