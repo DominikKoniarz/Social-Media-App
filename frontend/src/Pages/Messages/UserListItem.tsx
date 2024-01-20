@@ -5,12 +5,14 @@ import { Conversation } from "../../../../types/socket.io";
 import useCalculateElapsedTime from "hooks/useCalculateElapsedTime";
 import useGenerateConversationUrl from "hooks/useGenerateConversationUrl";
 import useGenerateImageSrc from "hooks/useGenerateImagesSrc";
+import useGetUserActivity from "hooks/useGetUserActivity";
 
 type Props = {
 	conversation: Conversation;
 };
 
 const UserListItem = ({ conversation }: Props) => {
+	const { data } = useGetUserActivity(conversation.otherUserId);
 	const { generateAvatarImageSrc } = useGenerateImageSrc();
 	const calculateElapsedTime = useCalculateElapsedTime();
 
@@ -42,7 +44,23 @@ const UserListItem = ({ conversation }: Props) => {
 					to={conversationUrl}
 					className="flex px-3 py-2 hover:bg-emerald-50 hover:shadow-chat-item"
 				>
-					<Avatar img={avatarImage} rounded size="md" className="shrink-0" />
+					<Avatar
+						img={avatarImage}
+						theme={{
+							root: {
+								status: {
+									base: "absolute h-3.5 w-3.5 rounded-full border-2 border-white",
+									busy: "bg-red-600",
+									online: "bg-green-600",
+								},
+							},
+						}}
+						status={data && data.active ? "online" : "busy"}
+						statusPosition="bottom-right"
+						rounded
+						size="md"
+						className="border-none shrink-0"
+					/>
 					<div className="flex justify-between max-w-[300px] w-full pl-3">
 						<div className="flex flex-col justify-center max-w-[196px] pr-4 max-h-[61px]">
 							<p className="text-sm font-bold text-left text-zinc-900 font-family2">
