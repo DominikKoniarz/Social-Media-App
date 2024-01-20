@@ -14,8 +14,11 @@ type Props = {
 	id: string;
 	textContent: string;
 	image: string | null;
-	publishedAt: Date;
-	userData: UserData;
+	publishedAt: string;
+	userData: Pick<
+		UserData,
+		"id" | "username" | "firstname" | "lastname" | "avatarImage"
+	>;
 };
 
 const Post = ({ id, textContent, image, publishedAt, userData }: Props) => {
@@ -47,7 +50,7 @@ const Post = ({ id, textContent, image, publishedAt, userData }: Props) => {
 						@{userData.username}
 					</p>
 					<p className="text-base font-light text-right lowercase w-fit text-slate-800">
-						- {calculateElapsedTime(publishedAt)}
+						- {calculateElapsedTime(new Date(publishedAt))}
 					</p>
 				</div>
 				<button className="hidden ml-auto mr-2 text-lg md:text-xl md:block">

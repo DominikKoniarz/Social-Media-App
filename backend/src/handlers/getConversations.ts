@@ -62,7 +62,7 @@ const getConversations = (
 						},
 					},
 					messages: {
-						take: 10,
+						take: 15,
 						orderBy: {
 							createdAt: "desc",
 						},

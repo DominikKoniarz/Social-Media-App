@@ -20,6 +20,7 @@ import createNewConversation from "./createNewConversation";
 import sendMessage from "./sendMessage";
 import deletePost from "./deletePost";
 import getUserActivity from "./getUserActivity";
+import getRootPageFeed from "./getRootPageFeed";
 
 const registerSocketHandlers = (
 	io: Server<
@@ -45,6 +46,7 @@ const registerSocketHandlers = (
 		createNewConversation(socket);
 		sendMessage(socket, io);
 		getUserActivity(socket, io);
+		getRootPageFeed(socket);
 
 		socket.on("disconnect", () => {
 			console.log("user disconnected", socket.id);

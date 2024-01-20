@@ -85,6 +85,9 @@ export interface ClientToServerEvents {
 		id: string,
 		callback: (error: string | null, active: boolean | null) => void
 	) => void;
+	getRootPageFeed: (
+		callback: (error: string | null, posts: RootPagePost[] | null) => void
+	) => void;
 }
 
 export interface InterServerEvents {
@@ -118,6 +121,14 @@ export type Post = {
 	textContent: string;
 	image: string | null;
 	publishedAt: string;
+};
+
+export type RootPagePost = Post & {
+	authorId: string;
+	authorUsername: string;
+	authorFirstname: string | null;
+	authorLastname: string | null;
+	authorAvatarImage: string | null;
 };
 
 export type UserData = {

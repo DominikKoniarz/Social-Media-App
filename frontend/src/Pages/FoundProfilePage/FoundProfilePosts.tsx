@@ -15,7 +15,7 @@ export default function FoundProfilePosts({ posts, foundUserData }: Props) {
 					key={post.id}
 					id={post.id}
 					textContent={post.textContent}
-					publishedAt={new Date(post.publishedAt)}
+					publishedAt={post.publishedAt}
 					image={post.image}
 				/>
 			))}
