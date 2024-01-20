@@ -20,6 +20,8 @@ const useGetUserActivity = (userId: string) => {
 				});
 			}),
 		staleTime: 1000 * 60 * 5,
+		refetchInterval: 1000 * 60 * 5,
+		refetchOnWindowFocus: false,
 	});
 
 	return { data };
