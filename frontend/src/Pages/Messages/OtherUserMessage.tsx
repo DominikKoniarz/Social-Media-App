@@ -65,7 +65,7 @@ const OtherUserMessage = ({
 					rounded
 					size="md"
 				/>
-				<div className="p-5 max-w-[380px] bg-white break-words rounded-bl-none rounded-3xl text-zinc-900 text-sm font-medium font-family2 leading-[18px]">
+				<div className="md:p-5 p-3 md:max-w-[380px] max-w-[250px] bg-white break-words rounded-bl-none rounded-3xl text-zinc-900 text-sm font-medium font-family2 leading-[18px]">
 					{textContent}
 				</div>
 			</div>

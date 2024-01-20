@@ -25,8 +25,8 @@ const NavBar = () => {
 					)}
 				</div>
 			</div>
-			<span className="flex justify-center pt-2 text-lg font-medium text-white md:text-xl">
-				{userData?.username}
+			<span className="max-w-full px-4 pt-2 mx-auto overflow-hidden text-lg font-medium text-white w-fit overflow-ellipsis whitespace-nowrap md:text-xl">
+				@{userData?.username}
 			</span>
 			<LinksList />
 			<LogoutButton />

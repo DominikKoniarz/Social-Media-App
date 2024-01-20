@@ -1,7 +1,10 @@
 import { Avatar } from "flowbite-react";
 import useGenerateImageSrc from "hooks/useGenerateImagesSrc";
 import useGetUserActivity from "hooks/useGetUserActivity";
-import { FaEllipsis, FaRegUser } from "react-icons/fa6";
+import { useState } from "react";
+import { FaArrowLeft, FaRegUser } from "react-icons/fa6";
+import MessagesNavBarMobile from "./MessageNavBarMobile";
+import { Conversation } from "../../../../types/socket.io";
 
 type Props = {
 	userId: string;
@@ -9,9 +12,11 @@ type Props = {
 	firstname: string | null;
 	lastname: string | null;
 	username: string;
+	conversations: Conversation[];
 };
 
 const ChatHeader = ({
+	conversations,
 	firstname,
 	lastname,
 	username,
@@ -20,6 +25,7 @@ const ChatHeader = ({
 }: Props) => {
 	const { generateAvatarImageSrc } = useGenerateImageSrc();
 	const { data } = useGetUserActivity(userId);
+	const [showNavBar, setShowNavBar] = useState<boolean>(false);
 
 	const getAvatarImageSrcOrIcon = (
 		avatar: string | null,
@@ -36,11 +42,15 @@ const ChatHeader = ({
 		}
 	};
 
+	const handleShowNavBar = () => {
+		!showNavBar ? setShowNavBar(true) : setShowNavBar(false);
+	};
+
 	return (
 		<div className="relative flex items-center w-full gap-2 px-6 py-4 mb-4 bg-white">
 			<Avatar img={getAvatarImageSrcOrIcon(avatar, userId)} rounded size="md" />
 			<div className="flex flex-col">
-				<p className="text-xl font-bold text-zinc-900 font-family2 h-fit">
+				<p className="font-bold  sm:text-base md:text-lg lg:text-xl text-zinc-900 font-family2 h-fit">
 					{firstname && lastname ? `${firstname} ${lastname}` : `@${username}`}
 				</p>
 				<div className="flex items-center gap-1">
@@ -56,9 +66,17 @@ const ChatHeader = ({
 					</p>
 				</div>
 			</div>
-			<button className="absolute flex items-center justify-center p-3 text-2xl text-gray-400 border rounded-full right-6">
-				<FaEllipsis />
+			<button
+				onClick={handleShowNavBar}
+				className="absolute flex items-center justify-center p-3 text-2xl text-gray-400 border rounded-full md:hidden right-6"
+			>
+				<FaArrowLeft />
 			</button>
+			<MessagesNavBarMobile
+				setShowNavBar={setShowNavBar}
+				conversations={conversations}
+				showNavBar={showNavBar}
+			/>
 		</div>
 	);
 };
