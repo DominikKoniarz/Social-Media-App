@@ -60,11 +60,13 @@ const Post = ({ id, textContent, image, publishedAt, userData }: Props) => {
 					<FaEllipsisVertical />
 				</button>
 			</div>
-			<div className="flex flex-col">
-				<p className={`${!image ? "pt-4 pb-0" : "pt-2 pb-2"}`}>{textContent}</p>
+			<div className="flex flex-col w-full h-full">
+				<p className={`${!image ? "pt-4 pb-0" : "pt-2 pb-2 w-full h-fit"}`}>
+					{textContent}
+				</p>
 				{image && (
 					<img
-						className="mix-blend-darken max-h-[300px] object-contain w-full h-full"
+						className="mix-blend-darken max-h-[300px] object-contain max-w-full h-auto object-center w-full "
 						src={generatePostImageSrc(userData.id, id, image)}
 						alt="Post image"
 					/>

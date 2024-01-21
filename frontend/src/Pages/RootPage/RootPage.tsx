@@ -8,8 +8,8 @@ const RootPage = () => {
 	const { data, isLoading, error } = useGetRootPageFeed();
 
 	return (
-		<div className="flex h-full gap-4 px-1 md:gap-16 md:px-32 w-fit">
-			<ul className="h-full mx-auto space-y-4 overflow-y-auto posts w-fit">
+		<div className="flex w-full h-full gap-4 px-1 md:gap-16 md:px-32">
+			<ul className="h-full mx-auto space-y-4 overflow-y-auto w-fit posts">
 				{isLoading && (
 					<li className="flex justify-center w-full p-4">
 						<SpinnerLoader />
