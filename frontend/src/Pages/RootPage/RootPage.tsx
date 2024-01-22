@@ -8,7 +8,7 @@ const RootPage = () => {
 	const { data, isLoading, error } = useGetRootPageFeed();
 
 	return (
-		<div className="flex w-full h-full gap-4 px-1 md:gap-16 md:px-32">
+		<div className="flex w-full h-full gap-4 px-1 md:gap-16 md:px-16 lg:px-32">
 			<ul className="h-full mx-auto space-y-4 overflow-y-auto w-fit posts">
 				{isLoading && (
 					<li className="flex justify-center w-full p-4">
@@ -16,10 +16,14 @@ const RootPage = () => {
 					</li>
 				)}
 				{!isLoading && error != null && (
-					<p className="w-full p-4 text-center">Oops! Error occured!</p>
+					<p className="w-full p-4 text-lg text-center lg:text-xl xl:text-2xl">
+						Oops! Error occured!
+					</p>
 				)}
 				{!isLoading && !error && data && data.length === 0 && (
-					<p className="w-full p-4 text-center">No posts available yet!</p>
+					<p className="w-full px-4 py-16 text-lg text-center lg:py-8 lg:text-xl">
+						No posts available yet!
+					</p>
 				)}
 				{!isLoading &&
 					!error &&

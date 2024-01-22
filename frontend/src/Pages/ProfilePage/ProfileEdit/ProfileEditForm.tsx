@@ -61,15 +61,15 @@ export default function ProfileEditForm({ userData }: Props) {
 	const disabled = howManyWasClicked > 0;
 	return (
 		<form
-			className="flex flex-col w-full px-10 pt-24 pb-10 space-y-4 bg-white h-fit "
+			className="flex flex-col w-full px-5 pt-16 pb-5 bg-white lg:px-10 lg:pt-24 lg:pb-10 lg:space-y-4 h-fit "
 			onSubmit={(e) => {
 				e.preventDefault();
 				handleSubmit();
 			}}
 		>
-			<div className="flex w-full gap-12">
+			<div className="flex flex-col w-full gap-2 lg:gap-12 lg:flex-row">
 				<UserNameInput userName={userName} setUserName={setUserName} />
-				<div className="flex gap-8 w-[60%]">
+				<div className="flex  flex-col lg:flex-row lg:gap-8 w-full lg:w-[60%]">
 					<FirstNameInput
 						disabled={disabled}
 						firstName={firstName}
@@ -82,7 +82,7 @@ export default function ProfileEditForm({ userData }: Props) {
 					/>
 				</div>
 			</div>
-			<div className="flex w-full gap-12">
+			<div className="flex flex-col w-full gap-2 lg:gap-12 lg:flex-row">
 				<WebsiteURLInput
 					disabled={disabled}
 					websiteURL={websiteURL}
@@ -95,7 +95,7 @@ export default function ProfileEditForm({ userData }: Props) {
 				/>
 			</div>
 			<Bio disabled={disabled} bio={bio} setBio={setBio} />
-			<div className="flex gap-8 w-[50%]">
+			<div className="flex gap-4 pt-4 lg:pt-0 w-[50%]">
 				<SaveButton
 					howManyWasClicked={howManyWasClicked}
 					isLoading={isLoading}

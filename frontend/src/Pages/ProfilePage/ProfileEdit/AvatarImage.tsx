@@ -15,7 +15,7 @@ const AvatarImage = ({ setProfileImageModal }: Props) => {
 	const { generateAvatarImageSrc } = useGenerateImageSrc();
 
 	return (
-		<div className="absolute grid place-items-center bottom-0 translate-y-1/2 left-10 w-[128px] h-[118px] rounded-md bg-slate-50 border-slate-200 border-2 overflow-hidden group">
+		<div className="absolute grid place-items-center bottom-0 translate-y-1/2 left-5 lg:left-10 w-24 h-24 lg:w-[128px] lg:h-[118px] rounded-md bg-slate-50 border-slate-200 border-2 overflow-hidden group">
 			{userData && userData.avatarImage ? (
 				<img
 					className="absolute z-10 object-cover w-full h-full"
