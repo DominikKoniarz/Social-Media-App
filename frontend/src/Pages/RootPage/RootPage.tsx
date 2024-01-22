@@ -9,7 +9,7 @@ const RootPage = () => {
 
 	return (
 		<div className="flex w-full h-full gap-4 px-1 md:gap-16 md:px-16 lg:px-32">
-			<ul className="h-full mx-auto space-y-4 overflow-y-auto w-fit posts">
+			<ul className={`h-full mx-auto space-y-4 overflow-y-auto w-full posts`}>
 				{isLoading && (
 					<li className="flex justify-center w-full p-4">
 						<SpinnerLoader />
