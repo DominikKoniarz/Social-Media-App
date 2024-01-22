@@ -5,7 +5,7 @@ import SpinnerLoader from "@components/SpinnerLoader";
 import useGetRootPageFeed from "hooks/useGetRootPageFeed";
 
 const RootPage = () => {
-	const { data, isLoading, error } = useGetRootPageFeed();
+	const { data, isLoading, error, changePostLike } = useGetRootPageFeed();
 
 	return (
 		<div className="flex w-full h-full gap-4 px-1 md:gap-16 md:px-32">
@@ -32,6 +32,9 @@ const RootPage = () => {
 							image={post.image}
 							publishedAt={post.publishedAt}
 							textContent={post.textContent}
+							likes={post.likes}
+							isLikedByCurrentUser={post.isLikedByCurrentUser}
+							mutateCliendPostLikeData={changePostLike}
 							userData={{
 								id: post.authorId,
 								username: post.authorUsername,

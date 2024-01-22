@@ -1,11 +1,17 @@
 import { useQuery } from "react-query";
 import useSocketContext from "./useSocketContext";
 import { RootPagePost } from "../../../types/socket.io";
+import { useEffect, useState } from "react";
 
 const useGetRootPageFeed = () => {
 	const { socket } = useSocketContext();
+	const [data, setData] = useState<RootPagePost[] | undefined>(undefined);
 
-	const { data, isLoading, error } = useQuery({
+	const {
+		data: fetchedData,
+		isLoading,
+		error,
+	} = useQuery({
 		queryKey: ["root-posts", socket?.id],
 		queryFn: async (): Promise<RootPagePost[]> => {
 			return await new Promise((resolve) => {
@@ -27,7 +33,27 @@ const useGetRootPageFeed = () => {
 		refetchOnWindowFocus: false,
 	});
 
-	return { data, isLoading, error };
+	const changePostLike = (postId: string, liked: boolean) => {
+		setData((prevData) => {
+			if (!prevData) return prevData;
+
+			return prevData.map((post) => {
+				if (post.id === postId) {
+					return {
+						...post,
+						isLikedByCurrentUser: liked,
+						likes: liked ? post.likes + 1 : post.likes - 1,
+					};
+				} else return post;
+			});
+		});
+	};
+
+	useEffect(() => {
+		if (fetchedData) setData(fetchedData);
+	}, [isLoading, fetchedData]);
+
+	return { data, isLoading, error, changePostLike };
 };
 
 export default useGetRootPageFeed;

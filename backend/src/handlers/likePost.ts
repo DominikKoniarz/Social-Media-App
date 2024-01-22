@@ -10,7 +10,7 @@ import { logError } from "../middleware/errorHandler";
 
 const prisma = getDbInstance();
 
-const getFoundUserData = (
+const switchPostLike = (
 	socket: Socket<
 		ClientToServerEvents,
 		ServerToClientEvents,
@@ -18,7 +18,7 @@ const getFoundUserData = (
 		SocketData
 	>
 ) => {
-	socket.on("getFoundUserData", async (id, sendData) => {
+	socket.on("switchPostLike", async (postId, callback) => {
 		const userId = socket.data.userId;
 
 		// shouldn't happen bc of the middleware which always set the userId
@@ -36,77 +36,57 @@ const getFoundUserData = (
 
 			if (!foundUser) return socket.disconnect();
 
-			const [postsRaw, userData] = await Promise.all([
-				prisma.post.findMany({
+			const [foundPost, foundLike] = await Promise.all([
+				prisma.post.findUnique({
 					where: {
-						userId: id,
-						publishedAt: {
-							lte: new Date(),
-						},
+						id: postId,
 					},
 					select: {
 						id: true,
-						textContent: true,
-						publishedAt: true,
-						image: true,
-						_count: {
-							select: {
-								likes: true,
-							},
-						},
-						likes: {
-							where: {
-								userId: userId,
-							},
-							select: {
-								id: true,
-							},
-						},
-					},
-					orderBy: {
-						publishedAt: "desc",
 					},
 				}),
-				prisma.user.findUnique({
+				prisma.like.findFirst({
 					where: {
-						id,
+						postId: postId,
+						userId: userId,
 					},
 					select: {
 						id: true,
-						username: true,
-						firstname: true,
-						lastname: true,
-						bio: true,
-						websiteURL: true,
-						location: true,
-						avatarImage: true,
-						backgroundImage: true,
 					},
 				}),
 			]);
 
-			const posts = postsRaw.map((post) => ({
-				id: post.id,
-				textContent: post.textContent,
-				image: post.image,
-				likes: post._count.likes,
-				publishedAt: post.publishedAt.toISOString(),
-				isLikedByCurrentUser: post.likes.length > 0,
-			}));
+			if (!foundPost) return callback("Post not found!", null);
 
-			sendData(null, userData, posts);
+			if (!foundLike) {
+				await prisma.like.create({
+					data: {
+						userId: userId,
+						postId: postId,
+					},
+				});
+
+				callback(null, true);
+			} else {
+				await prisma.like.delete({
+					where: {
+						id: foundLike.id,
+					},
+				});
+
+				callback(null, false);
+			}
 		} catch (error) {
 			const errorMessage =
 				error instanceof Error ? error.message : "Unknown server error!";
 
-			sendData(
+			callback(
 				process.env.NODE_ENV === "production" ? "Server error!" : errorMessage,
-				null,
 				null
 			);
 
 			logError(
-				`Get found user data error! Socket id: ${socket.id}`,
+				`Get user data error! Socket id: ${socket.id}`,
 				error instanceof Error ? error.message : "unknown error",
 				"socketErrorsLog.txt"
 			);
@@ -114,4 +94,4 @@ const getFoundUserData = (
 	});
 };
 
-export default getFoundUserData;
+export default switchPostLike;

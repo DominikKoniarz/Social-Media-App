@@ -5,24 +5,39 @@ import {
 	FaRegMessage,
 	FaRegBookmark,
 	FaRegUser,
+	FaHeart,
 } from "react-icons/fa6";
 import useCalculateElapsedTime from "hooks/useCalculateElapsedTime";
 import useGenerateImageSrc from "hooks/useGenerateImagesSrc";
 import { UserData } from "../../../types/socket.io";
+import useSwitchPostLike from "hooks/useSwitchPostLike";
 
 type Props = {
 	id: string;
 	textContent: string;
 	image: string | null;
 	publishedAt: string;
+	likes: number;
+	isLikedByCurrentUser: boolean;
+	mutateCliendPostLikeData: (postId: string, liked: boolean) => void;
 	userData: Pick<
 		UserData,
 		"id" | "username" | "firstname" | "lastname" | "avatarImage"
 	>;
 };
 
-const Post = ({ id, textContent, image, publishedAt, userData }: Props) => {
+const Post = ({
+	id,
+	textContent,
+	image,
+	publishedAt,
+	userData,
+	likes,
+	isLikedByCurrentUser,
+	mutateCliendPostLikeData,
+}: Props) => {
 	const calculateElapsedTime = useCalculateElapsedTime();
+	const { isLoading, switchPostLike } = useSwitchPostLike();
 	const { generatePostImageSrc, generateAvatarImageSrc } =
 		useGenerateImageSrc();
 
@@ -72,15 +87,27 @@ const Post = ({ id, textContent, image, publishedAt, userData }: Props) => {
 					/>
 				)}
 			</div>
-			<div className="flex items-center w-full h-full gap-8 py-5 ">
+			<div className="flex items-center w-full h-full gap-8 py-5">
+				<button
+					type="button"
+					disabled={isLoading}
+					className="flex items-center gap-2 text-base font-normal lowercase text-slate-600 disabled:opacity-50"
+					onClick={() => switchPostLike(id, mutateCliendPostLikeData)}
+				>
+					{isLikedByCurrentUser ? (
+						<FaHeart className="text-lg text-red-500" />
+					) : (
+						<FaRegHeart className="text-lg text-slate-600" />
+					)}
+					{likes}
+				</button>
 				<div className="flex items-center gap-2 text-base font-normal lowercase text-slate-600">
-					<FaRegHeart className="text-lg" /> 123
+					<FaRegMessage className="text-lg" />
+					{Math.floor(Math.random() * 10 * likes)}
 				</div>
 				<div className="flex items-center gap-2 text-base font-normal lowercase text-slate-600">
-					<FaRegMessage className="text-lg" /> 3123
-				</div>
-				<div className="flex items-center gap-2 text-base font-normal lowercase text-slate-600">
-					<FaRegBookmark className="text-lg" /> 3123
+					<FaRegBookmark className="text-lg" />
+					{Math.floor(Math.random() * 10 * likes)}
 				</div>
 			</div>
 		</li>

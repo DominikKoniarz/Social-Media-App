@@ -21,6 +21,7 @@ import sendMessage from "./sendMessage";
 import deletePost from "./deletePost";
 import getUserActivity from "./getUserActivity";
 import getRootPageFeed from "./getRootPageFeed";
+import switchPostLike from "./likePost";
 
 const registerSocketHandlers = (
 	io: Server<
@@ -47,6 +48,7 @@ const registerSocketHandlers = (
 		sendMessage(socket, io);
 		getUserActivity(socket, io);
 		getRootPageFeed(socket);
+		switchPostLike(socket);
 
 		socket.on("disconnect", () => {
 			console.log("user disconnected", socket.id);

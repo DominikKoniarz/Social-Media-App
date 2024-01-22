@@ -55,6 +55,19 @@ const getRootPageFeed = (
 					textContent: true,
 					image: true,
 					publishedAt: true,
+					_count: {
+						select: {
+							likes: true,
+						},
+					},
+					likes: {
+						where: {
+							userId: userId,
+						},
+						select: {
+							id: true,
+						},
+					},
 					user: {
 						select: {
 							id: true,
@@ -71,6 +84,7 @@ const getRootPageFeed = (
 				return {
 					id: rawPost.id,
 					textContent: rawPost.textContent,
+					likes: rawPost._count.likes,
 					image: rawPost.image,
 					publishedAt: rawPost.publishedAt.toISOString(),
 					authorId: rawPost.user.id,
@@ -78,6 +92,7 @@ const getRootPageFeed = (
 					authorFirstname: rawPost.user.firstname,
 					authorLastname: rawPost.user.lastname,
 					authorAvatarImage: rawPost.user.avatarImage,
+					isLikedByCurrentUser: rawPost.likes.length > 0,
 				};
 			});
 

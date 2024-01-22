@@ -8,7 +8,7 @@ import SaveButton from "./SaveButton";
 import UserNameInput from "./UserNameInput";
 import { UserData } from "../../../../../types/socket.io";
 import useSubmitUserData from "hooks/useSubmitUserData";
-import WebsiteURLInput from "./WebsiteURLInput";
+import PersonalWebsiteURLInput from "./PersonalWebsiteURLInput";
 
 type Props = {
 	userData: UserData | null;
@@ -83,7 +83,7 @@ export default function ProfileEditForm({ userData }: Props) {
 				</div>
 			</div>
 			<div className="flex w-full gap-12">
-				<WebsiteURLInput
+				<PersonalWebsiteURLInput
 					disabled={disabled}
 					websiteURL={websiteURL}
 					setWebsiteURL={setWebsiteURL}

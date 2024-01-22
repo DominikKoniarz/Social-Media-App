@@ -88,6 +88,10 @@ export interface ClientToServerEvents {
 	getRootPageFeed: (
 		callback: (error: string | null, posts: RootPagePost[] | null) => void
 	) => void;
+	switchPostLike: (
+		postId: string,
+		callback: (error: string | null, liked: boolean | null) => void
+	) => void;
 }
 
 export interface InterServerEvents {
@@ -121,6 +125,8 @@ export type Post = {
 	textContent: string;
 	image: string | null;
 	publishedAt: string;
+	likes: number;
+	isLikedByCurrentUser: boolean;
 };
 
 export type RootPagePost = Post & {

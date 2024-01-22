@@ -21,6 +21,7 @@ const FoundProfilePage = () => {
 		userData: foundUserData,
 		posts,
 		isFound,
+		changePostLike,
 	} = useGetFoundUserData(id);
 
 	useEffect(() => {
@@ -58,7 +59,11 @@ const FoundProfilePage = () => {
 					<FoundProfileBody foundUserData={foundUserData} />
 				</section>
 				{posts.length > 0 && (
-					<FoundProfilePosts posts={posts} foundUserData={foundUserData} />
+					<FoundProfilePosts
+						posts={posts}
+						foundUserData={foundUserData}
+						changePostLike={changePostLike}
+					/>
 				)}
 			</main>
 		);

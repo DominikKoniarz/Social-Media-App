@@ -2,6 +2,7 @@ import { Socket } from "socket.io";
 import {
 	ClientToServerEvents,
 	InterServerEvents,
+	Post,
 	ServerToClientEvents,
 	SocketData,
 } from "../../../types/socket.io";
@@ -45,15 +46,32 @@ const getCurrentUserPosts = (
 					textContent: true,
 					publishedAt: true,
 					image: true,
+					_count: {
+						select: {
+							likes: true,
+						},
+					},
+					likes: {
+						where: {
+							userId: userId,
+						},
+						select: {
+							id: true,
+						},
+					},
 				},
 				orderBy: {
 					publishedAt: "desc",
 				},
 			});
 
-			const posts = postsRaw.map((post) => ({
-				...post,
+			const posts: Post[] = postsRaw.map((post) => ({
+				id: post.id,
+				textContent: post.textContent,
+				image: post.image,
+				likes: post._count.likes,
 				publishedAt: post.publishedAt.toISOString(),
+				isLikedByCurrentUser: post.likes.length > 0,
 			}));
 
 			sendPosts(null, posts);

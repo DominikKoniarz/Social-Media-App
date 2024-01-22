@@ -30,7 +30,23 @@ const useGetFoundUserData = (id: string | undefined) => {
 		});
 	}, [socket, id]);
 
-	return { isLoading, error, userData, posts, isFound };
+	const changePostLike = (postId: string, liked: boolean) => {
+		setPosts((prevData) => {
+			if (!prevData) return prevData;
+
+			return prevData.map((post) => {
+				if (post.id === postId) {
+					return {
+						...post,
+						isLikedByCurrentUser: liked,
+						likes: liked ? post.likes + 1 : post.likes - 1,
+					};
+				} else return post;
+			});
+		});
+	};
+
+	return { isLoading, error, userData, posts, isFound, changePostLike };
 };
 
 export default useGetFoundUserData;

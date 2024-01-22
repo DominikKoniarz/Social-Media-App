@@ -4,9 +4,14 @@ import Post from "@components/Post";
 type Props = {
 	posts: PostType[];
 	foundUserData: UserData;
+	changePostLike: (postId: string, liked: boolean) => void;
 };
 
-export default function FoundProfilePosts({ posts, foundUserData }: Props) {
+export default function FoundProfilePosts({
+	posts,
+	foundUserData,
+	changePostLike,
+}: Props) {
 	return (
 		<ul className="w-full mt-4 space-y-4 h-fit">
 			{posts.map((post) => (
@@ -17,6 +22,9 @@ export default function FoundProfilePosts({ posts, foundUserData }: Props) {
 					textContent={post.textContent}
 					publishedAt={post.publishedAt}
 					image={post.image}
+					isLikedByCurrentUser={post.isLikedByCurrentUser}
+					likes={post.likes}
+					mutateCliendPostLikeData={changePostLike}
 				/>
 			))}
 		</ul>

@@ -32,5 +32,19 @@ export default function useGetCurrentUserPosts() {
 		getCurrentUserPosts();
 	}, [getCurrentUserPosts]);
 
-	return { isLoading, error, posts };
+	const changePostLike = (postId: string, liked: boolean) => {
+		setPosts((prevData) => {
+			return prevData.map((post) => {
+				if (post.id === postId) {
+					return {
+						...post,
+						isLikedByCurrentUser: liked,
+						likes: liked ? post.likes + 1 : post.likes - 1,
+					};
+				} else return post;
+			});
+		});
+	};
+
+	return { isLoading, error, posts, changePostLike };
 }
