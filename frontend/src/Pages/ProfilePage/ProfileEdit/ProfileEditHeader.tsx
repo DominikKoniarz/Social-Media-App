@@ -19,7 +19,7 @@ const ProfileEditHeader = () => {
 	return (
 		<div className="relative flex flex-col w-full h-fit">
 			{userData && userData.backgroundImage ? (
-				<div className="w-full h-[257px] flex justify-center items-center  ">
+				<div className="w-full h-44 lg:h-[257px] flex justify-center items-center  ">
 					<img
 						className="object-cover w-full h-full"
 						src={generateBackgroundImageSrc(
@@ -30,7 +30,7 @@ const ProfileEditHeader = () => {
 					/>
 				</div>
 			) : (
-				<div className="flex items-center justify-center w-full bg-slate-600 h-[257px]">
+				<div className="flex items-center justify-center w-full bg-slate-600 h-44 lg:h-[257px]">
 					<FaPanorama className="text-white text-7xl" />
 				</div>
 			)}

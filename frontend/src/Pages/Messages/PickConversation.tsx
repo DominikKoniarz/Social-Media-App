@@ -16,5 +16,9 @@ export default function PickConversation() {
 		);
 	}
 
-	return <div className="relative flex flex-col w-full"></div>;
+	return (
+		<div className="relative flex items-center justify-center w-full h-full text-lg opacity-100 sm:opacity-0">
+			No conversations to display!
+		</div>
+	);
 }
