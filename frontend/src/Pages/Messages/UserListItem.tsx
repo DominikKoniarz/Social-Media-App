@@ -61,23 +61,23 @@ const UserListItem = ({ conversation }: Props) => {
 						size="md"
 						className="border-none shrink-0"
 					/>
-					<div className="flex justify-between max-w-[300px] w-full pl-3">
-						<div className="flex flex-col justify-center max-w-[196px] pr-4 max-h-[61px]">
+					<div className="flex justify-between lg:max-w-[300px] lg:gap-4 w-full pl-3">
+						<div className="flex flex-col justify-center max-w-[196px]  max-h-[61px]">
 							<p className="text-sm font-bold text-left text-zinc-900 font-family2">
 								{conversation.otherUserFirstname &&
 								conversation.otherUserLastname
 									? `${conversation.otherUserFirstname} ${conversation.otherUserLastname}`
 									: `@${conversation.otherUserUsername}`}
 							</p>
-							<p className="max-h-[37px] w-32  overflow-ellipsis overflow-hidden whitespace-nowrap text-neutral-600 text-sm font-normal font-family2 leading-[18px]">
+							<p className="max-h-[37px] max-w-60 w-full lg:max-w-24 xl:max-w-32  overflow-ellipsis overflow-hidden whitespace-nowrap text-neutral-600 text-sm font-normal font-family2 leading-[18px]">
 								{newestMessage.textContent}
 							</p>
 						</div>
 						<div className="flex flex-col items-end gap-2 ">
-							<p className="text-sm font-medium text-gray-500 text-end font-family2 whitespace-nowrap ">
+							<p className="text-xs font-medium text-gray-500 md:text-sm text-end font-family2 whitespace-nowrap ">
 								{calculateElapsedTime(new Date(newestMessage.createdAt))}
 							</p>
-							<div className="text-xl">
+							<div className="text-lg md:text-xl">
 								<FaRegCircleCheck />
 							</div>
 						</div>

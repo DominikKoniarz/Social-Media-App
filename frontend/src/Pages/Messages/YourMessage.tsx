@@ -62,7 +62,7 @@ const YourMessage = ({ textContent, createdAt, newestMessage }: Props) => {
 					rounded
 					size="md"
 				/>
-				<div className="md:p-5 p-3 md:max-w-[380px] max-w-[250px] break-words bg-teal-500 rounded-br-none rounded-3xl text-white text-sm font-medium font-family2 leading-[18px]">
+				<div className="lg:p-5 p-3 xl:max-w-[380px] max-w-56 lg:max-w-[250px] shrink-0 break-words bg-teal-500 rounded-br-none rounded-3xl text-white text-sm font-medium font-family2 leading-[18px]">
 					{textContent}
 				</div>
 			</div>

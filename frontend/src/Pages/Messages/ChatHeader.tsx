@@ -50,7 +50,7 @@ const ChatHeader = ({
 		<div className="relative flex items-center w-full gap-2 px-6 py-4 mb-4 bg-white">
 			<Avatar img={getAvatarImageSrcOrIcon(avatar, userId)} rounded size="md" />
 			<div className="flex flex-col">
-				<p className="font-bold  sm:text-base md:text-lg lg:text-xl text-zinc-900 font-family2 h-fit">
+				<p className="font-bold sm:text-base md:text-lg lg:text-xl text-zinc-900 font-family2 h-fit">
 					{firstname && lastname ? `${firstname} ${lastname}` : `@${username}`}
 				</p>
 				<div className="flex items-center gap-1">
@@ -68,7 +68,7 @@ const ChatHeader = ({
 			</div>
 			<button
 				onClick={handleShowNavBar}
-				className="absolute flex items-center justify-center p-3 text-2xl text-gray-400 border rounded-full md:hidden right-6"
+				className="absolute flex items-center justify-center p-3 text-2xl text-gray-400 border rounded-full lg:hidden right-6"
 			>
 				<FaArrowLeft />
 			</button>
