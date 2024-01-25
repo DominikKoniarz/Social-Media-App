@@ -50,6 +50,11 @@ const getSuggestions = (
 								not: null,
 							},
 						},
+						{
+							id: {
+								not: userId,
+							},
+						},
 					],
 				},
 				select: {
