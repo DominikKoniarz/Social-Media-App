@@ -15,7 +15,7 @@ const ProtectedRoutesLayout = () => {
 	return (
 		<SocketContextProvider>
 			<div className="w-full h-full bg-zinc-100">
-				<main className="w-full h-full  max-w-[1920px] mx-auto">
+				<main className="w-full h-full max-w-[1920px] mx-auto">
 					<Header
 						toggle={toggle}
 						setToggle={setToggle}

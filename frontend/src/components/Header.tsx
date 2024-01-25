@@ -7,6 +7,7 @@ import AddPostModal from "./AddPostModal";
 import NavBarButtonMobile from "./NavBarButtonMobile";
 import FormInputMobile from "./FormInputMobile";
 import SearchResultsList from "./SearchResultsList";
+import { Link } from "react-router-dom";
 
 type Props = {
 	toggle: boolean;
@@ -45,10 +46,10 @@ const Header = ({
 				</>
 			)}
 			<div className="py-2 px-4 mx-auto gap-4 md:gap-16 max-w-[1920px] w-full flex justify-between items-center h-full">
-				<div className="flex shrink-0">
+				<Link to="/" className="flex shrink-0">
 					<img className="mix-blend-darken" src={imgF} alt="Img F" />
 					<LogoText />
-				</div>
+				</Link>
 				<NavBarButtonMobile toggle={toggle} setToggle={setToggle} />
 				<Form
 					search={search}

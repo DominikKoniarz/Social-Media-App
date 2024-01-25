@@ -6,7 +6,7 @@ type Props = {
 
 const FoundProfileBody = ({ foundUserData }: Props) => {
 	return (
-		<section className="w-full px-10 pt-3 pb-4 bg-white h-fit">
+		<section className="w-full px-5 pt-3 pb-4 bg-white lg:px-10 h-fit">
 			<article className="flex items-center gap-4 ">
 				{foundUserData.firstname && foundUserData.lastname && (
 					<p className="text-xl font-medium text-zinc-950 font-family1">

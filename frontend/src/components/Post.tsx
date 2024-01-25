@@ -42,7 +42,7 @@ const Post = ({
 		useGenerateImageSrc();
 
 	return (
-		<li className="flex flex-col w-full px-1 py-4 bg-white md:p-4 h-fit">
+		<li className="flex flex-col w-full px-4 py-4 bg-white md:p-4 h-fit">
 			<div className="flex items-center gap-1">
 				<div className="grid w-12 h-12 border-2 border-black rounded-full place-items-center shrink-0">
 					{userData && userData.avatarImage ? (

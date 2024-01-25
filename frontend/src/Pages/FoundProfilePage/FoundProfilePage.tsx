@@ -53,7 +53,7 @@ const FoundProfilePage = () => {
 
 	if (!isLoading && !error && foundUserData && posts && isFound)
 		return (
-			<main className="w-full h-full px-6 mx-auto overflow-y-auto profile">
+			<main className="w-full h-full px-4 pt-4 mx-auto overflow-y-auto md:px-6 md:pt-0 profile">
 				<section className="bg-white">
 					<FoundProfileHeader foundUserData={foundUserData} />
 					<FoundProfileBody foundUserData={foundUserData} />

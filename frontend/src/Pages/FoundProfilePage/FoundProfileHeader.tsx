@@ -32,7 +32,7 @@ const FoundProfileHeader = ({ foundUserData }: Props) => {
 	return (
 		<div className="relative flex flex-col w-full h-fit">
 			{foundUserData.backgroundImage ? (
-				<div className="w-full h-[257px] flex justify-center items-center  ">
+				<div className="w-full h-[257px] flex justify-center items-center">
 					<img
 						className="object-cover w-full h-full"
 						src={generateBackgroundImageSrc(
@@ -43,11 +43,11 @@ const FoundProfileHeader = ({ foundUserData }: Props) => {
 					/>
 				</div>
 			) : (
-				<div className="flex items-center justify-center w-full bg-slate-600 h-[257px]">
+				<div className="flex items-center justify-center w-full bg-slate-600 h-44 lg:h-[257px]">
 					<FaPanorama className="text-white text-7xl" />
 				</div>
 			)}
-			<div className="absolute grid place-items-center border-2 bottom-[7px] border-slate-200 rounded-md overflow-hidden left-10 h-[118px] w-[128px] bg-slate-50">
+			<div className="absolute grid place-items-center border-2 bottom-[7px] border-slate-200 rounded-md overflow-hidden left-5 lg:left-10 w-24 h-24 lg:w-[128px] lg:h-[118px] bg-slate-50">
 				{foundUserData.avatarImage ? (
 					<img
 						className="absolute object-cover w-full h-full"

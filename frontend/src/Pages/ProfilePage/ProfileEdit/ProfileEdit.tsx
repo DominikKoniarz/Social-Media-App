@@ -7,7 +7,7 @@ const ProfileEdit = () => {
 	const { userData } = useSocketContext();
 
 	return (
-		<div className="w-full h-full sm:px-6">
+		<div className="w-full h-full px-4 pt-4 md:pt-0 md:px-6">
 			<ProfileEditHeader />
 			{userData ? (
 				<ProfileEditForm userData={userData} />

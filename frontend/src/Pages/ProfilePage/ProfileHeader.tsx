@@ -29,7 +29,7 @@ const ProfileHeader = () => {
 	return (
 		<div className="relative flex flex-col w-full h-fit">
 			{userData && userData.backgroundImage ? (
-				<div className="w-full h-44 lg:h-[257px] flex justify-center items-center  ">
+				<div className="w-full h-44 lg:h-[257px] flex justify-center items-center">
 					<img
 						className="object-cover w-full h-full"
 						src={generateBackgroundImageSrc(
