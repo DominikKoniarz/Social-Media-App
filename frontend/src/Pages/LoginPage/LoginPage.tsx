@@ -22,7 +22,13 @@ const LoginPage = () => {
 				<Header />
 				<Form />
 			</section>
-			<img className="hidden lg:inline" src={socialmedia} alt="socialmedia" />
+			<div className="hidden lg:block h-full w-[500px] xl:w-[600px] shrink-0">
+				<img
+					className="object-cover w-full h-full"
+					src={socialmedia}
+					alt="socialmedia"
+				/>
+			</div>
 		</main>
 	);
 };

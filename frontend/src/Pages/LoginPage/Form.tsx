@@ -5,6 +5,7 @@ import LogInButton from "./LogInButton";
 import { LOGIN_URL } from "../../constraints";
 import { useNavigate } from "react-router-dom";
 import useAuthContext from "hooks/useAuthContext";
+import ErrorDisplay from "./ErrorDisplay";
 
 type LoginData = {
 	email: string;
@@ -68,32 +69,22 @@ const Form = () => {
 
 	return (
 		<form
-			className="space-y-4 w-full  md:w-[400px] mx-auto my-auto"
+			className="space-y-4 w-full xs:w-4/5 sm:w-3/5 md:w-[400px] mx-auto my-auto"
 			onSubmit={(e) => {
 				e.preventDefault();
 				handleSubmit(email, password);
 			}}
 		>
-			<h1 className="text-black text-4xl  font-semibold text-center leading-[44px]">
+			<h1 className="text-black text-2xl md:text-3xl lg:text-4xl font-semibold text-center leading-[44px]">
 				Welcome Back
 			</h1>
-			<h2 className="text-black block pb-1 text-lg font-normal text-center  leading-[29.16px]">
+			<h2 className="text-black block pb-1 text-base md:text-lg font-normal text-center leading-[29.16px]">
 				Log in into your account
 			</h2>
 			<EmailInput email={email} setEmail={setEmail} />
 			<PasswordInput pwd={password} setPwd={setPassword} />
 			<LogInButton isLoading={isLoading} />
-			{fetchStatus && (
-				<p
-					className={`${
-						fetchStatus === "Logged in succesfully!"
-							? "text-green-500"
-							: "text-red-500"
-					} pt-1 mx-auto w-fit text-center`}
-				>
-					{fetchStatus}
-				</p>
-			)}
+			{fetchStatus && <ErrorDisplay fetchStatus={fetchStatus} />}
 		</form>
 	);
 };

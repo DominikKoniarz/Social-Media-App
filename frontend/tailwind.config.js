@@ -25,6 +25,9 @@ export default {
 				family1: ["SF Compact Display"],
 				family2: ["Satoshi"],
 			},
+			screens: {
+				xs: "400px",
+			},
 		},
 	},
 	plugins: [require("flowbite-react")],
