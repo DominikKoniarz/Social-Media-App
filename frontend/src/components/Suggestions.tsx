@@ -9,13 +9,13 @@ const Suggestions = () => {
 	const imageSources: string[] = [img1, img2, img3, img4, img5];
 
 	return (
-		<div className="hidden p-4 bg-white 2xl:block w-fit h-fit">
-			<p className="pb-2 text-lg font-normal uppercase text-neutral-900 font-family1">
-				suggestions
+		<div className="hidden p-4 bg-white 2xl:block w-fit h-fit shrink-0">
+			<p className="mb-2 text-lg font-bold uppercase text-neutral-900 font-family1">
+				Suggestions
 			</p>
-			<ul className="flex p-0 flex-col space-y-4">
+			<ul className="flex flex-col gap-y-4">
 				{imageSources.map((src, index) => (
-					<SuggestionsItem key={index} src={src} alt={`Image ${+index + 1}`} />
+					<SuggestionsItem key={index} src={src} alt={`Image ${index + 1}`} />
 				))}
 			</ul>
 		</div>
