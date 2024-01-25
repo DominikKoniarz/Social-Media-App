@@ -1,13 +1,5 @@
 import type { NextFunction, Request, Response } from "express";
-import path from "path";
-
-const indexFilePath = path.join(
-	process.cwd(),
-	"..",
-	"frontend",
-	"dist",
-	"index.html"
-);
+import sendRootPage from "../lib/sendRootPage";
 
 const rootPageController = (
 	req: Request,
@@ -15,7 +7,7 @@ const rootPageController = (
 	next: NextFunction
 ) => {
 	try {
-		res.sendFile(indexFilePath);
+		sendRootPage(res);
 	} catch (error) {
 		next(error);
 	}

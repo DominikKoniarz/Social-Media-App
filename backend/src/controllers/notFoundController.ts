@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import sendRootPage from "../lib/sendRootPage";
 
 const notFoundController = (
 	req: Request,
@@ -9,7 +10,9 @@ const notFoundController = (
 		res.status(404);
 
 		if (req.accepts("html")) {
-			res.send("Not Found! 404");
+			process.env.NODE_ENV === "production"
+				? sendRootPage(res)
+				: res.send("Not Found! 404");
 		} else if (req.accepts("application/json")) {
 			res.json({ message: "404 Not Found!" });
 		} else {

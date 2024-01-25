@@ -50,9 +50,10 @@ const registerSocketHandlers = (
 		getRootPageFeed(socket);
 		switchPostLike(socket);
 
-		socket.on("disconnect", () => {
-			console.log("user disconnected", socket.id);
-		});
+		if (process.env.NODE_ENV !== "production")
+			socket.on("disconnect", () => {
+				console.log("user disconnected", socket.id);
+			});
 	});
 };
 
