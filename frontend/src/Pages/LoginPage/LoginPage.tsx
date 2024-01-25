@@ -18,7 +18,7 @@ const LoginPage = () => {
 
 	return (
 		<main className="flex w-full h-full bg-zinc-100">
-			<section className="flex flex-col justify-center w-full md:h-full h-[calc(100%-75px)] p-10">
+			<section className="flex flex-col justify-center w-full md:h-full h-[calc(100%-75px)] p-7 sm:p-10">
 				<Header />
 				<Form />
 			</section>

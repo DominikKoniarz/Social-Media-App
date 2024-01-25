@@ -11,11 +11,17 @@ const RegisterPage = () => {
 
 	return (
 		<main className="flex w-screen h-screen bg-zinc-100">
-			<section className="flex flex-col w-full md:h-full p-10 h-[calc(100%-75px)] ">
+			<section className="flex flex-col w-full md:h-full p-7 sm:p-10 h-[calc(100%-75px)] ">
 				<Header />
 				<Form />
 			</section>
-			<img className="hidden lg:inline" src={socialmedia} alt="socialmedia" />
+			<div className="hidden lg:block h-full w-[500px] xl:w-[600px] shrink-0">
+				<img
+					className="object-cover w-full h-full"
+					src={socialmedia}
+					alt="socialmedia"
+				/>
+			</div>
 		</main>
 	);
 };

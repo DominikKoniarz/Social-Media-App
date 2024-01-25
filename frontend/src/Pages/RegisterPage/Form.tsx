@@ -5,6 +5,7 @@ import { REGISTER_URL } from "../../constraints";
 import UsernameInput from "@components/UsernameInput";
 import EmailInput from "@components/EmailInput";
 import PasswordInput from "@components/PasswordInput";
+import ErrorDisplay from "./ErrorDisplay";
 
 type NewUser = {
 	email: string;
@@ -65,16 +66,16 @@ const Form = () => {
 
 	return (
 		<form
-			className="space-y-3 w-full  md:w-[400px] mx-auto  my-auto"
+			className="space-y-3 w-full xs:w-4/5 sm:w-3/5 md:w-[400px] mx-auto my-auto"
 			onSubmit={(e) => {
 				e.preventDefault();
 				handleSubmit(password, email, username);
 			}}
 		>
-			<h1 className="text-black text-4xl  font-semibold text-center leading-[44px]">
+			<h1 className="text-black text-2xl md:text-3xl lg:text-4xl font-semibold text-center leading-[44px]">
 				Create Your Account
 			</h1>
-			<h2 className="text-black block pb-1 text-lg font-normal text-center  leading-[29.16px]">
+			<h2 className="text-black block pb-1 text-lg font-normal text-center leading-[29.16px]">
 				Keep up with your friends!
 			</h2>
 			<UsernameInput username={username} setUsername={setUsername} />
@@ -82,17 +83,7 @@ const Form = () => {
 			<PasswordInput pwd={password} setPwd={setPassword} />
 			<InfoText />
 			<SignUpButton isLoading={isLoading} />
-			{fetchStatus && (
-				<p
-					className={`${
-						fetchStatus === "Signed in succesfully!"
-							? "text-green-500"
-							: "text-red-500"
-					} pt-1 mx-auto w-fit text-center`}
-				>
-					{fetchStatus}
-				</p>
-			)}
+			{fetchStatus && <ErrorDisplay fetchStatus={fetchStatus} />}
 		</form>
 	);
 };
