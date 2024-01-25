@@ -127,7 +127,7 @@ const addPost = (
 				);
 
 				logError(
-					`Get user data error! Socket id: ${socket.id}`,
+					`Add post error! Socket id: ${socket.id}`,
 					error instanceof Error ? error.message : "unknown error",
 					"socketErrorsLog.txt"
 				);

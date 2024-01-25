@@ -1,11 +1,13 @@
-// import Post from "@components/Post";
 import Suggestions from "@components/Suggestions";
 import Post from "@components/Post";
 import SpinnerLoader from "@components/SpinnerLoader";
 import useGetRootPageFeed from "hooks/useGetRootPageFeed";
+import useGetSuggestions from "hooks/useGetSuggestions";
 
 const RootPage = () => {
 	const { data, isLoading, error, changePostLike } = useGetRootPageFeed();
+	const { data: suggestions, isLoading: isLoadingSuggestions } =
+		useGetSuggestions();
 
 	return (
 		<div className="flex justify-between w-full h-full p-4 md:pt-0 md:px-16">
@@ -51,7 +53,9 @@ const RootPage = () => {
 						/>
 					))}
 			</ul>
-			<Suggestions />
+			{!isLoadingSuggestions && suggestions && suggestions?.length > 0 && (
+				<Suggestions suggestions={suggestions} />
+			)}
 		</div>
 	);
 };

@@ -22,6 +22,7 @@ import deletePost from "./deletePost";
 import getUserActivity from "./getUserActivity";
 import getRootPageFeed from "./getRootPageFeed";
 import switchPostLike from "./likePost";
+import getSuggestions from "./getSuggestions";
 
 const registerSocketHandlers = (
 	io: Server<
@@ -49,6 +50,7 @@ const registerSocketHandlers = (
 		getUserActivity(socket, io);
 		getRootPageFeed(socket);
 		switchPostLike(socket);
+		getSuggestions(socket);
 
 		if (process.env.NODE_ENV !== "production")
 			socket.on("disconnect", () => {

@@ -1,21 +1,19 @@
-import img1 from "@assets/images/suggestionsImages/suggestion1.png";
-import img2 from "@assets/images/suggestionsImages/suggestion2.png";
-import img3 from "@assets/images/suggestionsImages/suggestion3.png";
-import img4 from "@assets/images/suggestionsImages/suggestion4.png";
-import img5 from "@assets/images/suggestionsImages/suggestion5.png";
 import SuggestionsItem from "./SuggestionsItem";
+import { Suggestion } from "../../../types/socket.io";
 
-const Suggestions = () => {
-	const imageSources: string[] = [img1, img2, img3, img4, img5];
+type Props = {
+	suggestions: Suggestion[];
+};
 
+const Suggestions = ({ suggestions }: Props) => {
 	return (
 		<div className="hidden p-4 bg-white 2xl:block w-fit h-fit shrink-0">
 			<p className="mb-2 text-lg font-bold uppercase text-neutral-900 font-family1">
 				Suggestions
 			</p>
 			<ul className="flex flex-col gap-y-4">
-				{imageSources.map((src, index) => (
-					<SuggestionsItem key={index} src={src} alt={`Image ${index + 1}`} />
+				{suggestions.map((suggestion) => (
+					<SuggestionsItem key={suggestion.id} suggestion={suggestion} />
 				))}
 			</ul>
 		</div>

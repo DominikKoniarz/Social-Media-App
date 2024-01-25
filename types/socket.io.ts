@@ -92,6 +92,9 @@ export interface ClientToServerEvents {
 		postId: string,
 		callback: (error: string | null, liked: boolean | null) => void
 	) => void;
+	getSuggestions: (
+		callback: (error: string | null, suggestions: Suggestion[] | null) => void
+	) => void;
 }
 
 export interface InterServerEvents {
@@ -147,4 +150,12 @@ export type UserData = {
 	location: string | null;
 	avatarImage: string | null;
 	backgroundImage: string | null;
+};
+
+export type Suggestion = {
+	id: string;
+	username: string;
+	email: string;
+	avatarImage: string;
+	backgroundImage: string;
 };
