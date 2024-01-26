@@ -103,11 +103,11 @@ const Post = ({
 				</button>
 				<div className="flex items-center gap-2 text-base font-normal lowercase text-slate-600">
 					<FaRegMessage className="text-lg" />
-					{Math.floor(Math.random() * 10 * likes)}
+					{Math.floor(Math.random() * likes)}
 				</div>
 				<div className="flex items-center gap-2 text-base font-normal lowercase text-slate-600">
 					<FaRegBookmark className="text-lg" />
-					{Math.floor(Math.random() * 10 * likes)}
+					{Math.floor(Math.random() * likes)}
 				</div>
 			</div>
 		</li>

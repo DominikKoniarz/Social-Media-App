@@ -1,6 +1,6 @@
 import { Avatar } from "flowbite-react";
 import { FaRegCircleCheck, FaRegUser } from "react-icons/fa6";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Conversation } from "../../../../types/socket.io";
 import useCalculateElapsedTime from "hooks/useCalculateElapsedTime";
 import useGenerateConversationUrl from "hooks/useGenerateConversationUrl";
@@ -12,6 +12,7 @@ type Props = {
 };
 
 const UserListItem = ({ conversation }: Props) => {
+	const { pathname } = useLocation();
 	const { data } = useGetUserActivity(conversation.otherUserId);
 	const { generateAvatarImageSrc } = useGenerateImageSrc();
 	const calculateElapsedTime = useCalculateElapsedTime();
@@ -42,7 +43,11 @@ const UserListItem = ({ conversation }: Props) => {
 			<li>
 				<Link
 					to={conversationUrl}
-					className="flex px-3 py-2 hover:bg-emerald-50 hover:shadow-chat-item"
+					className={`flex px-3 py-2 hover:bg-emerald-50 hover:shadow-chat-item ${
+						conversationUrl.includes(pathname)
+							? "bg-emerald-50 hover:bg-emerald-50 shadow-chat-item"
+							: "bg-transparent"
+					}`}
 				>
 					<Avatar
 						img={avatarImage}

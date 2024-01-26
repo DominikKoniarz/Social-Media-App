@@ -81,18 +81,19 @@ export const SocketContextProvider = ({
 		);
 
 		newSocket.on("connect", () => {
-			console.log("connected");
+			import.meta.env.DEV && console.log("connected");
+
 			getUserData(newSocket);
 			getConversations(newSocket);
 		});
 
 		newSocket.on("disconnect", () => {
-			console.log("Server dissconnected");
+			import.meta.env.DEV && console.log("Server dissconnected");
 			refetchVerifyRefreshToken();
 		});
 
 		newSocket.on("connect_error", (error) => {
-			console.log(`Connecting error: ${error.message}`);
+			import.meta.env.DEV && console.log(`Connecting error: ${error.message}`);
 			refetchVerifyRefreshToken();
 		});
 
