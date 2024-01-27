@@ -1,6 +1,14 @@
-import { FaEllipsisVertical } from "react-icons/fa6";
+import {
+	FaEllipsisVertical,
+	FaRegEnvelope,
+	FaShareNodes,
+} from "react-icons/fa6";
 import { Suggestion } from "../../../types/socket.io";
 import useGenerateImageSrc from "hooks/useGenerateImagesSrc";
+import toast from "react-hot-toast";
+import useGenerateShareUrl from "hooks/useGenerateShareUrl";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 type Props = {
 	suggestion: Suggestion;
@@ -9,6 +17,18 @@ type Props = {
 const SuggestionsItem = ({ suggestion }: Props) => {
 	const { generateAvatarImageSrc, generateBackgroundImageSrc } =
 		useGenerateImageSrc();
+	const [isClicked, setIsClicked] = useState<boolean>(false);
+	const generateShareUrl = useGenerateShareUrl();
+
+	const saveToClipBoard = async () => {
+		const URL = generateShareUrl(suggestion.id);
+		try {
+			await navigator.clipboard.writeText(URL);
+			toast.success("Copied to clipboard!");
+		} catch (error) {
+			toast.success(`Could not copy for unknown reason. URL is ${URL}`);
+		}
+	};
 
 	return (
 		<li className="relative block w-[212px] h-[95px] shrink-0">
@@ -32,15 +52,45 @@ const SuggestionsItem = ({ suggestion }: Props) => {
 							alt={`${suggestion.username} avatar image`}
 						/>
 					</div>
-					<div className="text-xl text-white">
+					<button
+						onClick={(e) => {
+							e.stopPropagation();
+							setIsClicked((prev) => !prev);
+						}}
+						className="relative text-xl text-white"
+					>
 						<FaEllipsisVertical />
-					</div>
+						<div
+							className={`${
+								isClicked ? "flex flex-col" : "hidden"
+							} absolute left-8 -top-8 border border-black rounded-md bg-white p-1 gap-1`}
+						>
+							<Link
+								to={`/messages/new/${suggestion.id}`}
+								state={{ userData: { ...suggestion } }}
+								type="button"
+								className="w-[42px] h-[42px] flex justify-center items-center rounded-full border text-black border-teal-500"
+							>
+								<FaRegEnvelope />
+							</Link>
+							<button
+								type="button"
+								onClick={(e) => {
+									saveToClipBoard();
+									e.stopPropagation();
+								}}
+								className="w-[42px] h-[42px] flex justify-center items-center rounded-full border text-black border-teal-500"
+							>
+								<FaShareNodes />
+							</button>
+						</div>
+					</button>
 				</div>
 				<div className="flex flex-col w-full gap-px left-2">
-					<p className="w-full overflow-hidden text-base font-semibold leading-3 text-white whitespace-nowrap overflow-ellipsis custom-outline2 font-family1">
+					<p className="w-full overflow-hidden text-base font-semibold leading-3 text-white whitespace-nowrap overflow-ellipsis drop-shadow-2xl font-family1">
 						@{suggestion.username}
 					</p>
-					<p className="w-full overflow-hidden text-sm font-light text-white lowercase whitespace-nowrap overflow-ellipsis font-family1">
+					<p className="w-full overflow-hidden text-sm font-light text-white lowercase whitespace-nowrap overflow-ellipsis drop-shadow-2xl font-family1">
 						{suggestion.email}
 					</p>
 				</div>
