@@ -10,6 +10,11 @@ This app could be improved in few places by using some good practices like code 
 A huge point is that this app is not taking an advantage of some crucial patterns like server side rendering. Because of that it could be beneficial for this case to use for example NextJS.<br/>
 This was caused by not enough knowledge of this framework at the time when we started creating this project, so we used React for frontend and Express for backend (with no ssr included).
 
+# Tasks distribution
+
+Most of the backend and overall project architecture was done by me ([@DominikKoniarz](https://github.com/DominikKoniarz)).
+Frontend belonged to my teammate [@Vocyl](https://github.com/Vocyl) who ensured that everything lined up with UI design and substitued his own ideas in places where design was not specified.
+
 # Key features
 
 - User authentication
