@@ -7,6 +7,7 @@
 		"dev": "nodemon --watch .env --watch src --watch ../types --exec ts-node src/index.ts",
 		"build": "tsc",
 		"start": "node dist/backend/src/index.js",
+		"start:production": "pm2 start dist/backend/src/index.js --name social-media-app-backend",
 		"pm2:list": "pm2 list",
 		"pm2:log": "pm2 log",
 		"pm2:logs": "pm2 logs",
