@@ -23,6 +23,10 @@ Frontend belonged to my teammate [@Vocyl](https://github.com/Vocyl) who ensured 
 - User profile customization
 - Responsive design
 
+# Try it!
+
+App is available [here](https://socialmediaapp.dominikkoniarz.pl/).
+
 # References
 
 Icons from [open source](https://fontawesome.com/).<br/>
