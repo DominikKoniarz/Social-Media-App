@@ -10,9 +10,12 @@ import { logError } from "../middleware/errorHandler";
 import { MEDIA_DIR } from "../utils/createRequiredDirs";
 import path from "path";
 import createDirIfNotExists from "../lib/createDirIfNotExists";
-import sharp from "sharp";
 import fsp from "fs/promises";
 import validateCropData from "../lib/validateCropData";
+import getOptimizedSharpInstance from "../lib/getOptimizedSharpInstance";
+import { Region } from "sharp";
+
+const sharp = getOptimizedSharpInstance();
 
 const prisma = getDbInstance();
 
@@ -64,7 +67,7 @@ const saveBackgroundImage = (
 
 				await createRequiredDirs(userId);
 
-				const extractData: sharp.Region = {
+				const extractData: Region = {
 					height: parseInt(cropData.height.toString()),
 					width: parseInt(cropData.width.toString()),
 					left: parseInt(cropData.x.toString()),

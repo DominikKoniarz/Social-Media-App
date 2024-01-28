@@ -10,8 +10,6 @@ import { logError } from "../middleware/errorHandler";
 import path from "path";
 import { MEDIA_DIR } from "../utils/createRequiredDirs";
 import createDirIfNotExists from "../lib/createDirIfNotExists";
-import fsp from "fs/promises";
-import sharp from "sharp";
 
 const prisma = getDbInstance();
 

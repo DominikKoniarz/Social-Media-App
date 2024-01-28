@@ -11,7 +11,9 @@ import path from "path";
 import { MEDIA_DIR } from "../utils/createRequiredDirs";
 import createDirIfNotExists from "../lib/createDirIfNotExists";
 import fsp from "fs/promises";
-import sharp from "sharp";
+import getOptimizedSharpInstance from "../lib/getOptimizedSharpInstance";
+
+const sharp = getOptimizedSharpInstance();
 
 const prisma = getDbInstance();
 
