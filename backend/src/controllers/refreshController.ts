@@ -10,6 +10,7 @@ import {
 	REFRESH_TOKEN_COOKIE_NAME,
 	setRefreshTokenCookie,
 } from "../lib/cookies";
+import deleteOldRefreshToken from "../lib/deleteOldRefreshToken";
 
 const prisma = getDbInstance();
 
@@ -46,13 +47,7 @@ const refreshController = async (
 		const newRefreshToken = generateRefreshToken(foundUser.id);
 
 		await Promise.all([
-			async () => {
-				if (process.env.NODE_ENV === "production") {
-					await prisma.refreshToken.delete({
-						where: { token: refreshToken },
-					});
-				}
-			},
+			deleteOldRefreshToken(refreshToken),
 			prisma.refreshToken.create({
 				data: {
 					token: newRefreshToken,
