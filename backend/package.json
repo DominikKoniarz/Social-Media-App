@@ -13,7 +13,8 @@
 		"pm2:logs": "pm2 logs",
 		"pm2:monit": "pm2 monit",
 		"pm2:delete": "pm2 delete social-media-app-backend",
-		"database:deploy": "npx prisma migrate deploy"
+		"database:deploy": "npx prisma migrate deploy",
+		"pm2:save": "pm2 save"
 	},
 	"author": "",
 	"license": "ISC",

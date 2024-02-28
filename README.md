@@ -2,7 +2,7 @@
 
 Social media application created using React, Express and Socket.io (typescript).
 
-# Overwiew
+# Overview
 
 This project is a full-stack application which is imitating social media application. Built using TypeScript, React, Express and Prisma.<br/>
 Created in colaboration with [@Vocyl](https://github.com/Vocyl).<br/>
